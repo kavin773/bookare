@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bookare Landlord Portal — Manage your French student accommodation listings, review verified student dossiers with Visale guarantee, and collect rent." />
+  <title>Landlord Portal — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .landlord-applicant-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+      transition: all var(--transition-normal);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .landlord-applicant-card:hover {
+      border-color: var(--blue-300);
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
+</head>
+<body style="background:var(--slate-50);">
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="landlord.html" class="nav-link active">Dashboard</a>
+      <a href="#properties" class="nav-link">My Properties</a>
+      <a href="#applications" class="nav-link">Applications (4)</a>
+      <a href="list-property.html" class="nav-link">List Property</a>
+    </div>
+    <div class="nav-actions">
+      <span class="badge badge-success">✓ Verified Landlord</span>
+      <a href="list-property.html" class="btn btn-primary btn-sm">+ List Property</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header" style="background:white; border-bottom:1px solid var(--color-border);">
+  <div class="container">
+    <div class="flex justify-between items-center flex-wrap gap-4">
+      <div>
+        <div class="tag-pill mb-2">👤 Espace Propriétaire / Landlord Hub</div>
+        <h1 class="page-title">Bonjour, Pierre Dupont</h1>
+        <p class="text-sm text-muted">You have 3 active properties in Nantes and 4 pending student applications to review.</p>
+      </div>
+      <div class="flex gap-3">
+        <a href="list-property.html" class="btn btn-primary btn-sm">
+          + Add New Property Listing
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="container py-8">
+
+  <!-- KPI Cards Grid -->
+  <div class="landlord-stats-grid mb-8">
+    <div class="landlord-stat-card">
+      <div class="landlord-stat-icon">🏠</div>
+      <div class="landlord-stat-value">3</div>
+      <div class="landlord-stat-label">Active Listings in Nantes</div>
+      <div class="landlord-stat-change up">100% Verified status</div>
+    </div>
+
+    <div class="landlord-stat-card">
+      <div class="landlord-stat-icon">💶</div>
+      <div class="landlord-stat-value">€1,580</div>
+      <div class="landlord-stat-label">Monthly Gross Rental Income</div>
+      <div class="landlord-stat-change up">0% commission taken on rent</div>
+    </div>
+
+    <div class="landlord-stat-card">
+      <div class="landlord-stat-icon">📥</div>
+      <div class="landlord-stat-value">4</div>
+      <div class="landlord-stat-label">Pending Student Dossiers</div>
+      <div class="landlord-stat-change up">All with Visale guarantee</div>
+    </div>
+
+    <div class="landlord-stat-card">
+      <div class="landlord-stat-icon">⚡</div>
+      <div class="landlord-stat-value">2.4 hrs</div>
+      <div class="landlord-stat-label">Avg. Response Time</div>
+      <div class="landlord-stat-change up">Super-Landlord Badge ✓</div>
+    </div>
+  </div>
+
+  <!-- TABS CONTAINER -->
+  <div data-tabs class="mb-12">
+    <div class="flex gap-4 border-b border-slate-200 pb-3 mb-6">
+      <button class="btn btn-ghost btn-sm tab-btn active" data-tab="tab-applicants" style="font-weight:700;">
+        📥 Pending Applications (4)
+      </button>
+      <button class="btn btn-ghost btn-sm tab-btn" data-tab="tab-props" style="font-weight:700;">
+        🏠 My Properties (3)
+      </button>
+      <button class="btn btn-ghost btn-sm tab-btn" data-tab="tab-payouts" style="font-weight:700;">
+        💳 Direct SEPA Payouts
+      </button>
+    </div>
+
+    <!-- TAB 1: APPLICATIONS QUEUE -->
+    <div class="tab-content active" data-tab-content="tab-applicants">
+      
+      <!-- Applicant 1: Kavin M D -->
+      <div class="landlord-applicant-card" id="app-card-1">
+        <div class="flex items-center gap-4">
+          <div class="conversation-avatar" style="width:52px; height:52px; font-size:1.2rem;">KM</div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h4 class="font-bold text-base text-slate-900">Kavin M D</h4>
+              <span class="badge badge-success">Dossier Score: 100%</span>
+              <span class="badge badge-blue">✓ Visale Guaranteed</span>
+            </div>
+            <p class="text-xs text-slate-600 mb-1">
+              Applied for: <strong>Bright Modern Studio near Audencia (€460/mo)</strong>
+            </p>
+            <div class="text-xs text-muted flex gap-3 flex-wrap">
+              <span>🎓 Audencia MSc Student</span>
+              <span>📅 Move-in: Sept 1, 2025</span>
+              <span>⏳ Duration: 10 Months (Mobilité)</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="btn btn-secondary btn-sm" onclick="openModal('dossier-preview-modal')">Review Dossier</button>
+          <a href="messages.html?chat=rahul" class="btn btn-ghost btn-sm">Chat</a>
+          <button class="btn btn-primary btn-sm" onclick="acceptApplicant('1', 'Kavin M D')">Accept & Issue Lease</button>
+        </div>
+      </div>
+
+      <!-- Applicant 2: Elena Morales -->
+      <div class="landlord-applicant-card" id="app-card-2">
+        <div class="flex items-center gap-4">
+          <div class="conversation-avatar" style="width:52px; height:52px; font-size:1.2rem; background:linear-gradient(135deg, #EC4899, #BE185D);">EM</div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h4 class="font-bold text-base text-slate-900">Elena Morales</h4>
+              <span class="badge badge-success">Dossier Score: 95%</span>
+              <span class="badge badge-blue">✓ Visale Guaranteed</span>
+            </div>
+            <p class="text-xs text-slate-600 mb-1">
+              Applied for: <strong>Bright Modern Studio near Audencia (€460/mo)</strong>
+            </p>
+            <div class="text-xs text-muted flex gap-3 flex-wrap">
+              <span>🎓 Sciences Po Exchange</span>
+              <span>📅 Move-in: Sept 1, 2025</span>
+              <span>⏳ Duration: 6 Months</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Elena\'s dossier','default')">Review Dossier</button>
+          <button class="btn btn-primary btn-sm" onclick="acceptApplicant('2', 'Elena Morales')">Accept & Issue Lease</button>
+        </div>
+      </div>
+
+      <!-- Applicant 3: Lucas Weber -->
+      <div class="landlord-applicant-card" id="app-card-3">
+        <div class="flex items-center gap-4">
+          <div class="conversation-avatar" style="width:52px; height:52px; font-size:1.2rem; background:linear-gradient(135deg, #F59E0B, #D97706);">LW</div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <h4 class="font-bold text-base text-slate-900">Lucas Weber</h4>
+              <span class="badge badge-success">Dossier Score: 95%</span>
+              <span class="badge badge-blue">✓ Visale Guaranteed</span>
+            </div>
+            <p class="text-xs text-slate-600 mb-1">
+              Applied for: <strong>Sunny Coliving Room — Petit Port (€390/mo)</strong>
+            </p>
+            <div class="text-xs text-muted flex gap-3 flex-wrap">
+              <span>🎓 Université de Nantes Erasmus</span>
+              <span>📅 Move-in: Sept 15, 2025</span>
+              <span>⏳ Duration: 9 Months</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Lucas\'s dossier','default')">Review Dossier</button>
+          <button class="btn btn-primary btn-sm" onclick="acceptApplicant('3', 'Lucas Weber')">Accept & Issue Lease</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: MY PROPERTIES -->
+    <div class="tab-content" data-tab-content="tab-props">
+      <div class="properties-grid">
+        
+        <!-- Property 1 -->
+        <div class="card bg-white overflow-hidden">
+          <div style="height:160px; background:var(--slate-200); position:relative;">
+            <svg viewBox="0 0 400 240" fill="none" style="width:100%;height:100%"><rect width="400" height="240" fill="#E2E8F0"/><rect x="40" y="40" width="320" height="160" rx="8" fill="#CBD5E1"/><rect x="60" y="80" width="120" height="90" rx="4" fill="#3B82F6"/></svg>
+            <span class="badge badge-success" style="position:absolute; top:12px; left:12px;">Active · 2 Applications</span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-base text-slate-900 mb-1">Bright Modern Studio near Audencia</h4>
+            <p class="text-xs text-muted mb-3">📍 14 Rue Saint-Félix, Nantes · 18 m²</p>
+            <div class="text-lg font-extrabold text-slate-900 mb-3">€460 <span class="text-xs text-muted font-normal">/ month</span></div>
+            <div class="flex gap-2">
+              <a href="property.html?id=1" class="btn btn-secondary btn-sm flex-1">View Listing</a>
+              <button class="btn btn-ghost btn-sm flex-1" onclick="showToast('Editing property details','default')">Edit</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property 2 -->
+        <div class="card bg-white overflow-hidden">
+          <div style="height:160px; background:var(--slate-200); position:relative;">
+            <svg viewBox="0 0 400 240" fill="none" style="width:100%;height:100%"><rect width="400" height="240" fill="#E2E8F0"/><rect x="40" y="40" width="320" height="160" rx="8" fill="#CBD5E1"/><rect x="180" y="80" width="120" height="90" rx="4" fill="#10B981"/></svg>
+            <span class="badge badge-blue" style="position:absolute; top:12px; left:12px;">Occupied until June 2026</span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-base text-slate-900 mb-1">Michelet Student Residence Studio</h4>
+            <p class="text-xs text-muted mb-3">📍 Bd Michelet, Nantes · 20 m²</p>
+            <div class="text-lg font-extrabold text-slate-900 mb-3">€520 <span class="text-xs text-muted font-normal">/ month</span></div>
+            <div class="flex gap-2">
+              <a href="property.html?id=2" class="btn btn-secondary btn-sm flex-1">View Listing</a>
+              <button class="btn btn-ghost btn-sm flex-1" onclick="showToast('Occupied by Sophie M.','default')">Tenant Info</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Property 3 -->
+        <div class="card bg-white overflow-hidden">
+          <div style="height:160px; background:var(--slate-200); position:relative;">
+            <svg viewBox="0 0 400 240" fill="none" style="width:100%;height:100%"><rect width="400" height="240" fill="#E2E8F0"/><rect x="40" y="40" width="320" height="160" rx="8" fill="#CBD5E1"/><rect x="100" y="80" width="150" height="90" rx="4" fill="#8B5CF6"/></svg>
+            <span class="badge badge-success" style="position:absolute; top:12px; left:12px;">Active · 1 Application</span>
+          </div>
+          <div class="p-5">
+            <h4 class="font-bold text-base text-slate-900 mb-1">Sunny Coliving Room — Petit Port</h4>
+            <p class="text-xs text-muted mb-3">📍 Petit Port, Nantes · 14 m²</p>
+            <div class="text-lg font-extrabold text-slate-900 mb-3">€390 <span class="text-xs text-muted font-normal">/ month</span></div>
+            <div class="flex gap-2">
+              <a href="property.html?id=3" class="btn btn-secondary btn-sm flex-1">View Listing</a>
+              <button class="btn btn-ghost btn-sm flex-1" onclick="showToast('Editing coliving details','default')">Edit</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: SEPA PAYOUTS -->
+    <div class="tab-content" data-tab-content="tab-payouts">
+      <div class="card p-8 bg-white max-w-2xl">
+        <h3 class="font-bold text-lg text-slate-900 mb-2">Direct SEPA Payout System</h3>
+        <p class="text-xs text-muted mb-6 leading-relaxed">
+          Bookare does not charge French landlords any agency commission on monthly rent. Student tenants transfer rent directly to your linked IBAN on the 1st of every calendar month.
+        </p>
+        
+        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 mb-6 text-xs">
+          <div class="flex justify-between items-center mb-2">
+            <span class="font-bold text-slate-900">Linked Bank Account (Credit Mutuel Nantes)</span>
+            <span class="badge badge-success">✓ Verified SEPA</span>
+          </div>
+          <div class="text-muted">IBAN: FR76 1027 8021 9900 0123 4567 890</div>
+        </div>
+
+        <div class="flex flex-col gap-3 text-xs text-slate-700">
+          <div class="flex justify-between py-2 border-b border-slate-100">
+            <span>Next Payout (Michelet Studio):</span>
+            <span class="font-bold text-slate-900">€520.00 (Oct 1, 2025)</span>
+          </div>
+          <div class="flex justify-between py-2 border-b border-slate-100">
+            <span>Platform Service Fee:</span>
+            <span class="font-bold text-emerald-600">€0.00 (100% Free for Landlords)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- Dossier Preview Modal -->
+<div class="modal-overlay" id="dossier-preview-modal" style="display:none">
+  <div class="modal" style="max-width:640px;">
+    <div class="modal-header">
+      <div class="modal-title">Rental Dossier: Kavin M D</div>
+      <button class="modal-close" data-modal-close="dossier-preview-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="p-4 bg-blue-50 rounded-xl border border-blue-200 mb-4 text-xs">
+        <div class="font-bold text-blue-900 mb-1">Bookare Pre-Screening Certified</div>
+        <p class="text-blue-800">
+          All documents have been checked against official databases. Identity, Audencia admission, and Visale state guarantee are 100% genuine and active.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-2.5 text-xs text-slate-700">
+        <div class="flex justify-between p-2 bg-slate-50 rounded">
+          <span>✓ Passport:</span>
+          <strong>Verified (Expires 2029)</strong>
+        </div>
+        <div class="flex justify-between p-2 bg-slate-50 rounded">
+          <span>✓ Student Visa (VLS-TS):</span>
+          <strong>Verified (Full validity 2025-26)</strong>
+        </div>
+        <div class="flex justify-between p-2 bg-slate-50 rounded">
+          <span>✓ Audencia Admission:</span>
+          <strong>Verified (MSc Management)</strong>
+        </div>
+        <div class="flex justify-between p-2 bg-slate-50 rounded">
+          <span>✓ Visale Guarantee Certificate:</span>
+          <strong class="text-emerald-700">Active (Guarantees up to €600/mo)</strong>
+        </div>
+        <div class="flex justify-between p-2 bg-slate-50 rounded">
+          <span>✓ Bank Balance:</span>
+          <strong>€8,200 proof of funds demonstrated</strong>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-modal-close="dossier-preview-modal">Close</button>
+      <button class="btn btn-primary" onclick="closeModal('dossier-preview-modal');acceptApplicant('1','Kavin M D')">Accept Tenant</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France. Verified listings, transparent total costs, and local student buddies.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="arrival.html" class="footer-link">Arrival Checklist</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Landlords</div>
+        <div class="footer-links">
+          <a href="list-property.html" class="footer-link">List a Property</a>
+          <a href="landlord.html" class="footer-link">Landlord Dashboard</a>
+          <a href="how-it-works.html" class="footer-link">How it Works</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy</a>
+          <a href="#" class="footer-link">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS. Built with care for international students in France.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function acceptApplicant(id, name) {
+    const card = document.getElementById('app-card-' + id);
+    if (card) {
+      card.style.opacity = '0.5';
+      card.innerHTML = `<div class="p-4 w-full bg-emerald-50 rounded-lg text-xs text-emerald-800 font-bold flex justify-between items-center">
+        <span>✓ Accepted ${name}! Official French student lease offer has been sent to their tracker.</span>
+        <span class="badge badge-success">Lease Issued</span>
+      </div>`;
+      showToast(`Accepted ${name}! Lease draft generated.`, 'success');
+    }
+  }
+</script>
+</body>
+</html>

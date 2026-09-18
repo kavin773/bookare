@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nantes Student Neighbourhood Guide — Find the best areas to live as an international student. Compare rent, safety, vibes, and commute to Audencia and University of Nantes." />
+  <title>Nantes Student Neighbourhood Guide — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .neighbourhood-card-big {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      margin-bottom: var(--space-8);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+    }
+    .neighbourhood-card-big:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-200);
+    }
+    .neighbourhood-header-img {
+      height: 240px;
+      position: relative;
+      background: var(--slate-100);
+    }
+    .neighbourhood-header-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.2) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: var(--space-6);
+      color: white;
+    }
+    .vibe-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      font-size: 11px;
+      font-weight: 600;
+      color: white;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .stats-four-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+    @media (max-width: 768px) {
+      .stats-four-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .stat-cell {
+      background: white;
+      padding: var(--space-4) var(--space-5);
+      text-align: center;
+    }
+    .stat-cell-num {
+      font-size: var(--font-size-xl);
+      font-weight: 800;
+      color: var(--color-text);
+      letter-spacing: -0.03em;
+    }
+    .stat-cell-label {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="container">
+    <div class="flex items-center gap-2 mb-2 text-xs text-muted">
+      <a href="index.html" class="hover:text-blue-600">Home</a>
+      <span>/</span>
+      <a href="search.html" class="hover:text-blue-600">Destinations</a>
+      <span>/</span>
+      <span class="text-slate-900 font-semibold">Nantes Neighbourhoods</span>
+    </div>
+    <div class="tag-pill mb-3">📍 Destination Guide</div>
+    <h1 class="page-title">Where to live in Nantes as a student</h1>
+    <p class="text-base text-muted max-w-2xl leading-relaxed">
+      Don't just pick an apartment — pick the neighbourhood that matches your daily student lifestyle, commute to campus, budget, and safety expectations.
+    </p>
+
+    <!-- City Switcher Pills -->
+    <div class="flex gap-2 mt-6 flex-wrap">
+      <a href="neighbourhood.html" class="badge badge-blue font-semibold" style="padding:6px 14px;">Nantes (Active)</a>
+      <a href="search.html?city=paris" class="badge badge-gray" style="padding:6px 14px;">Paris</a>
+      <a href="search.html?city=lyon" class="badge badge-gray" style="padding:6px 14px;">Lyon</a>
+      <a href="search.html?city=bordeaux" class="badge badge-gray" style="padding:6px 14px;">Bordeaux</a>
+      <a href="search.html?city=strasbourg" class="badge badge-gray" style="padding:6px 14px;">Strasbourg</a>
+      <a href="search.html?city=rennes" class="badge badge-gray" style="padding:6px 14px;">Rennes</a>
+      <a href="search.html?city=toulouse" class="badge badge-gray" style="padding:6px 14px;">Toulouse</a>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<main class="container py-8">
+
+  <!-- Summary Cards Banner -->
+  <div class="card p-6 mb-10 bg-blue-50" style="border-color:var(--blue-200);">
+    <div class="flex items-center justify-between gap-6 flex-wrap">
+      <div>
+        <h3 class="font-bold text-lg text-slate-900 mb-1">Nantes Student Overview</h3>
+        <p class="text-xs text-slate-700 leading-relaxed max-w-2xl">
+          Ranked repeatedly among France's best student cities. 65,000 students, vibrant culture, direct 45-minute train to the Atlantic coast, and public transit that is completely free on weekends!
+        </p>
+      </div>
+      <div class="flex gap-4">
+        <div class="text-center bg-white px-4 py-3 rounded-lg border border-blue-200 shadow-xs">
+          <div class="text-lg font-black text-blue-600">€490</div>
+          <div class="text-[10px] text-muted">City Avg. Studio Rent</div>
+        </div>
+        <div class="text-center bg-white px-4 py-3 rounded-lg border border-blue-200 shadow-xs">
+          <div class="text-lg font-black text-emerald-600">9.3 / 10</div>
+          <div class="text-[10px] text-muted">Student Quality of Life</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEIGHBOURHOOD 1: SAINT-FÉLIX / MICHELET (TOP AUDENCIA PICK) -->
+  <div class="neighbourhood-card-big" id="saint-felix">
+    <div class="neighbourhood-header-img">
+      <svg viewBox="0 0 1200 400" fill="none" style="width:100%;height:100%;object-fit:cover;">
+        <rect width="1200" height="400" fill="#3B82F6"/>
+        <path d="M0 320 Q 300 240 600 300 T 1200 260 L 1200 400 L 0 400 Z" fill="#1D4ED8"/>
+        <circle cx="950" cy="120" r="60" fill="#FEF08A" opacity="0.6"/>
+        <rect x="150" y="160" width="120" height="180" rx="4" fill="#60A5FA"/>
+        <rect x="320" y="120" width="160" height="220" rx="4" fill="#93C5FD"/>
+        <rect x="530" y="180" width="140" height="160" rx="4" fill="#60A5FA"/>
+        <rect x="720" y="140" width="160" height="200" rx="4" fill="#93C5FD"/>
+      </svg>
+      <div class="neighbourhood-header-overlay">
+        <div>
+          <span class="vibe-tag">⭐ #1 For Audencia Students</span>
+          <span class="vibe-tag">🌳 Green & Riverside</span>
+          <span class="vibe-tag">🚊 Direct Tram 2</span>
+        </div>
+        <h2 class="text-3xl font-extrabold text-white mt-2">Saint-Félix / Michelet</h2>
+        <p class="text-sm text-blue-100">The academic and university heart of northern Nantes.</p>
+      </div>
+    </div>
+
+    <div class="stats-four-grid">
+      <div class="stat-cell">
+        <div class="stat-cell-num text-blue-600">€470</div>
+        <div class="stat-cell-label">Average studio rent / mo</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-emerald-600">10 min</div>
+        <div class="stat-cell-label">Commute to Audencia (Walk)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num">9.5 / 10</div>
+        <div class="stat-cell-label">Safety & calm rating</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-slate-800">42%</div>
+        <div class="stat-cell-label">Student population share</div>
+      </div>
+    </div>
+
+    <div class="p-8">
+      <div class="grid grid-2 gap-8">
+        <div>
+          <h4 class="font-bold text-base text-slate-900 mb-2">The Vibe & Daily Lifestyle</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            Saint-Félix is nestled along the peaceful Erdre river and is directly adjacent to Audencia Atlantic Campus and Université de Nantes. It’s ideal for students who prioritize walking to 8:30 AM lectures, studying in quiet cafes, and jogging along the river trails on weekends.
+          </p>
+          <div class="flex flex-col gap-2 text-xs text-slate-700">
+            <div>🛒 <strong>Supermarkets:</strong> Carrefour City (bd Michelet), Super U, Bio c' Bon.</div>
+            <div>🥖 <strong>Local Spots:</strong> Boulangerie Saint-Félix, Le Bar de l'Erdre, University CROUS restaurants.</div>
+            <div>🚊 <strong>Transit:</strong> Tram Line 2 (Stops: <em>Michelet-Sciences, Morrhonnière, Petit Port</em>).</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="conversation-avatar" style="width:40px; height:40px;">RS</div>
+            <div>
+              <div class="font-bold text-xs text-slate-900">Rahul Sharma (Audencia Buddy)</div>
+              <div class="text-[10px] text-muted">Lives in Saint-Félix since Sept 2023</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-600 italic leading-relaxed mb-4">
+            "I chose Saint-Félix because I hate long morning commutes. I walk 11 minutes to Audencia every morning, and when I want to party in Commerce on Friday nights, Tram 2 drops me right back home in 14 minutes."
+          </p>
+          <div class="flex gap-2">
+            <a href="search.html?neighbourhood=saint-felix" class="btn btn-primary btn-sm flex-1">View 142 homes in Saint-Félix</a>
+            <a href="buddies.html?neighbourhood=saint-felix" class="btn btn-secondary btn-sm">Ask a resident buddy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEIGHBOURHOOD 2: CENTRE-VILLE / COMMERCE -->
+  <div class="neighbourhood-card-big" id="centre-ville">
+    <div class="neighbourhood-header-img">
+      <svg viewBox="0 0 1200 400" fill="none" style="width:100%;height:100%;object-fit:cover;">
+        <rect width="1200" height="400" fill="#475569"/>
+        <circle cx="300" cy="100" r="50" fill="#F59E0B" opacity="0.4"/>
+        <rect x="200" y="100" width="200" height="240" rx="4" fill="#64748B"/>
+        <rect x="450" y="80" width="250" height="260" rx="4" fill="#94A3B8"/>
+        <rect x="750" y="130" width="180" height="210" rx="4" fill="#64748B"/>
+      </svg>
+      <div class="neighbourhood-header-overlay">
+        <div>
+          <span class="vibe-tag">🎉 Lively Nightlife</span>
+          <span class="vibe-tag">🏛️ Historic Bouffay</span>
+          <span class="vibe-tag">🛍️ Central Hub</span>
+        </div>
+        <h2 class="text-3xl font-extrabold text-white mt-2">Centre-Ville / Commerce / Bouffay</h2>
+        <p class="text-sm text-slate-200">The energetic cultural and social epicenter of Nantes.</p>
+      </div>
+    </div>
+
+    <div class="stats-four-grid">
+      <div class="stat-cell">
+        <div class="stat-cell-num text-slate-900">€590</div>
+        <div class="stat-cell-label">Average studio rent / mo</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-blue-600">18 min</div>
+        <div class="stat-cell-label">Direct Tram 2 to Audencia</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num">8.7 / 10</div>
+        <div class="stat-cell-label">Safety & vibrancy rating</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-slate-800">30%</div>
+        <div class="stat-cell-label">Student population share</div>
+      </div>
+    </div>
+
+    <div class="p-8">
+      <div class="grid grid-2 gap-8">
+        <div>
+          <h4 class="font-bold text-base text-slate-900 mb-2">The Vibe & Daily Lifestyle</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            If you want to step out of your building right into charming medieval streets, French bistro terraces, international restaurants, and cinema theaters, Centre-Ville is unmatched. Tram Line 2 starts right at Commerce and runs directly north to Audencia.
+          </p>
+          <div class="flex flex-col gap-2 text-xs text-slate-700">
+            <div>🛒 <strong>Supermarkets:</strong> Monoprix, Fnac, Marché Talensac within 5 min.</div>
+            <div>🍕 <strong>Food & Drink:</strong> Rue Kervégan pubs, Place Royale cafes, Bouffay street food.</div>
+            <div>🚊 <strong>Transit:</strong> Commerce station — intersection of Tram 1, 2, 3 and major night buses.</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="conversation-avatar" style="width:40px; height:40px; background:linear-gradient(135deg, #10B981, #059669)">SM</div>
+            <div>
+              <div class="font-bold text-xs text-slate-900">Sophie Mercier (Nantes Local)</div>
+              <div class="text-[10px] text-muted">Grande École Student</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-600 italic leading-relaxed mb-4">
+            "Living in Commerce means you never miss a student gathering or weekend flea market. Rent is slightly higher than Saint-Félix, but having all 3 tram lines outside your door is incredible."
+          </p>
+          <div class="flex gap-2">
+            <a href="search.html?neighbourhood=centre" class="btn btn-primary btn-sm flex-1">View 98 homes in Centre-Ville</a>
+            <a href="buddies.html?neighbourhood=centre" class="btn btn-secondary btn-sm">Ask Sophie</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEIGHBOURHOOD 3: HAUTS-PAVÉS / SAINT-PASQUIER -->
+  <div class="neighbourhood-card-big" id="hauts-paves">
+    <div class="neighbourhood-header-img">
+      <svg viewBox="0 0 1200 400" fill="none" style="width:100%;height:100%;object-fit:cover;">
+        <rect width="1200" height="400" fill="#0D9488"/>
+        <rect x="250" y="140" width="180" height="200" rx="4" fill="#14B8A6"/>
+        <rect x="480" y="100" width="220" height="240" rx="4" fill="#2DD4BF"/>
+        <rect x="740" y="160" width="160" height="180" rx="4" fill="#14B8A6"/>
+      </svg>
+      <div class="neighbourhood-header-overlay">
+        <div>
+          <span class="vibe-tag">🏡 Charming Village Feel</span>
+          <span class="vibe-tag">🥖 Marché Talensac</span>
+          <span class="vibe-tag">🚲 8 min Bike to Campus</span>
+        </div>
+        <h2 class="text-3xl font-extrabold text-white mt-2">Hauts-Pavés / Saint-Pasquier</h2>
+        <p class="text-sm text-teal-100">Quiet, upscale, authentic French living halfway between campus and downtown.</p>
+      </div>
+    </div>
+
+    <div class="stats-four-grid">
+      <div class="stat-cell">
+        <div class="stat-cell-num text-teal-700">€510</div>
+        <div class="stat-cell-label">Average studio rent / mo</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-emerald-600">8 min</div>
+        <div class="stat-cell-label">Commute to Audencia (Bike)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num">9.6 / 10</div>
+        <div class="stat-cell-label">Safety & calm rating</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-slate-800">25%</div>
+        <div class="stat-cell-label">Student population share</div>
+      </div>
+    </div>
+
+    <div class="p-8">
+      <div class="grid grid-2 gap-8">
+        <div>
+          <h4 class="font-bold text-base text-slate-900 mb-2">The Vibe & Daily Lifestyle</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            Located just northwest of the centre, Hauts-Pavés offers the perfect balance: a peaceful residential environment with tree-lined streets, local cheese shops and wine cellars, yet only 10 minutes by bus or bike to Audencia.
+          </p>
+          <div class="flex flex-col gap-2 text-xs text-slate-700">
+            <div>🥐 <strong>Attractions:</strong> Marché Talensac (Nantes' famous covered fresh food market).</div>
+            <div>🚲 <strong>Biking:</strong> Direct protected cycleways along Bd des Anglais straight to campus.</div>
+            <div>🚊 <strong>Transit:</strong> Tram Line 3 (Félix Faure / Poitou) and Chronobus Line C2.</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            "If you want to avoid late-night bar noise but still want to cycle easily to both class and social dinners, Hauts-Pavés is the insider favourite among international master's students."
+          </p>
+          <a href="search.html?neighbourhood=hauts-paves" class="btn btn-primary btn-sm btn-full">View 76 homes in Hauts-Pavés</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEIGHBOURHOOD 4: ÎLE DE NANTES -->
+  <div class="neighbourhood-card-big" id="ile-de-nantes">
+    <div class="neighbourhood-header-img">
+      <svg viewBox="0 0 1200 400" fill="none" style="width:100%;height:100%;object-fit:cover;">
+        <rect width="1200" height="400" fill="#7C3AED"/>
+        <rect x="220" y="100" width="220" height="240" rx="6" fill="#8B5CF6"/>
+        <rect x="490" y="60" width="240" height="280" rx="6" fill="#A78BFA"/>
+        <rect x="780" y="120" width="180" height="220" rx="6" fill="#8B5CF6"/>
+      </svg>
+      <div class="neighbourhood-header-overlay">
+        <div>
+          <span class="vibe-tag">🎨 Creative & Modern</span>
+          <span class="vibe-tag">🐘 Les Machines de l'Île</span>
+          <span class="vibe-tag">🏢 New Student Residences</span>
+        </div>
+        <h2 class="text-3xl font-extrabold text-white mt-2">Île de Nantes (Quartier de la Création)</h2>
+        <p class="text-sm text-purple-100">Modern loft living, startup incubators, and contemporary architecture.</p>
+      </div>
+    </div>
+
+    <div class="stats-four-grid">
+      <div class="stat-cell">
+        <div class="stat-cell-num text-purple-700">€540</div>
+        <div class="stat-cell-label">Average studio rent / mo</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-blue-600">22 min</div>
+        <div class="stat-cell-label">Commute to Audencia (Bus C2/Tram)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num">9.2 / 10</div>
+        <div class="stat-cell-label">Safety & design rating</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-cell-num text-slate-800">38%</div>
+        <div class="stat-cell-label">Student & young expat share</div>
+      </div>
+    </div>
+
+    <div class="p-8">
+      <div class="grid grid-2 gap-8">
+        <div>
+          <h4 class="font-bold text-base text-slate-900 mb-2">The Vibe & Daily Lifestyle</h4>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            The former naval shipyards of Nantes have been transformed into a European creative district. Surrounded by the Loire river, it houses the National School of Architecture, Audencia Médiacampus, and modern student buildings with gyms and rooftop terraces.
+          </p>
+          <div class="flex flex-col gap-2 text-xs text-slate-700">
+            <div>🐘 <strong>Iconic:</strong> The Great Mechanical Elephant and the Hangar à Bananes music venues.</div>
+            <div>🏢 <strong>Residences:</strong> Newly constructed eco-residences with fiber internet and laundry hubs.</div>
+            <div>🚊 <strong>Transit:</strong> Busway Line 5 and Tram Line 1.</div>
+          </div>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
+          <p class="text-xs text-slate-600 leading-relaxed mb-4">
+            "Ideal for Audencia Médiacampus students or anyone who loves contemporary apartments with modern elevators and built-in kitchen appliances."
+          </p>
+          <a href="search.html?neighbourhood=ile-de-nantes" class="btn btn-primary btn-sm btn-full">View 110 homes on Île de Nantes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary Table: Commute Comparison -->
+  <div class="card p-8 bg-white mb-12">
+    <h3 class="text-xl font-bold text-slate-900 mb-4">Quick Commute Comparison to Audencia Atlantic Campus</h3>
+    <div style="overflow-x:auto;">
+      <table class="table" style="width:100%; font-size:var(--font-size-sm); border-collapse:collapse;">
+        <thead>
+          <tr style="background:var(--slate-50); border-bottom:2px solid var(--color-border); text-align:left;">
+            <th style="padding:12px;">Neighbourhood</th>
+            <th style="padding:12px;">Walking</th>
+            <th style="padding:12px;">Bicycle</th>
+            <th style="padding:12px;">Public Transit</th>
+            <th style="padding:12px;">Avg. Rent</th>
+            <th style="padding:12px;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--slate-100);">
+            <td style="padding:12px; font-weight:700;">Saint-Félix / Michelet</td>
+            <td style="padding:12px;">🚶 10-15 min</td>
+            <td style="padding:12px;">🚲 4 min</td>
+            <td style="padding:12px;">🚊 5 min (Tram 2)</td>
+            <td style="padding:12px; font-weight:700; color:var(--color-primary);">€470</td>
+            <td style="padding:12px;"><a href="search.html?neighbourhood=saint-felix" class="btn btn-secondary btn-sm">Explore</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--slate-100);">
+            <td style="padding:12px; font-weight:700;">Hauts-Pavés</td>
+            <td style="padding:12px;">🚶 25 min</td>
+            <td style="padding:12px;">🚲 8 min</td>
+            <td style="padding:12px;">🚌 10 min (Bus C2)</td>
+            <td style="padding:12px; font-weight:700; color:var(--color-primary);">€510</td>
+            <td style="padding:12px;"><a href="search.html?neighbourhood=hauts-paves" class="btn btn-secondary btn-sm">Explore</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--slate-100);">
+            <td style="padding:12px; font-weight:700;">Centre-Ville (Commerce)</td>
+            <td style="padding:12px;">🚶 40 min</td>
+            <td style="padding:12px;">🚲 12 min</td>
+            <td style="padding:12px;">🚊 18 min (Tram 2)</td>
+            <td style="padding:12px; font-weight:700; color:var(--color-primary);">€590</td>
+            <td style="padding:12px;"><a href="search.html?neighbourhood=centre" class="btn btn-secondary btn-sm">Explore</a></td>
+          </tr>
+          <tr>
+            <td style="padding:12px; font-weight:700;">Île de Nantes</td>
+            <td style="padding:12px;">🚶 55 min</td>
+            <td style="padding:12px;">🚲 16 min</td>
+            <td style="padding:12px;">🚊 22 min (Busway + Tram 2)</td>
+            <td style="padding:12px; font-weight:700; color:var(--color-primary);">€540</td>
+            <td style="padding:12px;"><a href="search.html?neighbourhood=ile-de-nantes" class="btn btn-secondary btn-sm">Explore</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France. Verified listings, transparent total costs, and local student buddies.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="arrival.html" class="footer-link">Arrival Checklist</a>
+          <a href="budget.html" class="footer-link">Budget Calculator</a>
+          <a href="help.html" class="footer-link">Help Centre</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations & Guides</div>
+        <div class="footer-links">
+          <a href="university.html" class="footer-link">Audencia Business School</a>
+          <a href="neighbourhood.html" class="footer-link">Nantes Student Guide</a>
+          <a href="how-it-works.html" class="footer-link">How Bookare Works</a>
+          <a href="documents.html" class="footer-link">Document Wallet</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Landlords & Legal</div>
+        <div class="footer-links">
+          <a href="list-property.html" class="footer-link">List a Property</a>
+          <a href="landlord.html" class="footer-link">Landlord Dashboard</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS. Built with care for international students in France.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

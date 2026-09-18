@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compare student accommodation side by side. Compare rent, costs, commute, amenities and more on Bookare." />
+  <title>Compare Homes — Bookare</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div style="margin-top:var(--nav-height);padding:var(--space-8) 0;min-height:100vh">
+  <div class="container">
+    <div class="breadcrumb mb-4">
+      <a href="shortlist.html">My Shortlist</a><span>›</span><span style="color:var(--color-text)">Compare homes</span>
+    </div>
+    <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+      <div>
+        <h1 class="page-title">Compare homes</h1>
+        <p class="page-subtitle">Side-by-side comparison of your shortlisted properties</p>
+      </div>
+      <a href="shortlist.html" class="btn btn-secondary">← Back to shortlist</a>
+    </div>
+
+    <div style="overflow-x:auto;border-radius:var(--radius-xl);border:1px solid var(--color-border);box-shadow:var(--shadow-md)">
+      <table class="compare-table" style="min-width:800px">
+        <thead>
+          <tr>
+            <th class="col-label" style="width:200px;border-right:1px solid var(--color-border)">Property</th>
+            <th>
+              <div style="text-align:center;padding:var(--space-2) 0">
+                <div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-3);font-size:2.5rem;display:flex;align-items:center;justify-content:center;height:80px">🏠</div>
+                <div style="font-weight:700;font-size:var(--font-size-sm)">Bright studio, Orvault</div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Orvault, Nantes</div>
+                <div class="badge badge-green mt-2">✓ Verified</div>
+              </div>
+            </th>
+            <th>
+              <div style="text-align:center;padding:var(--space-2) 0">
+                <div style="background:linear-gradient(135deg,#F0F9FF,#BAE6FD);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-3);font-size:2.5rem;display:flex;align-items:center;justify-content:center;height:80px">🏢</div>
+                <div style="font-weight:700;font-size:var(--font-size-sm)">Modern studio, centre</div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Centre-ville, Nantes</div>
+                <div class="badge badge-green mt-2">✓ Verified</div>
+              </div>
+            </th>
+            <th>
+              <div style="text-align:center;padding:var(--space-2) 0">
+                <div style="background:linear-gradient(135deg,#F0FDF4,#BBF7D0);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-3);font-size:2.5rem;display:flex;align-items:center;justify-content:center;height:80px">🌿</div>
+                <div style="font-weight:700;font-size:var(--font-size-sm)">Spacious 1-bed, Île de Nantes</div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Île de Nantes</div>
+                <div class="badge badge-green mt-2">✓ Verified</div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Pricing -->
+          <tr style="background:var(--slate-50)"><td class="col-label" colspan="4" style="font-size:var(--font-size-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);border-right:1px solid var(--color-border)">💰 Pricing</td></tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Monthly rent</td>
+            <td style="text-align:center;font-size:var(--font-size-xl);font-weight:800;color:var(--color-primary)">€460</td>
+            <td style="text-align:center;font-size:var(--font-size-xl);font-weight:800;color:var(--color-primary)">€510</td>
+            <td style="text-align:center;font-size:var(--font-size-xl);font-weight:800;color:var(--color-primary)">€620</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Est. monthly total</td>
+            <td style="text-align:center;font-weight:600">~€530</td>
+            <td style="text-align:center;font-weight:600">~€585</td>
+            <td style="text-align:center;font-weight:600">~€695</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Deposit</td>
+            <td style="text-align:center">€460</td>
+            <td style="text-align:center">€510</td>
+            <td style="text-align:center">€620</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Bookare fee</td>
+            <td style="text-align:center">€100</td>
+            <td style="text-align:center">€100</td>
+            <td style="text-align:center">€100</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border);font-weight:700">Move-in total</td>
+            <td style="text-align:center;font-weight:700;color:var(--color-text)">€560 <span class="badge badge-green ml-1">Lowest</span></td>
+            <td style="text-align:center;font-weight:700">€610</td>
+            <td style="text-align:center;font-weight:700">€720</td>
+          </tr>
+
+          <!-- Distance -->
+          <tr style="background:var(--slate-50)"><td class="col-label" colspan="4" style="font-size:var(--font-size-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);border-right:1px solid var(--color-border)">🏫 Distance & Commute</td></tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Distance from Audencia</td>
+            <td style="text-align:center">2.1 km</td>
+            <td style="text-align:center">1.3 km</td>
+            <td style="text-align:center"><strong>0.8 km</strong> <span class="badge badge-blue ml-1">Closest</span></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">🚶 Walk to university</td>
+            <td style="text-align:center">27 min</td>
+            <td style="text-align:center">16 min</td>
+            <td style="text-align:center"><strong>10 min</strong></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">🚲 Cycle to university</td>
+            <td style="text-align:center">8 min</td>
+            <td style="text-align:center">5 min</td>
+            <td style="text-align:center"><strong>3 min</strong></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">🚌 Bus to university</td>
+            <td style="text-align:center">12 min</td>
+            <td style="text-align:center">7 min</td>
+            <td style="text-align:center"><strong>5 min</strong></td>
+          </tr>
+
+          <!-- Property -->
+          <tr style="background:var(--slate-50)"><td class="col-label" colspan="4" style="font-size:var(--font-size-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);border-right:1px solid var(--color-border)">🏠 Property Details</td></tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Type</td>
+            <td style="text-align:center">Studio</td>
+            <td style="text-align:center">Studio</td>
+            <td style="text-align:center">1-bedroom</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Size</td>
+            <td style="text-align:center">24 m²</td>
+            <td style="text-align:center">28 m²</td>
+            <td style="text-align:center">38 m²</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Furnished</td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Wi-Fi included</td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Washing machine</td>
+            <td style="text-align:center"><span style="color:var(--color-text-muted)">Shared</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Private bathroom</td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Balcony</td>
+            <td style="text-align:center"><span class="compare-x">✕</span></td>
+            <td style="text-align:center"><span class="compare-x">✕</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+          </tr>
+
+          <!-- Admin -->
+          <tr style="background:var(--slate-50)"><td class="col-label" colspan="4" style="font-size:var(--font-size-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);border-right:1px solid var(--color-border)">📋 Other</td></tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Available from</td>
+            <td style="text-align:center">1 Sep 2025</td>
+            <td style="text-align:center">15 Sep 2025</td>
+            <td style="text-align:center">1 Sep 2025</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Min. stay</td>
+            <td style="text-align:center">6 months</td>
+            <td style="text-align:center">3 months</td>
+            <td style="text-align:center">12 months</td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Verified</td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+            <td style="text-align:center"><span class="compare-check">✓</span></td>
+          </tr>
+          <tr>
+            <td class="col-label" style="border-right:1px solid var(--color-border)">Student rating</td>
+            <td style="text-align:center">⭐ 4.8 (12)</td>
+            <td style="text-align:center">⭐ 4.6 (8)</td>
+            <td style="text-align:center">⭐ 4.9 (6)</td>
+          </tr>
+
+          <!-- CTA row -->
+          <tr style="background:var(--slate-50)">
+            <td class="col-label" style="border-right:1px solid var(--color-border)"></td>
+            <td style="text-align:center;padding:var(--space-5)">
+              <a href="property.html" class="btn btn-primary btn-sm btn-full mb-2">View & apply</a>
+              <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Move-in total: €560</div>
+            </td>
+            <td style="text-align:center;padding:var(--space-5)">
+              <a href="property.html" class="btn btn-secondary btn-sm btn-full mb-2">View details</a>
+              <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Move-in total: €610</div>
+            </td>
+            <td style="text-align:center;padding:var(--space-5)">
+              <a href="property.html" class="btn btn-secondary btn-sm btn-full mb-2">View details</a>
+              <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Move-in total: €720</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="flex justify-center gap-4 mt-8">
+      <a href="shortlist.html" class="btn btn-secondary">← Back to shortlist</a>
+      <a href="search.html" class="btn btn-ghost">Add more homes to compare</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

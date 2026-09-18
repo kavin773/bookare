@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Search student accommodation in France. Filter by university, commute time, budget and amenities. Verified properties near your campus." />
+  <title>Find Student Accommodation — Bookare</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link active">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- SEARCH BAR TOP -->
+<div style="margin-top:var(--nav-height);background:white;border-bottom:1px solid var(--color-border);padding:var(--space-4) 0;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:var(--space-3);align-items:end">
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">🎓 University or city</label>
+        <select class="form-select" id="search-uni" style="padding:0.6rem 0.875rem">
+          <option value="" selected>Search for a university or city...</option>
+          <option value="Audencia Business School">Audencia Business School – Nantes</option>
+          <option value="nantes">Nantes</option>
+          <option>Sciences Po – Paris</option>
+          <option>Université Lyon 1</option>
+          <option>Université de Bordeaux</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">🏫 Campus</label>
+        <select class="form-select" id="search-campus" style="padding:0.6rem 0.875rem">
+          <option value="" selected>Choose a campus</option>
+          <option value="audencia atlantic campus">Audencia Atlantic Campus</option>
+          <option value="university tertre campus">Université de Nantes — Tertre</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">📅 Move-in</label>
+        <select class="form-select" id="search-date" style="padding:0.6rem 0.875rem">
+          <option value="" selected>Select a date</option>
+          <option value="2026-09">September 2026</option>
+          <option value="2026-10">October 2026</option>
+          <option value="2027-01">January 2027</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">💶 Budget</label>
+        <select class="form-select" id="search-budget" style="padding:0.6rem 0.875rem">
+          <option value="" selected>Select your budget</option>
+          <option value="400-650">€400 – €650 / month</option>
+          <option value="0-400">Up to €400</option>
+          <option value="650-900">€650 – €900</option>
+          <option value="any">Any</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">🏠 Accommodation type</label>
+        <select class="form-select" id="search-type" style="padding:0.6rem 0.875rem">
+          <option value="" selected>Choose accommodation type</option>
+          <option value="studio">Studio</option>
+          <option value="private-room">Private room</option>
+          <option value="shared-apartment">Shared apartment</option>
+          <option value="student-residence">Student residence</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="applySearch()">Search homes</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="container">
+  <div class="search-page-layout">
+
+    <!-- FILTER SIDEBAR -->
+    <aside>
+      <div class="filter-sidebar">
+        <div class="flex items-center justify-between mb-6">
+          <div style="font-size:var(--font-size-base);font-weight:700;color:var(--color-text)">Filters</div>
+          <button class="btn btn-ghost btn-sm" onclick="clearFilters()">Clear all</button>
+        </div>
+
+        <!-- Accommodation type -->
+        <div class="filter-section">
+          <div class="filter-title">Accommodation type</div>
+          <div class="filter-options">
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-type="studio" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Studio</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-type="private-room" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Private room</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-type="shared-apartment" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Shared apartment</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-type="student-residence" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Student residence</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Homestay</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Budget -->
+        <div class="filter-section">
+          <div class="filter-title">Monthly budget</div>
+          <div class="range-with-value">
+            <input type="range" class="range-input" min="200" max="1500" value="1500" id="budget-range" />
+            <div class="flex justify-between mt-2">
+              <span class="text-xs text-muted">€200</span>
+              <span class="text-xs font-semi text-primary range-value-display" data-prefix="Up to €" id="budget-display">Any budget</span>
+              <span class="text-xs text-muted">€1,500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commute -->
+        <div class="filter-section">
+          <div class="filter-title">Max commute to university</div>
+          <div style="margin-bottom:var(--space-3);font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted)">🚶 Walking</div>
+          <div class="pill-filter-bar" data-multi="false" style="flex-wrap:wrap;gap:var(--space-2)">
+            <div class="pill-filter" data-commute-mode="walk" data-commute-max="10">Under 10 min</div>
+            <div class="pill-filter" data-commute-mode="walk" data-commute-max="20">Under 20 min</div>
+            <div class="pill-filter" data-commute-mode="walk" data-commute-max="30">Under 30 min</div>
+          </div>
+          <div style="margin-top:var(--space-3);margin-bottom:var(--space-3);font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted)">🚲 Cycling</div>
+          <div class="pill-filter-bar" data-multi="false" style="flex-wrap:wrap;gap:var(--space-2)">
+            <div class="pill-filter" data-commute-mode="bike" data-commute-max="10">Under 10 min</div>
+            <div class="pill-filter" data-commute-mode="bike" data-commute-max="20">Under 20 min</div>
+          </div>
+          <div style="margin-top:var(--space-3);margin-bottom:var(--space-3);font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted)">🚌 Public transport</div>
+          <div class="pill-filter-bar" data-multi="false" style="flex-wrap:wrap;gap:var(--space-2)">
+            <div class="pill-filter" data-commute-mode="transit" data-commute-max="15">Under 15 min</div>
+            <div class="pill-filter" data-commute-mode="transit" data-commute-max="30">Under 30 min</div>
+            <div class="pill-filter" data-commute-mode="transit" data-commute-max="45">Under 45 min</div>
+          </div>
+        </div>
+
+        <!-- Amenities -->
+        <div class="filter-section">
+          <div class="filter-title">Amenities</div>
+          <div class="filter-options">
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-amenity="furnished" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Furnished</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-amenity="wi-fi" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Wi-Fi included</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-amenity="washing machine" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Washing machine</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-amenity="private" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Private bathroom</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-amenity="balcony" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Balcony</span>
+            </label>
+            <label class="checkbox-wrap">
+              <input type="checkbox" data-filter-amenity="bike storage" /><div class="checkbox-box"></div>
+              <span class="checkbox-label">Bike storage</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Deposit -->
+        <div class="filter-section">
+          <div class="filter-title">Max deposit</div>
+          <div class="range-with-value">
+            <input type="range" class="range-input" min="0" max="3000" value="3000" id="deposit-range" />
+            <div class="flex justify-between mt-2">
+              <span class="text-xs text-muted">€0</span>
+              <span class="text-xs font-semi text-primary" id="deposit-display">Any deposit</span>
+              <span class="text-xs text-muted">€3,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verified only -->
+        <div class="filter-section">
+          <label class="checkbox-wrap">
+            <input type="checkbox" /><div class="checkbox-box"></div>
+            <span class="checkbox-label font-semi">✓ Verified listings only</span>
+          </label>
+        </div>
+
+        <button class="btn btn-primary btn-full" onclick="applyFilters()">Apply filters</button>
+      </div>
+    </aside>
+
+    <!-- RESULTS -->
+    <main>
+      <!-- Empty state before the first search -->
+      <section id="search-empty-state" style="padding:var(--space-16) var(--space-6);text-align:center;background:white;border:1px solid var(--color-border);border-radius:var(--radius-lg)">
+        <h1 style="font-size:var(--font-size-2xl);font-weight:800;color:var(--color-text);margin-bottom:var(--space-3)">Find your next home</h1>
+        <p style="max-width:480px;margin:0 auto var(--space-6);color:var(--color-text-muted)">Enter your university or destination to discover accommodation that matches your needs.</p>
+        <button class="btn btn-primary btn-lg" onclick="focusSearch()">Search homes</button>
+      </section>
+
+      <div id="search-results" style="display:none">
+      <!-- Toolbar -->
+      <div class="search-toolbar">
+        <div class="results-count">Showing <strong id="results-count-number">0 homes</strong><span id="results-location"></span></div>
+        <div class="flex items-center gap-3">
+          <select class="form-select" style="padding:0.5rem 0.875rem;font-size:var(--font-size-sm)">
+            <option>Sort: Recommended</option>
+            <option>Price: Low to high</option>
+            <option>Price: High to low</option>
+            <option>Nearest to university</option>
+            <option>Shortest commute</option>
+            <option>Newest</option>
+          </select>
+          <div class="view-toggle">
+            <button class="view-toggle-btn active" id="list-view-btn" onclick="switchView('list')">☰ List</button>
+            <button class="view-toggle-btn" id="map-view-btn" onclick="switchView('map')">🗺 Map</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active filters -->
+      <div class="pill-filter-bar mb-5" data-multi="true">
+        <div id="active-search-filters" style="display:flex;gap:var(--space-2);flex-wrap:wrap"></div>
+        <div class="pill-filter" onclick="openModal('save-search-modal')">+ Save this search</div>
+      </div>
+
+      <!-- List view -->
+      <div class="properties-grid" id="properties-list">
+
+        <!-- Card 1 -->
+        <div class="property-card" data-type="studio" data-city="nantes" data-university="audencia business school" data-campus="audencia atlantic campus" data-price="460" data-walk="27" data-bike="8" data-transit="12">
+          <div class="property-card-img">
+            <div class="property-card-img-placeholder">🏠</div>
+            <div class="property-badge-wrap">
+              <span class="badge badge-green">✓ Verified</span>
+              <span class="badge badge-blue">Popular</span>
+            </div>
+            <button class="property-shortlist-btn" data-shortlist="s-1"><span class="shortlist-icon">♡</span></button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">€460 <span>/ month</span></div>
+            <div class="property-title">Bright studio near Audencia</div>
+            <div class="property-location">📍 Orvault, Nantes</div>
+            <div class="property-uni">🏫 2.1 km from Audencia</div>
+            <div class="property-commute">
+              <div class="commute-item"><span class="commute-icon">🚶</span> 27 min</div>
+              <div class="commute-item"><span class="commute-icon">🚲</span> 8 min</div>
+              <div class="commute-item"><span class="commute-icon">🚌</span> 12 min</div>
+            </div>
+            <div class="property-amenities">
+              <span class="amenity-tag">Furnished</span><span class="amenity-tag">Wi-Fi</span><span class="amenity-tag">Private</span>
+            </div>
+          </div>
+          <div class="property-card-footer">
+            <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+            <button class="btn btn-secondary btn-sm" data-shortlist="s-1">♡</button>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="property-card" data-type="studio" data-city="nantes" data-university="audencia business school" data-campus="audencia atlantic campus" data-price="510" data-walk="16" data-bike="5" data-transit="7">
+          <div class="property-card-img">
+            <div class="property-card-img-placeholder" style="background:linear-gradient(135deg,#F0F9FF,#BAE6FD)">🏢</div>
+            <div class="property-badge-wrap"><span class="badge badge-green">✓ Verified</span></div>
+            <button class="property-shortlist-btn" data-shortlist="s-2"><span class="shortlist-icon">♡</span></button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">€510 <span>/ month</span></div>
+            <div class="property-title">Modern studio, city centre</div>
+            <div class="property-location">📍 Centre-ville, Nantes</div>
+            <div class="property-uni">🏫 1.3 km from Audencia</div>
+            <div class="property-commute">
+              <div class="commute-item"><span class="commute-icon">🚶</span> 16 min</div>
+              <div class="commute-item"><span class="commute-icon">🚲</span> 5 min</div>
+              <div class="commute-item"><span class="commute-icon">🚌</span> 7 min</div>
+            </div>
+            <div class="property-amenities">
+              <span class="amenity-tag">Furnished</span><span class="amenity-tag">Wi-Fi</span><span class="amenity-tag">Washing machine</span>
+            </div>
+          </div>
+          <div class="property-card-footer">
+            <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+            <button class="btn btn-secondary btn-sm" data-shortlist="s-2">♡</button>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="property-card" data-type="shared-apartment" data-city="nantes" data-university="audencia business school" data-campus="audencia atlantic campus" data-price="390" data-walk="38" data-bike="12" data-transit="18">
+          <div class="property-card-img">
+            <div class="property-card-img-placeholder" style="background:linear-gradient(135deg,#FFF7ED,#FED7AA)">🌇</div>
+            <div class="property-badge-wrap"><span class="badge badge-green">✓ Verified</span><span class="badge badge-yellow">New</span></div>
+            <button class="property-shortlist-btn" data-shortlist="s-3"><span class="shortlist-icon">♡</span></button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">€390 <span>/ month</span></div>
+            <div class="property-title">Shared apartment, great location</div>
+            <div class="property-location">📍 Chantenay, Nantes</div>
+            <div class="property-uni">🏫 3.2 km from Audencia</div>
+            <div class="property-commute">
+              <div class="commute-item"><span class="commute-icon">🚶</span> 38 min</div>
+              <div class="commute-item"><span class="commute-icon">🚲</span> 12 min</div>
+              <div class="commute-item"><span class="commute-icon">🚌</span> 18 min</div>
+            </div>
+            <div class="property-amenities">
+              <span class="amenity-tag">Furnished</span><span class="amenity-tag">Wi-Fi</span><span class="amenity-tag">Shared</span>
+            </div>
+          </div>
+          <div class="property-card-footer">
+            <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+            <button class="btn btn-secondary btn-sm" data-shortlist="s-3">♡</button>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="property-card" data-type="private-room" data-city="nantes" data-university="audencia business school" data-campus="audencia atlantic campus" data-price="620" data-walk="10" data-bike="3" data-transit="5">
+          <div class="property-card-img">
+            <div class="property-card-img-placeholder" style="background:linear-gradient(135deg,#F0FDF4,#BBF7D0)">🌿</div>
+            <div class="property-badge-wrap"><span class="badge badge-green">✓ Verified</span></div>
+            <button class="property-shortlist-btn" data-shortlist="s-4"><span class="shortlist-icon">♡</span></button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">€620 <span>/ month</span></div>
+            <div class="property-title">Spacious 1-bed apartment</div>
+            <div class="property-location">📍 Île de Nantes</div>
+            <div class="property-uni">🏫 0.8 km from Audencia</div>
+            <div class="property-commute">
+              <div class="commute-item"><span class="commute-icon">🚶</span> 10 min</div>
+              <div class="commute-item"><span class="commute-icon">🚲</span> 3 min</div>
+              <div class="commute-item"><span class="commute-icon">🚌</span> 5 min</div>
+            </div>
+            <div class="property-amenities">
+              <span class="amenity-tag">Furnished</span><span class="amenity-tag">Wi-Fi</span><span class="amenity-tag">Balcony</span>
+            </div>
+          </div>
+          <div class="property-card-footer">
+            <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+            <button class="btn btn-secondary btn-sm" data-shortlist="s-4">♡</button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="property-card" data-type="student-residence" data-city="nantes" data-university="audencia business school" data-campus="audencia atlantic campus" data-price="480" data-walk="23" data-bike="7" data-transit="10">
+          <div class="property-card-img">
+            <div class="property-card-img-placeholder" style="background:linear-gradient(135deg,#FDF4FF,#E9D5FF)">🏛️</div>
+            <div class="property-badge-wrap"><span class="badge badge-green">✓ Verified</span></div>
+            <button class="property-shortlist-btn" data-shortlist="s-5"><span class="shortlist-icon">♡</span></button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">€480 <span>/ month</span></div>
+            <div class="property-title">Student residence room</div>
+            <div class="property-location">📍 Dervallières, Nantes</div>
+            <div class="property-uni">🏫 1.9 km from Audencia</div>
+            <div class="property-commute">
+              <div class="commute-item"><span class="commute-icon">🚶</span> 23 min</div>
+              <div class="commute-item"><span class="commute-icon">🚲</span> 7 min</div>
+              <div class="commute-item"><span class="commute-icon">🚌</span> 10 min</div>
+            </div>
+            <div class="property-amenities">
+              <span class="amenity-tag">Furnished</span><span class="amenity-tag">Wi-Fi</span><span class="amenity-tag">Gym</span>
+            </div>
+          </div>
+          <div class="property-card-footer">
+            <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+            <button class="btn btn-secondary btn-sm" data-shortlist="s-5">♡</button>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="property-card" data-type="private-room" data-city="nantes" data-university="audencia business school" data-campus="audencia atlantic campus" data-price="440" data-walk="34" data-bike="10" data-transit="15">
+          <div class="property-card-img">
+            <div class="property-card-img-placeholder" style="background:linear-gradient(135deg,#FFF1F2,#FECDD3)">🌸</div>
+            <div class="property-badge-wrap"><span class="badge badge-green">✓ Verified</span></div>
+            <button class="property-shortlist-btn" data-shortlist="s-6"><span class="shortlist-icon">♡</span></button>
+          </div>
+          <div class="property-card-body">
+            <div class="property-price">€440 <span>/ month</span></div>
+            <div class="property-title">Cosy room in friendly house</div>
+            <div class="property-location">📍 Doulon, Nantes</div>
+            <div class="property-uni">🏫 2.8 km from Audencia</div>
+            <div class="property-commute">
+              <div class="commute-item"><span class="commute-icon">🚶</span> 34 min</div>
+              <div class="commute-item"><span class="commute-icon">🚲</span> 10 min</div>
+              <div class="commute-item"><span class="commute-icon">🚌</span> 15 min</div>
+            </div>
+            <div class="property-amenities">
+              <span class="amenity-tag">Furnished</span><span class="amenity-tag">Wi-Fi</span><span class="amenity-tag">Garden</span>
+            </div>
+          </div>
+          <div class="property-card-footer">
+            <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+            <button class="btn btn-secondary btn-sm" data-shortlist="s-6">♡</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map view -->
+      <div class="map-view" id="map-view-container">
+        <div class="map-placeholder" style="height:100%;font-size:var(--font-size-sm)">
+          <div style="position:relative;width:100%;height:100%;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-3)">
+            <div style="font-size:3rem">🗺️</div>
+            <div style="font-weight:600;color:var(--color-text)">Interactive map</div>
+            <p style="color:var(--color-text-muted);text-align:center;max-width:300px">In the live version, properties and university locations would appear on an interactive map.</p>
+            <!-- Mock pins -->
+            <div style="position:absolute;top:35%;left:45%" class="map-pin" title="Audencia Business School">🏫</div>
+            <div style="position:absolute;top:42%;left:52%" class="map-pin" title="€460/month">📍</div>
+            <div style="position:absolute;top:28%;left:58%" class="map-pin" title="€510/month">📍</div>
+            <div style="position:absolute;top:55%;left:40%" class="map-pin" title="€390/month">📍</div>
+            <div style="position:absolute;top:30%;left:35%" class="map-pin" title="€620/month">📍</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load more -->
+      <div class="flex justify-center mt-8">
+        <button class="btn btn-secondary btn-lg" onclick="showToast('Loading more properties...','default')">Load more homes (41 remaining)</button>
+      </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Compare bar -->
+<div id="compare-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:white;border-top:2px solid var(--color-primary);padding:var(--space-3) var(--container-pad);z-index:50;box-shadow:0 -4px 24px rgba(0,0,0,0.12)">
+  <div class="container flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <span class="text-sm font-semi">Compare selected:</span>
+      <span class="badge badge-blue" id="compare-count">2 homes</span>
+    </div>
+    <div class="flex gap-3">
+      <button class="btn btn-ghost btn-sm" onclick="document.getElementById('compare-bar').style.display='none'">Clear</button>
+      <a href="compare.html" class="btn btn-primary btn-sm">Compare now →</a>
+    </div>
+  </div>
+</div>
+
+<!-- Save search modal -->
+<div class="modal-overlay" id="save-search-modal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Save this search</div>
+      <button class="modal-close" data-modal-close="save-search-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-muted mb-6">We'll notify you when new homes matching your criteria become available.</p>
+      <div class="flex flex-col gap-4">
+        <div class="p-4 rounded-lg" style="background:var(--slate-50);border:1px solid var(--color-border)">
+          <div class="text-xs text-muted mb-2 font-semi">Search criteria:</div>
+          <div class="text-sm font-semi">Audencia · Nantes · €400–€650 · Sep 2025</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Alert name (optional)</label>
+          <input type="text" class="form-input" placeholder="e.g. My Nantes search" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notify me by</label>
+          <select class="form-select">
+            <option>Email</option>
+            <option>Push notification</option>
+            <option>Both</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-modal-close="save-search-modal">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSearch()">Save search</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function switchView(v) {
+    const listBtn = document.getElementById('list-view-btn');
+    const mapBtn = document.getElementById('map-view-btn');
+    const listEl = document.getElementById('properties-list');
+    const mapEl = document.getElementById('map-view-container');
+    if (v === 'map') {
+      listBtn.classList.remove('active'); mapBtn.classList.add('active');
+      listEl.style.display = 'none'; mapEl.style.display = 'block';
+    } else {
+      mapBtn.classList.remove('active'); listBtn.classList.add('active');
+      mapEl.style.display = 'none'; listEl.style.display = '';
+    }
+  }
+  function applySearch() {
+    const university = document.getElementById('search-uni').value.toLowerCase();
+    const campus = document.getElementById('search-campus').value.toLowerCase();
+    const type = document.getElementById('search-type').value;
+    const budget = document.getElementById('search-budget').value;
+    const selectedTypes = [...document.querySelectorAll('[data-filter-type]:checked')].map(input => input.dataset.filterType);
+    const types = type ? [type] : selectedTypes;
+    const budgetLimits = { '0-400': [0, 400], '400-650': [400, 650], '650-900': [650, 900] }[budget];
+    const maximumBudget = budgetLimits ? budgetLimits[1] : Number(document.getElementById('budget-range').value);
+    const commuteFilters = [...document.querySelectorAll('[data-commute-mode].active')];
+    const amenities = [...document.querySelectorAll('[data-filter-amenity]:checked')].map(input => input.dataset.filterAmenity);
+    const cards = [...document.querySelectorAll('#properties-list .property-card')];
+    const matchingCards = cards.filter(card => {
+      const price = Number(card.dataset.price);
+      const matchesUniversity = !university || card.dataset.university.includes(university) || card.dataset.city.includes(university);
+      const matchesCampus = !campus || card.dataset.campus === campus;
+      const matchesType = !types.length || types.includes(card.dataset.type);
+      const matchesBudget = price <= maximumBudget && (!budgetLimits || price >= budgetLimits[0]);
+      const matchesCommute = commuteFilters.every(filter => Number(card.dataset[filter.dataset.commuteMode]) <= Number(filter.dataset.commuteMax));
+      const cardAmenities = card.querySelector('.property-amenities').textContent.toLowerCase();
+      const matchesAmenities = amenities.every(amenity => cardAmenities.includes(amenity));
+      return matchesUniversity && matchesCampus && matchesType && matchesBudget && matchesCommute && matchesAmenities;
+    });
+
+    cards.forEach(card => { card.style.display = matchingCards.includes(card) ? '' : 'none'; });
+    document.getElementById('search-empty-state').style.display = 'none';
+    document.getElementById('search-results').style.display = '';
+    document.getElementById('results-count-number').textContent = `${matchingCards.length} homes`;
+    const location = university === 'audencia business school' ? ' near Audencia Business School' : university ? ` near ${document.getElementById('search-uni').selectedOptions[0].textContent}` : '';
+    document.getElementById('results-location').textContent = location;
+    const filterLabels = [
+      document.getElementById('search-uni').selectedOptions[0].textContent,
+      document.getElementById('search-campus').selectedOptions[0].textContent,
+      document.getElementById('search-date').selectedOptions[0].textContent,
+      document.getElementById('search-budget').selectedOptions[0].textContent,
+      document.getElementById('search-type').selectedOptions[0].textContent,
+      ...commuteFilters.map(filter => filter.textContent),
+      ...amenities
+    ].filter(label => !['Search for a university or city...', 'Choose a campus', 'Select a date', 'Select your budget', 'Choose accommodation type'].includes(label));
+    document.getElementById('active-search-filters').innerHTML = filterLabels.map(label => `<span class="pill-filter active">${label}</span>`).join('');
+    showToast(`Showing ${matchingCards.length} matching homes`, 'success');
+  }
+  function applyFilters() { applySearch(); }
+  function clearFilters() {
+    document.querySelectorAll('#search-uni, #search-campus, #search-date, #search-budget, #search-type').forEach(select => { select.selectedIndex = 0; });
+    document.querySelectorAll('[data-filter-type], [data-filter-amenity]').forEach(input => { input.checked = false; });
+    document.querySelectorAll('.pill-filter.active').forEach(pill => pill.classList.remove('active'));
+    document.getElementById('budget-range').value = 1500;
+    document.getElementById('deposit-range').value = 3000;
+    document.getElementById('budget-display').textContent = 'Any budget';
+    document.getElementById('deposit-display').textContent = 'Any deposit';
+    showToast('Filters cleared', 'default');
+  }
+  function focusSearch() { document.getElementById('search-uni').focus(); }
+  function saveSearch() { closeModal('save-search-modal'); showToast('Search saved! We\'ll alert you when new homes appear.', 'success'); }
+
+  // Budget range display
+  const budgetRange = document.getElementById('budget-range');
+  const budgetDisplay = document.getElementById('budget-display');
+  if (budgetRange) {
+    budgetRange.addEventListener('input', () => {
+      budgetDisplay.textContent = `Up to €${Number(budgetRange.value).toLocaleString()}`;
+    });
+  }
+  const depositRange = document.getElementById('deposit-range');
+  const depositDisplay = document.getElementById('deposit-display');
+  if (depositRange) {
+    depositRange.addEventListener('input', () => {
+      depositDisplay.textContent = `Up to €${Number(depositRange.value).toLocaleString()}`;
+    });
+  }
+</script>
+</body>
+</html>

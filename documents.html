@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My Documents — Securely manage your French rental dossier (dossier de location), Visale guarantee, visa, student enrollment, and home insurance." />
+  <title>Document Wallet — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .doc-category-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+      box-shadow: var(--shadow-xs);
+    }
+    .doc-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--slate-100);
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+    .doc-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .doc-icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+    .watermark-notice {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--font-size-xs);
+      color: #1e40af;
+      margin-bottom: var(--space-8);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">My Bookare</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <a href="dashboard.html" class="nav-link">Dashboard</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="container">
+    <div class="flex justify-between items-center flex-wrap gap-4">
+      <div>
+        <div class="tag-pill mb-2">📁 Dossier de Location</div>
+        <h1 class="page-title">My Document Wallet</h1>
+        <p class="text-sm text-muted">Manage your verified documents required for French student leases and landlord applications.</p>
+      </div>
+      <div class="flex gap-3 flex-wrap">
+        <button class="btn btn-secondary btn-sm" onclick="showToast('Dossier downloaded as watermarked ZIP archive!','success')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Full Dossier
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="openModal('upload-modal')">
+          + Upload Document
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="container py-8" style="max-width:960px;">
+
+  <!-- Completion Meter Card -->
+  <div class="card p-6 mb-6 bg-white border-slate-200">
+    <div class="flex justify-between items-center mb-3">
+      <div>
+        <div class="font-bold text-slate-900 text-base">Rental Dossier Health: <span class="text-blue-600">85% Complete</span></div>
+        <div class="text-xs text-muted">Ready to submit to 94% of French student landlords</div>
+      </div>
+      <span class="badge badge-success">Strong Profile</span>
+    </div>
+    <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+      <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%;"></div>
+    </div>
+    <div class="flex justify-between text-[11px] text-muted mt-2">
+      <span>6 verified</span>
+      <span>1 pending review</span>
+      <span class="text-amber-600 font-semibold">1 required (Home Insurance)</span>
+    </div>
+  </div>
+
+  <!-- Watermark & Privacy Banner -->
+  <div class="watermark-notice">
+    <div style="font-size:1.5rem">🛡️</div>
+    <div>
+      <strong>Automatic Watermarking Active:</strong> Under French privacy law, all documents you upload here are automatically watermarked with <em>"Document exclusively for rental application via Bookare - Not valid for credit"</em> to prevent identity theft.
+    </div>
+  </div>
+
+  <!-- CATEGORY 1: IDENTITY & VISA -->
+  <div class="doc-category-card">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+        <span>🪪</span> Identity & Legal Stay
+      </h3>
+      <span class="badge badge-blue">2 Verified</span>
+    </div>
+
+    <!-- Doc 1: Passport -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box">📄</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">International Passport (Identity Page)</div>
+          <div class="text-xs text-muted">passport_kavin_verified.pdf · 1.8 MB · Expires June 2029</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-success">✓ Verified</span>
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Opening passport preview...','default')">View</button>
+        <button class="btn btn-ghost btn-sm" onclick="openModal('upload-modal')">Update</button>
+      </div>
+    </div>
+
+    <!-- Doc 2: Visa -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box">🛂</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">Long-Stay Student Visa (VLS-TS)</div>
+          <div class="text-xs text-muted">visa_france_vls_ts.pdf · 940 KB · Valid 2025–2026</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-success">✓ Verified</span>
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Opening visa preview...','default')">View</button>
+        <button class="btn btn-ghost btn-sm" onclick="openModal('upload-modal')">Update</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY 2: UNIVERSITY ENROLLMENT -->
+  <div class="doc-category-card">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+        <span>🎓</span> University Enrollment
+      </h3>
+      <span class="badge badge-blue">1 Verified · 1 Pending</span>
+    </div>
+
+    <!-- Doc 3: Audencia Admission Letter -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box">📜</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">Audencia Business School Official Admission Certificate</div>
+          <div class="text-xs text-muted">attestation_audencia_msc.pdf · 2.1 MB · Fall 2025 Semester</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-success">✓ Verified</span>
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Opening admission preview...','default')">View</button>
+      </div>
+    </div>
+
+    <!-- Doc 4: Student Card -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box">🪪</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">Audencia Student ID Card</div>
+          <div class="text-xs text-muted">audencia_student_card_provisional.jpg · 620 KB</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-orange">⏳ In Review</span>
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Our compliance team will review within 12 hours','default')">Pending</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY 3: FINANCIAL PROOF & GUARANTOR -->
+  <div class="doc-category-card">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+        <span>💶</span> Financial Solvency & French Guarantee
+      </h3>
+      <span class="badge badge-blue">2 Verified</span>
+    </div>
+
+    <!-- Doc 5: Visale Guarantee -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box" style="background:#ecfdf5; color:#059669;">🛡️</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">
+            Visale French State Guarantee Certificate (Action Logement)
+          </div>
+          <div class="text-xs text-muted">visa_visale_attestation.pdf · Guarantees rent up to €600/month · Free for international students under 30</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-success">✓ Visale Active</span>
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Visale Certificate downloaded','success')">Download</button>
+      </div>
+    </div>
+
+    <!-- Doc 6: Bank Statement -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box">🏦</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">Proof of Funds / Bank Statement (Last 3 Months)</div>
+          <div class="text-xs text-muted">bank_statement_signed.pdf · Demonstrates €8,200 available balance</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-success">✓ Verified</span>
+        <button class="btn btn-ghost btn-sm" onclick="showToast('Opening financial proof preview...','default')">View</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY 4: HOUSING & INSURANCE -->
+  <div class="doc-category-card">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-base text-slate-900 flex items-center gap-2">
+        <span>🏠</span> Housing & French Relocation Policies
+      </h3>
+      <span class="badge badge-orange">Action Needed</span>
+    </div>
+
+    <!-- Doc 7: Assurance Habitation (Action Required) -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box" style="background:#fffbeb; color:#d97706;">⚠️</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">French Home Insurance Certificate (Assurance Habitation)</div>
+          <div class="text-xs text-amber-700 font-medium">Legally mandatory in France before landlord hands over apartment keys.</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-error">Action Required</span>
+        <button class="btn btn-primary btn-sm" onclick="openModal('insurance-modal')">Get Policy (€2.90/mo)</button>
+        <button class="btn btn-secondary btn-sm" onclick="openModal('upload-modal')">Upload</button>
+      </div>
+    </div>
+
+    <!-- Doc 8: French Lease Contract -->
+    <div class="doc-row">
+      <div class="flex items-center gap-3">
+        <div class="doc-icon-box">📑</div>
+        <div>
+          <div class="font-semibold text-sm text-slate-900">Bail Mobilité / French Student Lease Contract</div>
+          <div class="text-xs text-muted">bail_etudiant_saint_felix.pdf · Pre-filled digital draft for Studio Saint-Félix</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="badge badge-blue">Ready to Sign</span>
+        <a href="application.html" class="btn btn-secondary btn-sm">Review in Tracker</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Upload Document Modal -->
+<div class="modal-overlay" id="upload-modal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Upload a document to your wallet</div>
+      <button class="modal-close" data-modal-close="upload-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-xs text-muted mb-4">Files will be securely stored, encrypted, and automatically watermarked for rental protection.</p>
+      
+      <div class="form-group mb-3">
+        <label class="form-label">Document Category</label>
+        <select class="form-select" id="doc-type-select">
+          <option>Passport / ID</option>
+          <option>Long-Stay Student Visa (VLS-TS)</option>
+          <option>University Admission / Certificate</option>
+          <option>Proof of Funds / Bank Statement</option>
+          <option>Visale Guarantee Attestation</option>
+          <option>Home Insurance (Assurance Habitation)</option>
+          <option>French Bank RIB / IBAN</option>
+          <option>Other Document</option>
+        </select>
+      </div>
+
+      <div class="p-8 border-2 border-dashed border-slate-300 rounded-xl text-center bg-slate-50 mb-4 cursor-pointer hover:border-blue-500 transition-colors" onclick="document.getElementById('file-input').click()">
+        <div style="font-size:2rem; margin-bottom:8px">📁</div>
+        <div class="text-sm font-semibold text-slate-900 mb-1">Click to select file or drag & drop</div>
+        <div class="text-xs text-muted">Supports PDF, JPG, PNG up to 10MB</div>
+        <input type="file" id="file-input" style="display:none" onchange="fileSelected(this)" />
+        <div id="file-selected-name" class="text-xs text-blue-600 font-bold mt-2"></div>
+      </div>
+
+      <div class="text-[11px] text-slate-500">
+        🔒 Encrypted with AES-256 and stored strictly within EU data centers in France (GDPR compliant).
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-modal-close="upload-modal">Cancel</button>
+      <button class="btn btn-primary" onclick="submitDocUpload()">Upload & Verify</button>
+    </div>
+  </div>
+</div>
+
+<!-- Insurance Partner Modal -->
+<div class="modal-overlay" id="insurance-modal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Instant French Student Home Insurance</div>
+      <button class="modal-close" data-modal-close="insurance-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="p-4 bg-blue-50 rounded-xl border border-blue-200 mb-4">
+        <div class="font-bold text-sm text-blue-900 mb-1">Why is this required in France?</div>
+        <div class="text-xs text-blue-800 leading-relaxed">
+          French law requires every tenant to hold an <em>Assurance Habitation</em> covering civil liability, fire, and water damage before taking possession of keys.
+        </div>
+      </div>
+
+      <div class="p-4 bg-white rounded-xl border border-slate-200 mb-4">
+        <div class="flex justify-between items-center mb-2">
+          <div class="font-bold text-sm text-slate-900">Student Essential Coverage (Nantes)</div>
+          <div class="text-base font-extrabold text-blue-600">€2.90 <span class="text-xs text-muted font-normal">/ month</span></div>
+        </div>
+        <ul class="text-xs text-slate-600 flex flex-col gap-1.5 mb-2">
+          <li>✓ Civil liability coverage up to €1,000,000</li>
+          <li>✓ Fire, explosion & water damage coverage</li>
+          <li>✓ Laptop & personal belonging protection up to €2,500</li>
+          <li>✓ <strong>Instant attestation PDF</strong> issued directly to your wallet</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-modal-close="insurance-modal">Maybe later</button>
+      <button class="btn btn-primary" onclick="closeModal('insurance-modal');showToast('Insurance activated! Attestation added to wallet.','success')">Activate Policy (€34.80/year)</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France. Verified listings, transparent total costs, and local student buddies.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="arrival.html" class="footer-link">Arrival Checklist</a>
+          <a href="budget.html" class="footer-link">Budget Calculator</a>
+          <a href="help.html" class="footer-link">Help Centre</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations & Guides</div>
+        <div class="footer-links">
+          <a href="university.html" class="footer-link">Audencia Business School</a>
+          <a href="neighbourhood.html" class="footer-link">Nantes Student Guide</a>
+          <a href="how-it-works.html" class="footer-link">How Bookare Works</a>
+          <a href="documents.html" class="footer-link">Document Wallet</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Landlords & Legal</div>
+        <div class="footer-links">
+          <a href="list-property.html" class="footer-link">List a Property</a>
+          <a href="landlord.html" class="footer-link">Landlord Dashboard</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS. Built with care for international students in France.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function fileSelected(input) {
+    if (input.files && input.files[0]) {
+      document.getElementById('file-selected-name').textContent = 'Selected: ' + input.files[0].name;
+    }
+  }
+
+  function submitDocUpload() {
+    const fileName = document.getElementById('file-selected-name').textContent;
+    closeModal('upload-modal');
+    showToast(fileName ? 'Document uploaded and queued for verification!' : 'Document uploaded successfully!', 'success');
+  }
+</script>
+</body>
+</html>

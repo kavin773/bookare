@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Application Status Tracker — Track your student accommodation application progress in France in real-time." />
+  <title>Application Status Tracker — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .stepper-horizontal {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: var(--space-8) 0 var(--space-10);
+    }
+    .stepper-horizontal::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      right: 30px;
+      height: 3px;
+      background: var(--slate-200);
+      z-index: 1;
+    }
+    .stepper-progress-fill {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      width: 50%;
+      height: 3px;
+      background: var(--color-primary);
+      z-index: 2;
+      transition: width 0.4s ease;
+    }
+    .step-node {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 140px;
+    }
+    .step-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--slate-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: var(--font-size-sm);
+      color: var(--slate-500);
+      margin-bottom: var(--space-2);
+      transition: all var(--transition-normal);
+    }
+    .step-node.completed .step-circle {
+      background: var(--color-success);
+      border-color: var(--color-success);
+      color: white;
+    }
+    .step-node.active .step-circle {
+      background: white;
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      box-shadow: 0 0 0 4px var(--color-primary-light);
+    }
+    .step-node-title {
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+    .step-node-desc {
+      font-size: 10px;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+    @media (max-width: 768px) {
+      .stepper-horizontal {
+        flex-direction: column;
+        gap: var(--space-6);
+        padding-left: var(--space-8);
+      }
+      .stepper-horizontal::before {
+        top: 0;
+        bottom: 0;
+        left: 20px;
+        right: auto;
+        width: 3px;
+        height: 100%;
+      }
+      .stepper-progress-fill {
+        top: 0;
+        left: 20px;
+        width: 3px;
+        height: 50%;
+      }
+      .step-node {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-4);
+        max-width: none;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Dashboard</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <a href="dashboard.html" class="nav-link">Dashboard</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="page-header">
+  <div class="container">
+    <div class="flex items-center gap-2 mb-2 text-xs text-muted">
+      <a href="dashboard.html" class="hover:text-blue-600">My Bookare</a>
+      <span>/</span>
+      <span class="text-slate-900 font-semibold">Application #BK-2025-8841</span>
+    </div>
+    <div class="tag-pill mb-2">⚡ Live Tracker</div>
+    <h1 class="page-title">Application Status</h1>
+    <p class="text-sm text-muted">Track your submission, landlord review, and lease signing progress in real-time.</p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="container py-8" style="max-width:1000px;">
+
+  <!-- Application Property Summary Header -->
+  <div class="application-header">
+    <div class="application-property-img">
+      <svg viewBox="0 0 120 90" fill="none" style="width:100%;height:100%"><rect width="120" height="90" fill="#E2E8F0"/><rect x="15" y="15" width="90" height="60" rx="4" fill="#94A3B8"/><rect x="25" y="30" width="40" height="30" rx="2" fill="#3B82F6"/></svg>
+    </div>
+    <div class="flex-1">
+      <div class="flex justify-between items-start flex-wrap gap-2">
+        <div>
+          <span class="badge badge-blue mb-1">Studio · Private</span>
+          <h2 class="text-xl font-bold text-slate-900">Bright Modern Studio near Audencia</h2>
+          <p class="text-xs text-muted">📍 14 Rue Saint-Félix, Nantes · 1.2 km from Audencia Campus</p>
+        </div>
+        <div class="text-right">
+          <div class="text-2xl font-black text-slate-900">€460 <span class="text-xs text-muted font-normal">/ mo</span></div>
+          <div class="text-xs text-blue-700 font-semibold">Total: €510/mo incl. utilities</div>
+        </div>
+      </div>
+      <div class="flex gap-4 mt-3 text-xs text-slate-600 flex-wrap">
+        <span>📅 Move-in: <strong>01 Sept 2025</strong></span>
+        <span>⏳ Duration: <strong>10 Months</strong> (Bail Étudiant)</span>
+        <span>👤 Landlord: <strong>Pierre Dupont</strong> (Verified Landlord)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5-STAGE PROGRESS STEPPER -->
+  <div class="card p-8 mb-8 bg-white">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="font-bold text-base text-slate-900">Application Pipeline</h3>
+      <span class="badge badge-orange font-semibold">Stage 3 of 5 · Landlord Reviewing</span>
+    </div>
+
+    <div class="stepper-horizontal">
+      <div class="stepper-progress-fill"></div>
+
+      <!-- Node 1 -->
+      <div class="step-node completed">
+        <div class="step-circle">✓</div>
+        <div class="step-node-title">Application Submitted</div>
+        <div class="step-node-desc">Sept 12 · 14:20</div>
+      </div>
+
+      <!-- Node 2 -->
+      <div class="step-node completed">
+        <div class="step-circle">✓</div>
+        <div class="step-node-title">Dossier Pre-Screened</div>
+        <div class="step-node-desc">Sept 13 · 09:15</div>
+      </div>
+
+      <!-- Node 3 (Active) -->
+      <div class="step-node active">
+        <div class="step-circle">3</div>
+        <div class="step-node-title text-blue-600">Landlord Reviewing</div>
+        <div class="step-node-desc font-semibold text-blue-600">Expected: Today</div>
+      </div>
+
+      <!-- Node 4 -->
+      <div class="step-node">
+        <div class="step-circle">4</div>
+        <div class="step-node-title">Lease Offer & Sign</div>
+        <div class="step-node-desc">Digital French Bail</div>
+      </div>
+
+      <!-- Node 5 -->
+      <div class="step-node">
+        <div class="step-circle">5</div>
+        <div class="step-node-title">Booking Confirmed</div>
+        <div class="step-node-desc">Move-in Escrow</div>
+      </div>
+    </div>
+
+    <!-- Active Stage Notice -->
+    <div class="p-5 bg-blue-50 rounded-xl border border-blue-200">
+      <div class="flex items-start gap-3">
+        <div style="font-size:1.5rem">⏱️</div>
+        <div>
+          <h4 class="font-bold text-sm text-blue-900 mb-1">Pierre Dupont has until Sept 15 (18:00 CEST) to respond</h4>
+          <p class="text-xs text-blue-800 leading-relaxed">
+            Your rental dossier was sent with your verified passport, Audencia admission, and active Visale guarantee certificate. Pierre has viewed your profile and is expected to confirm your booking request shortly.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Split Grid: Details & Live Activity Log -->
+  <div class="grid grid-2 gap-8 mb-8">
+
+    <!-- Activity Log -->
+    <div class="card p-6 bg-white">
+      <h4 class="font-bold text-sm text-slate-900 mb-4 flex items-center gap-2">
+        <span>📋</span> Timeline & Activity Log
+      </h4>
+      <div class="flex flex-col gap-4">
+        
+        <div class="flex gap-3 text-xs">
+          <div class="w-2 h-2 rounded-full bg-blue-600 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="font-bold text-slate-900">Landlord opened your full rental dossier</div>
+            <div class="text-muted">Today at 10:45 AM · Pierre Dupont reviewed your Visale guarantee certificate</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 text-xs">
+          <div class="w-2 h-2 rounded-full bg-emerald-500 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="font-bold text-slate-900">Bookare verification approved</div>
+            <div class="text-muted">Sept 13 at 09:15 AM · Identity, visa and Audencia documents verified</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 text-xs">
+          <div class="w-2 h-2 rounded-full bg-slate-400 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="font-bold text-slate-900">Application transmitted to landlord</div>
+            <div class="text-muted">Sept 12 at 14:22 PM · Notification sent via email and SMS</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 text-xs">
+          <div class="w-2 h-2 rounded-full bg-slate-400 mt-1.5 flex-shrink-0"></div>
+          <div>
+            <div class="font-bold text-slate-900">Application created by student</div>
+            <div class="text-muted">Sept 12 at 14:20 PM · Booking request for Sept 1, 2025 move-in</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 flex gap-3">
+        <a href="messages.html?chat=landlord" class="btn btn-secondary btn-sm flex-1">
+          💬 Message Pierre
+        </a>
+        <a href="messages.html?chat=rahul" class="btn btn-ghost btn-sm flex-1">
+          🤝 Ask Rahul (Buddy)
+        </a>
+      </div>
+    </div>
+
+    <!-- Financial Breakdown Card -->
+    <div class="card p-6 bg-white">
+      <h4 class="font-bold text-sm text-slate-900 mb-4 flex items-center gap-2">
+        <span>💶</span> Transparent Financial Terms
+      </h4>
+      <div class="flex flex-col gap-2.5 text-xs text-slate-700">
+        <div class="flex justify-between py-1 border-b border-slate-100">
+          <span>Monthly Net Rent:</span>
+          <span class="font-bold text-slate-900">€460.00</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-slate-100">
+          <span>Building Charges & Water (Charges Comprises):</span>
+          <span class="font-bold text-slate-900">€50.00</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-slate-100">
+          <span>Security Deposit (Dépôt de Garantie - 100% Refundable):</span>
+          <span class="font-bold text-slate-900">€460.00</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-slate-100">
+          <span>Bookare One-Time Student Booking Fee:</span>
+          <span class="font-bold text-blue-600">€100.00</span>
+        </div>
+        <div class="flex justify-between py-1 border-b border-slate-100 bg-emerald-50 p-2 rounded">
+          <span class="text-emerald-800 font-semibold">Estimated French CAF (APL) Housing Subsidy:</span>
+          <span class="font-bold text-emerald-800">-€180.00 / mo</span>
+        </div>
+      </div>
+
+      <div class="mt-5 p-3 bg-slate-50 rounded-lg text-[11px] text-muted">
+        🔒 <strong>Zero payment is charged right now.</strong> The security deposit and first month rent are only requested after Pierre Dupont officially approves your application.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Actions Row -->
+  <div class="card p-5 bg-white flex justify-between items-center flex-wrap gap-4">
+    <div class="text-xs text-muted">
+      Need to update your move-in date or cancel this request?
+    </div>
+    <div class="flex gap-3">
+      <button class="btn btn-ghost btn-sm text-red-600" onclick="confirmWithdraw()">Withdraw application</button>
+      <a href="documents.html" class="btn btn-secondary btn-sm">Manage attached documents</a>
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France. Verified listings, transparent total costs, and local student buddies.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="arrival.html" class="footer-link">Arrival Checklist</a>
+          <a href="budget.html" class="footer-link">Budget Calculator</a>
+          <a href="help.html" class="footer-link">Help Centre</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations & Guides</div>
+        <div class="footer-links">
+          <a href="university.html" class="footer-link">Audencia Business School</a>
+          <a href="neighbourhood.html" class="footer-link">Nantes Student Guide</a>
+          <a href="how-it-works.html" class="footer-link">How Bookare Works</a>
+          <a href="documents.html" class="footer-link">Document Wallet</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Landlords & Legal</div>
+        <div class="footer-links">
+          <a href="list-property.html" class="footer-link">List a Property</a>
+          <a href="landlord.html" class="footer-link">Landlord Dashboard</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS. Built with care for international students in France.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function confirmWithdraw() {
+    if (confirm('Are you sure you want to withdraw this application? The landlord will be notified.')) {
+      showToast('Application withdrawn successfully', 'default');
+    }
+  }
+</script>
+</body>
+</html>

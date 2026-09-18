@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bookare — Student accommodation made simple for international students moving to France. Find a home, connect with local student buddies, and settle in with confidence." />
+  <title>Bookare — Find Student Accommodation in France</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+</head>
+<body>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Menu" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">🇫🇷 Student Accommodation · France</div>
+    <h1 class="hero-title">Find your place.<br><span class="accent">Start your journey.</span></h1>
+    <p class="hero-subtitle">Student accommodation made simple for international students moving to France. Search, compare, connect with locals and book with confidence.</p>
+
+    <!-- Search Box -->
+    <div class="hero-search-wrap animate-on-scroll">
+      <div class="search-box">
+        <div class="search-fields">
+          <div class="search-field-group">
+            <label class="search-field-label">🎓 Where are you studying?</label>
+            <select class="form-select" id="hero-university">
+              <option value="">University or city...</option>
+              <option>Audencia Business School – Nantes</option>
+              <option>Sciences Po – Paris</option>
+              <option>ESSEC Business School – Cergy</option>
+              <option>Université Lyon 1 – Lyon</option>
+              <option>Université de Bordeaux</option>
+              <option>Aix-Marseille Université</option>
+              <option>Université de Strasbourg</option>
+              <option>Université de Rennes 1</option>
+              <option>Université de Toulouse</option>
+              <option>Grenoble INP</option>
+            </select>
+          </div>
+          <div class="search-field-group">
+            <label class="search-field-label">📅 Move-in date</label>
+            <input type="date" class="form-input" id="hero-date" min="2025-01-01" />
+          </div>
+          <div class="search-field-group">
+            <label class="search-field-label">💶 Monthly budget</label>
+            <select class="form-select" id="hero-budget">
+              <option value="">Any budget</option>
+              <option>Up to €400/month</option>
+              <option>€400 – €600/month</option>
+              <option>€600 – €900/month</option>
+              <option>€900 – €1,200/month</option>
+              <option>Over €1,200/month</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-lg" onclick="doHeroSearch()" id="hero-search-btn">
+            Find my accommodation
+          </button>
+        </div>
+        <div class="flex items-center gap-3 mt-4">
+          <span class="text-xs text-muted">Popular:</span>
+          <div class="flex gap-2 flex-wrap">
+            <a href="search.html?city=nantes" class="badge badge-gray" style="cursor:pointer">Nantes</a>
+            <a href="search.html?city=paris" class="badge badge-gray" style="cursor:pointer">Paris</a>
+            <a href="search.html?city=lyon" class="badge badge-gray" style="cursor:pointer">Lyon</a>
+            <a href="search.html?city=bordeaux" class="badge badge-gray" style="cursor:pointer">Bordeaux</a>
+            <a href="search.html?city=strasbourg" class="badge badge-gray" style="cursor:pointer">Strasbourg</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero-stats animate-on-scroll">
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">4,800+</div>
+        <div class="hero-stat-label">Verified homes</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">38</div>
+        <div class="hero-stat-label">Cities in France</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">1,200+</div>
+        <div class="hero-stat-label">Student buddies</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="hero-stat-num">94%</div>
+        <div class="hero-stat-label">Students satisfied</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BENEFITS ===================== -->
+<section class="section section-bg">
+  <div class="container">
+    <div class="grid grid-4 animate-on-scroll">
+      <div class="benefit-item">
+        <div class="benefit-icon">🏠</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Student-focused housing</div>
+          <div class="benefit-desc">Homes selected with students in mind. Close to universities and student life.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">💰</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Transparent costs</div>
+          <div class="benefit-desc">Understand rent and all additional costs before you apply. No hidden surprises.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🤝</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Local student buddies</div>
+          <div class="benefit-desc">Get answers from students who already live and study in France.</div>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">✓</div>
+        <div class="benefit-content">
+          <div class="benefit-title">Verified listings</div>
+          <div class="benefit-desc">Every property is reviewed. Clearly identify what Bookare has verified.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DESTINATIONS ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="tag-pill">🗺️ Popular destinations</div>
+      <h2 class="section-title">Find your city in France</h2>
+      <p class="section-subtitle">From Paris to Nantes, we cover the top student cities across France.</p>
+    </div>
+    <div class="destinations-grid animate-on-scroll">
+      <a href="search.html?city=paris" class="destination-card">
+        <div class="destination-card-img" style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;font-size:4rem;">🗼</div>
+        <div class="destination-card-overlay">
+          <div class="destination-city">Paris</div>
+          <div class="destination-count">1,240 homes available</div>
+        </div>
+        <div class="destination-badge">Most popular</div>
+      </a>
+      <a href="search.html?city=nantes" class="destination-card">
+        <div class="destination-card-img" style="width:100%;height:100%;background:linear-gradient(135deg,#0f4c75,#1b262c);display:flex;align-items:center;justify-content:center;font-size:4rem;">⚓</div>
+        <div class="destination-card-overlay">
+          <div class="destination-city">Nantes</div>
+          <div class="destination-count">386 homes available</div>
+        </div>
+      </a>
+      <a href="search.html?city=lyon" class="destination-card">
+        <div class="destination-card-img" style="width:100%;height:100%;background:linear-gradient(135deg,#1e3a5f,#2d6a4f);display:flex;align-items:center;justify-content:center;font-size:4rem;">🦁</div>
+        <div class="destination-card-overlay">
+          <div class="destination-city">Lyon</div>
+          <div class="destination-count">520 homes available</div>
+        </div>
+      </a>
+      <a href="search.html?city=bordeaux" class="destination-card">
+        <div class="destination-card-img" style="width:100%;height:100%;background:linear-gradient(135deg,#3d0000,#720000);display:flex;align-items:center;justify-content:center;font-size:4rem;">🍷</div>
+        <div class="destination-card-overlay">
+          <div class="destination-city">Bordeaux</div>
+          <div class="destination-count">294 homes available</div>
+        </div>
+      </a>
+    </div>
+    <div class="flex justify-center mt-8">
+      <a href="search.html" class="btn btn-secondary btn-lg">Explore all destinations</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RECOMMENDED HOMES ===================== -->
+<section class="section section-bg">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="tag-pill">🏠 Recommended homes</div>
+      <h2 class="section-title">Popular with students this month</h2>
+      <p class="section-subtitle">Verified, affordable and close to top French universities.</p>
+    </div>
+    <div class="grid grid-3 animate-on-scroll" id="homepage-properties">
+      <!-- Property Card 1 -->
+      <div class="property-card">
+        <div class="property-card-img">
+          <div class="property-card-img-placeholder">🏠</div>
+          <div class="property-badge-wrap">
+            <span class="badge badge-green">✓ Verified</span>
+            <span class="badge badge-blue">Popular</span>
+          </div>
+          <button class="property-shortlist-btn" data-shortlist="prop-1">
+            <span class="shortlist-icon">♡</span>
+          </button>
+        </div>
+        <div class="property-card-body">
+          <div class="property-price">€460 <span>/ month</span></div>
+          <div class="property-title">Bright studio near Audencia</div>
+          <div class="property-location">📍 Orvault, Nantes</div>
+          <div class="property-uni">🏫 2.1 km from Audencia Business School</div>
+          <div class="property-commute">
+            <div class="commute-item"><span class="commute-icon">🚶</span> 27 min</div>
+            <div class="commute-item"><span class="commute-icon">🚲</span> 8 min</div>
+            <div class="commute-item"><span class="commute-icon">🚌</span> 12 min</div>
+          </div>
+          <div class="property-amenities">
+            <span class="amenity-tag">Furnished</span>
+            <span class="amenity-tag">Wi-Fi</span>
+            <span class="amenity-tag">Private room</span>
+          </div>
+        </div>
+        <div class="property-card-footer">
+          <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+          <button class="btn btn-secondary btn-sm btn-icon" data-shortlist="prop-1" title="Shortlist">♡</button>
+        </div>
+      </div>
+
+      <!-- Property Card 2 -->
+      <div class="property-card">
+        <div class="property-card-img">
+          <div class="property-card-img-placeholder" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE)">🏢</div>
+          <div class="property-badge-wrap">
+            <span class="badge badge-green">✓ Verified</span>
+          </div>
+          <button class="property-shortlist-btn" data-shortlist="prop-2">
+            <span class="shortlist-icon">♡</span>
+          </button>
+        </div>
+        <div class="property-card-body">
+          <div class="property-price">€580 <span>/ month</span></div>
+          <div class="property-title">Modern flat near Sciences Po</div>
+          <div class="property-location">📍 Saint-Germain-des-Prés, Paris</div>
+          <div class="property-uni">🏫 0.4 km from Sciences Po</div>
+          <div class="property-commute">
+            <div class="commute-item"><span class="commute-icon">🚶</span> 5 min</div>
+            <div class="commute-item"><span class="commute-icon">🚲</span> 2 min</div>
+            <div class="commute-item"><span class="commute-icon">🚌</span> 4 min</div>
+          </div>
+          <div class="property-amenities">
+            <span class="amenity-tag">Furnished</span>
+            <span class="amenity-tag">Wi-Fi</span>
+            <span class="amenity-tag">Washing machine</span>
+          </div>
+        </div>
+        <div class="property-card-footer">
+          <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+          <button class="btn btn-secondary btn-sm btn-icon" data-shortlist="prop-2" title="Shortlist">♡</button>
+        </div>
+      </div>
+
+      <!-- Property Card 3 -->
+      <div class="property-card">
+        <div class="property-card-img">
+          <div class="property-card-img-placeholder" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7)">🌿</div>
+          <div class="property-badge-wrap">
+            <span class="badge badge-green">✓ Verified</span>
+            <span class="badge badge-yellow">New</span>
+          </div>
+          <button class="property-shortlist-btn" data-shortlist="prop-3">
+            <span class="shortlist-icon">♡</span>
+          </button>
+        </div>
+        <div class="property-card-body">
+          <div class="property-price">€420 <span>/ month</span></div>
+          <div class="property-title">Cosy room in shared apartment</div>
+          <div class="property-location">📍 Villeurbanne, Lyon</div>
+          <div class="property-uni">🏫 1.5 km from Université Lyon 1</div>
+          <div class="property-commute">
+            <div class="commute-item"><span class="commute-icon">🚶</span> 18 min</div>
+            <div class="commute-item"><span class="commute-icon">🚲</span> 6 min</div>
+            <div class="commute-item"><span class="commute-icon">🚌</span> 8 min</div>
+          </div>
+          <div class="property-amenities">
+            <span class="amenity-tag">Furnished</span>
+            <span class="amenity-tag">Wi-Fi</span>
+            <span class="amenity-tag">Shared</span>
+          </div>
+        </div>
+        <div class="property-card-footer">
+          <a href="property.html" class="btn btn-primary btn-sm" style="flex:1">View details</a>
+          <button class="btn btn-secondary btn-sm btn-icon" data-shortlist="prop-3" title="Shortlist">♡</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-8">
+      <a href="search.html" class="btn btn-primary btn-lg">Browse all homes</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="tag-pill">✦ Simple process</div>
+      <h2 class="section-title">How Bookare works</h2>
+      <p class="section-subtitle">From first search to arrival day — we guide you through every step.</p>
+    </div>
+    <div class="how-it-works-grid animate-on-scroll">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <div>
+          <div class="step-title">Search</div>
+          <div class="step-desc">Find homes near your university, campus and preferred neighbourhood. Filter by budget, commute and amenities.</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <div>
+          <div class="step-title">Compare</div>
+          <div class="step-desc">Compare rent, costs, amenities and commute times across multiple properties side by side.</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <div>
+          <div class="step-title">Connect</div>
+          <div class="step-desc">Ask a local student about the university, neighbourhood or accommodation before you book.</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">04</div>
+        <div>
+          <div class="step-title">Book & Arrive</div>
+          <div class="step-desc">Apply online, manage documents securely, and receive a personalised arrival plan.</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-10">
+      <a href="how-it-works.html" class="btn btn-secondary btn-lg">Learn more about the process</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BUDDY SECTION ===================== -->
+<section class="section section-blue">
+  <div class="container">
+    <div class="buddy-section-inner animate-on-scroll">
+      <div>
+        <div class="tag-pill mb-6">🤝 Bookare Buddy</div>
+        <h2 class="section-title" style="text-align:left;max-width:none">You shouldn't have to figure it all out alone.</h2>
+        <p class="section-subtitle" style="text-align:left;max-width:none;margin-bottom:var(--space-8)">Connect with students already living and studying in France who can answer your real questions — about accommodation, banking, transport, CAF, and daily life.</p>
+        <div class="flex gap-3 flex-wrap">
+          <a href="buddies.html" class="btn btn-primary btn-lg">Find my buddy</a>
+          <a href="buddies.html" class="btn btn-secondary btn-lg">Browse all buddies</a>
+        </div>
+      </div>
+      <div class="grid grid-2" style="gap:var(--space-4)">
+        <div class="buddy-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="buddy-avatar" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8)">RS</div>
+            <div>
+              <div class="buddy-name">Rahul Sharma</div>
+              <div class="buddy-uni">🎓 Audencia · Nantes</div>
+              <div class="buddy-rating"><span class="star">★</span> 4.9 <span style="font-weight:400;color:var(--color-text-muted)">(47 reviews)</span></div>
+            </div>
+          </div>
+          <div class="buddy-languages mb-3">🌐 English · French · Hindi</div>
+          <div class="buddy-tags">
+            <span class="buddy-tag">Accommodation</span>
+            <span class="buddy-tag">CAF</span>
+            <span class="buddy-tag">Banking</span>
+            <span class="buddy-tag">Transport</span>
+          </div>
+          <div class="flex gap-2 mt-4">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">Message</a>
+            <a href="buddies.html" class="btn btn-secondary btn-sm" style="flex:1">View profile</a>
+          </div>
+        </div>
+        <div class="buddy-card">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="buddy-avatar" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9)">YC</div>
+            <div>
+              <div class="buddy-name">Yuki Chen</div>
+              <div class="buddy-uni">🎓 Sciences Po · Paris</div>
+              <div class="buddy-rating"><span class="star">★</span> 5.0 <span style="font-weight:400;color:var(--color-text-muted)">(32 reviews)</span></div>
+            </div>
+          </div>
+          <div class="buddy-languages mb-3">🌐 English · French · Mandarin</div>
+          <div class="buddy-tags">
+            <span class="buddy-tag">Moving in</span>
+            <span class="buddy-tag">SIM card</span>
+            <span class="buddy-tag">University</span>
+          </div>
+          <div class="flex gap-2 mt-4">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">Message</a>
+            <a href="buddies.html" class="btn btn-secondary btn-sm" style="flex:1">View profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COMMUNITY ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="tag-pill">💬 Community</div>
+      <h2 class="section-title">Real questions. Real answers.</h2>
+      <p class="section-subtitle">Ask anything about life in France — from transport to banking to where to find good groceries.</p>
+    </div>
+    <div class="community-grid animate-on-scroll">
+      <div class="question-card">
+        <div class="flex gap-4">
+          <div class="question-votes">
+            <div class="vote-count">24</div>
+            <div class="vote-label">votes</div>
+          </div>
+          <div>
+            <div class="question-title"><a href="community.html">How do I get my transport card (Navigo / TCL) as a student?</a></div>
+            <div class="question-meta">
+              <span class="badge badge-blue">Transport</span>
+              <span>Audencia · Nantes</span>
+              <span>12 answers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="flex gap-4">
+          <div class="question-votes">
+            <div class="vote-count">18</div>
+            <div class="vote-label">votes</div>
+          </div>
+          <div>
+            <div class="question-title"><a href="community.html">Which neighbourhoods in Nantes are best for students?</a></div>
+            <div class="question-meta">
+              <span class="badge badge-green">Accommodation</span>
+              <span>Nantes</span>
+              <span>9 answers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="flex gap-4">
+          <div class="question-votes">
+            <div class="vote-count">31</div>
+            <div class="vote-label">votes</div>
+          </div>
+          <div>
+            <div class="question-title"><a href="community.html">How does CAF work and how do I apply for housing benefit?</a></div>
+            <div class="question-meta">
+              <span class="badge badge-yellow">Admin</span>
+              <span>All cities</span>
+              <span>21 answers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="question-card">
+        <div class="flex gap-4">
+          <div class="question-votes">
+            <div class="vote-count">15</div>
+            <div class="vote-label">votes</div>
+          </div>
+          <div>
+            <div class="question-title"><a href="community.html">What's the cheapest way to open a bank account in France?</a></div>
+            <div class="question-meta">
+              <span class="badge badge-blue">Banking</span>
+              <span>All cities</span>
+              <span>8 answers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-8">
+      <a href="community.html" class="btn btn-secondary btn-lg">Explore the community</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARRIVAL ===================== -->
+<section class="section section-bg">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="tag-pill">✈️ Arrival guide</div>
+      <h2 class="section-title">We help you settle in, not just find a room.</h2>
+      <p class="section-subtitle">Your personalised arrival checklist covers everything from SIM cards to CAF, so you land in France ready.</p>
+    </div>
+    <div class="grid grid-3 animate-on-scroll">
+      <div class="card">
+        <div class="card-body">
+          <div style="font-size:2rem;margin-bottom:var(--space-4)">📋</div>
+          <h3 class="font-bold text-xl mb-2">Personalised checklist</h3>
+          <p class="text-sm text-muted leading-relaxed">A step-by-step timeline from booking to moving in and settling into French life.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div style="font-size:2rem;margin-bottom:var(--space-4)">📄</div>
+          <h3 class="font-bold text-xl mb-2">Document wallet</h3>
+          <p class="text-sm text-muted leading-relaxed">Securely store and manage your passport, visa, admission letter and all housing documents.</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div style="font-size:2rem;margin-bottom:var(--space-4)">🧭</div>
+          <h3 class="font-bold text-xl mb-2">Neighbourhood guide</h3>
+          <p class="text-sm text-muted leading-relaxed">Discover where to live, shop, eat and travel — from a student's perspective.</p>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-8">
+      <a href="arrival.html" class="btn btn-primary btn-lg">View arrival guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRUST ===================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="tag-pill">🔒 Trust & safety</div>
+      <h2 class="section-title">Book with complete confidence.</h2>
+      <p class="section-subtitle">We verify listings, protect your documents and support you through every step.</p>
+    </div>
+    <div class="grid grid-4 animate-on-scroll">
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-4)">✓</div>
+        <h3 class="font-bold mb-2">Verified listings</h3>
+        <p class="text-sm text-muted">Properties are reviewed before they appear on Bookare.</p>
+      </div>
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-4)">🔐</div>
+        <h3 class="font-bold mb-2">Secure documents</h3>
+        <p class="text-sm text-muted">Your documents are stored securely and shared only with your permission.</p>
+      </div>
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-4)">💳</div>
+        <h3 class="font-bold mb-2">Clear pricing</h3>
+        <p class="text-sm text-muted">One transparent booking fee of €100. No hidden charges.</p>
+      </div>
+      <div style="text-align:center;padding:var(--space-6)">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-4)">💬</div>
+        <h3 class="font-bold mb-2">Human support</h3>
+        <p class="text-sm text-muted">Real people available to help if anything goes wrong.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="section section-bg">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <div class="tag-pill">⭐ Student reviews</div>
+      <h2 class="section-title">What students say about Bookare</h2>
+    </div>
+    <div class="grid grid-3 animate-on-scroll">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"I was terrified about finding a flat in Nantes without speaking French. Bookare made everything so clear — I found my apartment in two days and my buddy helped me with CAF."</div>
+        <div class="review-author">
+          <div class="buddy-avatar" style="width:36px;height:36px;font-size:0.875rem;background:linear-gradient(135deg,#3B82F6,#1D4ED8)">PL</div>
+          <div>
+            Priya Lakshmi
+            <div class="review-author-meta">Master's student · Audencia · India</div>
+          </div>
+        </div>
+        <div class="review-verified">✓ Verified student</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"The comparison feature is brilliant. I compared 5 flats side by side and saw exactly what each one would cost per month. No other platform does this."</div>
+        <div class="review-author">
+          <div class="buddy-avatar" style="width:36px;height:36px;font-size:0.875rem;background:linear-gradient(135deg,#10B981,#059669)">MH</div>
+          <div>
+            Marco Hernández
+            <div class="review-author-meta">Exchange student · Sciences Po · Mexico</div>
+          </div>
+        </div>
+        <div class="review-verified">✓ Verified student</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">"The buddy system is what sets Bookare apart. My buddy met me at the train station and helped me set up my transport card the same day. Incredible."</div>
+        <div class="review-author">
+          <div class="buddy-avatar" style="width:36px;height:36px;font-size:0.875rem;background:linear-gradient(135deg,#F59E0B,#D97706)">TA</div>
+          <div>
+            Tomoko Abe
+            <div class="review-author-meta">PhD student · Université Lyon 1 · Japan</div>
+          </div>
+        </div>
+        <div class="review-verified">✓ Verified student</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="cta-title">Ready to find your home in France?</h2>
+    <p class="cta-subtitle">Join 12,000+ students who found their accommodation through Bookare.</p>
+    <div class="cta-actions">
+      <a href="onboarding.html" class="btn btn-xl" style="background:white;color:var(--color-primary)">Get started for free</a>
+      <a href="buddies.html" class="btn btn-xl" style="background:transparent;color:white;border:2px solid rgba(255,255,255,0.4)">Talk to a buddy</a>
+    </div>
+    <p style="margin-top:var(--space-6);font-size:var(--font-size-sm);opacity:0.7">No subscription. One transparent €100 booking fee, paid only when you book.</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France. Find a home, connect with locals, arrive with confidence.</div>
+        <div class="footer-social mt-6">
+          <a href="#" class="footer-social-btn">𝕏</a>
+          <a href="#" class="footer-social-btn">in</a>
+          <a href="#" class="footer-social-btn">ig</a>
+          <a href="#" class="footer-social-btn">fb</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="arrival.html" class="footer-link">Arrival Guide</a>
+          <a href="budget.html" class="footer-link">Budget Calculator</a>
+          <a href="help.html" class="footer-link">Help Centre</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Landlords</div>
+        <div class="footer-links">
+          <a href="list-property.html" class="footer-link">List a Property</a>
+          <a href="landlord.html" class="footer-link">Landlord Dashboard</a>
+          <a href="how-it-works.html" class="footer-link">Verification</a>
+        </div>
+        <div class="footer-col-title mt-6">Bookare</div>
+        <div class="footer-links">
+          <a href="how-it-works.html" class="footer-link">About</a>
+          <a href="how-it-works.html" class="footer-link">How it Works</a>
+          <a href="help.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Cookie Policy</a>
+          <a href="#" class="footer-link">Legal Information</a>
+        </div>
+        <div class="mt-6 p-4" style="background:rgba(255,255,255,0.05);border-radius:var(--radius-md)">
+          <div style="font-size:var(--font-size-xs);color:var(--slate-400);margin-bottom:var(--space-2);font-weight:600">🇫🇷 France · 🇬🇧 English</div>
+          <div style="font-size:var(--font-size-xs);color:var(--slate-500)">Platform available in English, French and more languages.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS · Made with ♥ for international students</div>
+      <div style="font-size:var(--font-size-xs)">Bookare is not affiliated with any university or French government body.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script src="js/main.js"></script>
+<script>
+  // Hero search
+  function doHeroSearch() {
+    const uni = document.getElementById('hero-university').value;
+    const date = document.getElementById('hero-date').value;
+    const budget = document.getElementById('hero-budget').value;
+    const params = new URLSearchParams();
+    if (uni) params.set('university', uni);
+    if (date) params.set('date', date);
+    if (budget) params.set('budget', budget);
+    window.location.href = 'search.html?' + params.toString();
+  }
+
+  // Set default date to next September
+  const dateInput = document.getElementById('hero-date');
+  if (dateInput && !dateInput.value) {
+    const now = new Date();
+    const nextSep = new Date(now.getMonth() >= 8 ? now.getFullYear() + 1 : now.getFullYear(), 8, 1);
+    dateInput.value = nextSep.toISOString().split('T')[0];
+  }
+</script>
+</body>
+</html>

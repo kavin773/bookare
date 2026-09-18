@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="List student accommodation on Bookare — Reach thousands of international students moving to France with 100% verified dossiers and Visale guarantee." />
+  <title>List a Property — 8-Step Wizard — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .wizard-step-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-sm);
+    }
+  </style>
+</head>
+<body style="background:var(--slate-50);">
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="landlord.html" class="nav-link">Landlord Hub</a>
+      <a href="how-it-works.html" class="nav-link">How it Works</a>
+    </div>
+    <div class="nav-actions">
+      <span class="text-xs text-muted">Draft autosaved</span>
+      <a href="landlord.html" class="btn btn-ghost btn-sm">Exit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Wizard Layout -->
+<main class="container py-8">
+  <div class="wizard-layout">
+
+    <!-- LEFT: 8-STEP VERTICAL PROGRESS NAV -->
+    <div class="card p-4 bg-white sticky top-24">
+      <div class="wizard-nav" id="wizard-nav">
+        
+        <div class="wizard-nav-item active" data-step-target="1" onclick="goToStep(1)">
+          <div class="wizard-nav-num">1</div>
+          <div class="wizard-nav-title">Location & Campus</div>
+        </div>
+
+        <div class="wizard-nav-item" data-step-target="2" onclick="goToStep(2)">
+          <div class="wizard-nav-num">2</div>
+          <div class="wizard-nav-title">Property Type</div>
+        </div>
+
+        <div class="wizard-nav-item" data-step-target="3" onclick="goToStep(3)">
+          <div class="wizard-nav-num">3</div>
+          <div class="wizard-nav-title">Rent & Charges</div>
+        </div>
+
+        <div class="wizard-nav-item" data-step-target="4" onclick="goToStep(4)">
+          <div class="wizard-nav-num">4</div>
+          <div class="wizard-nav-title">Amenities</div>
+        </div>
+
+        <div class="wizard-nav-item" data-step-target="5" onclick="goToStep(5)">
+          <div class="wizard-nav-num">5</div>
+          <div class="wizard-nav-title">Photos</div>
+        </div>
+
+        <div class="wizard-nav-item" data-step-target="6" onclick="goToStep(6)">
+          <div class="wizard-nav-num">6</div>
+          <div class="wizard-nav-title">Availability</div>
+        </div>
+
+        <div class="wizard-nav-item" data-step-target="7" onclick="goToStep(7)">
+          <div class="wizard-nav-num">7</div>
+          <div class="wizard-nav-title">Verification</div>
+        </div>
+
+        <div class="wizard-nav-item" data-step-target="8" onclick="goToStep(8)">
+          <div class="wizard-nav-num">8</div>
+          <div class="wizard-nav-title">Review & Publish</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: STEP FORMS CONTAINER -->
+    <div>
+      <div class="wizard-step-card">
+
+        <!-- STEP 1: LOCATION -->
+        <div class="wizard-step active" id="step-1">
+          <div class="tag-pill mb-2">Step 1 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">Where is your property located?</h2>
+          <p class="text-xs text-muted mb-6">International students search by university campus and public transit routes.</p>
+
+          <div class="form-group mb-4">
+            <label class="form-label">Street Address</label>
+            <input type="text" class="form-input" id="wiz-address" value="14 Rue Saint-Félix" placeholder="e.g. 14 Rue Saint-Félix" />
+          </div>
+
+          <div class="grid grid-2 gap-4 mb-4">
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input type="text" class="form-input" id="wiz-city" value="Nantes" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Postal Code</label>
+              <input type="text" class="form-input" id="wiz-zip" value="44000" />
+            </div>
+          </div>
+
+          <div class="form-group mb-6">
+            <label class="form-label">Primary Nearby University / Campus</label>
+            <select class="form-select" id="wiz-uni">
+              <option selected>Audencia Business School – Atlantic Campus (1.2 km)</option>
+              <option>Université de Nantes – Campus Tertre (1.4 km)</option>
+              <option>École Centrale de Nantes (1.3 km)</option>
+              <option>Sciences Po – Paris Campus</option>
+            </select>
+          </div>
+
+          <div class="flex justify-end gap-3 pt-4 border-t border-slate-100">
+            <button class="btn btn-primary" onclick="nextStep(2)">Next: Property Type →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: PROPERTY TYPE -->
+        <div class="wizard-step" id="step-2">
+          <div class="tag-pill mb-2">Step 2 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">What type of home is it?</h2>
+          <p class="text-xs text-muted mb-6">Define the layout and size of the accommodation.</p>
+
+          <div class="option-grid mb-6">
+            <div class="option-btn selected" onclick="selectOption(this, 'studio')">
+              <div class="option-btn-icon">🏢</div>
+              <div>Private Studio</div>
+            </div>
+            <div class="option-btn" onclick="selectOption(this, 'coloc')">
+              <div class="option-btn-icon">🤝</div>
+              <div>Room in Colocation</div>
+            </div>
+            <div class="option-btn" onclick="selectOption(this, 't1')">
+              <div class="option-btn-icon">🛋️</div>
+              <div>1-Bedroom (T1/T2)</div>
+            </div>
+            <div class="option-btn" onclick="selectOption(this, 'residence')">
+              <div class="option-btn-icon">🏛️</div>
+              <div>Student Residence</div>
+            </div>
+          </div>
+
+          <div class="grid grid-2 gap-4 mb-6">
+            <div class="form-group">
+              <label class="form-label">Habitable Surface (m²)</label>
+              <input type="number" class="form-input" id="wiz-surface" value="18" min="9" max="200" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Floor Number</label>
+              <input type="number" class="form-input" value="2" min="0" max="20" />
+            </div>
+          </div>
+
+          <div class="flex justify-between gap-3 pt-4 border-t border-slate-100">
+            <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+            <button class="btn btn-primary" onclick="nextStep(3)">Next: Rent & Charges →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: RENT & CHARGES -->
+        <div class="wizard-step" id="step-3">
+          <div class="tag-pill mb-2">Step 3 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">Transparent Rent & Monthly Costs</h2>
+          <p class="text-xs text-muted mb-6">Bookare requires transparent pricing with zero surprise charges for students.</p>
+
+          <div class="grid grid-2 gap-4 mb-4">
+            <div class="form-group">
+              <label class="form-label">Base Monthly Rent (€)</label>
+              <input type="number" class="form-input" id="wiz-rent" value="460" min="100" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monthly Building Charges (€)</label>
+              <input type="number" class="form-input" id="wiz-charges" value="50" min="0" />
+            </div>
+          </div>
+
+          <div class="grid grid-2 gap-4 mb-6">
+            <div class="form-group">
+              <label class="form-label">Security Deposit (€)</label>
+              <input type="number" class="form-input" value="460" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Inventory Check Fee (État des lieux)</label>
+              <input type="text" class="form-input" value="€0 (Included)" readonly />
+            </div>
+          </div>
+
+          <div class="flex justify-between gap-3 pt-4 border-t border-slate-100">
+            <button class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
+            <button class="btn btn-primary" onclick="nextStep(4)">Next: Amenities →</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: AMENITIES -->
+        <div class="wizard-step" id="step-4">
+          <div class="tag-pill mb-2">Step 4 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">Select amenities & equipment</h2>
+          <p class="text-xs text-muted mb-6">French student leases (Bail Meublé) require specific mandatory furniture.</p>
+
+          <div class="grid grid-2 gap-3 mb-6 text-xs">
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" checked /> 🛏️ Bed & Mattress
+            </label>
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" checked /> 🪑 Study Desk & Chair
+            </label>
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" checked /> 📶 High-Speed Fiber WiFi
+            </label>
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" checked /> 🍳 Equipped Kitchenette & Fridge
+            </label>
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" checked /> 🚿 Private Bathroom
+            </label>
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" checked /> 🧺 Washing Machine / Laundry
+            </label>
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" checked /> 🚲 Secure Bike Storage
+            </label>
+            <label class="p-3 border border-slate-200 rounded-lg flex items-center gap-2 cursor-pointer bg-white hover:border-blue-300">
+              <input type="checkbox" /> 🌳 Balcony or Terrace
+            </label>
+          </div>
+
+          <div class="flex justify-between gap-3 pt-4 border-t border-slate-100">
+            <button class="btn btn-secondary" onclick="goToStep(3)">← Back</button>
+            <button class="btn btn-primary" onclick="nextStep(5)">Next: Photos →</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: PHOTOS -->
+        <div class="wizard-step" id="step-5">
+          <div class="tag-pill mb-2">Step 5 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">Upload apartment photos</h2>
+          <p class="text-xs text-muted mb-6">Listings with 5+ photos receive 3.8x more student applications.</p>
+
+          <div class="p-10 border-2 border-dashed border-slate-300 rounded-2xl text-center bg-slate-50 mb-6 cursor-pointer hover:border-blue-500" onclick="simulatePhotoUpload()">
+            <div style="font-size:2.5rem; margin-bottom:8px;">📸</div>
+            <div class="font-bold text-sm text-slate-900 mb-1">Click to upload photos or drag & drop</div>
+            <div class="text-xs text-muted">Living room, bedroom, kitchenette, bathroom, and building exterior</div>
+          </div>
+
+          <div class="grid grid-3 gap-3 mb-6" id="photo-preview-grid">
+            <div class="p-2 border border-slate-200 rounded-lg bg-white text-center text-xs">
+              <div class="h-20 bg-slate-200 rounded mb-1 flex items-center justify-center">📷 Bedroom</div>
+              <span class="text-[10px] text-muted">bedroom_main.jpg</span>
+            </div>
+            <div class="p-2 border border-slate-200 rounded-lg bg-white text-center text-xs">
+              <div class="h-20 bg-slate-200 rounded mb-1 flex items-center justify-center">📷 Kitchen</div>
+              <span class="text-[10px] text-muted">kitchen_clean.jpg</span>
+            </div>
+            <div class="p-2 border border-slate-200 rounded-lg bg-white text-center text-xs">
+              <div class="h-20 bg-slate-200 rounded mb-1 flex items-center justify-center">📷 Bathroom</div>
+              <span class="text-[10px] text-muted">bathroom_shower.jpg</span>
+            </div>
+          </div>
+
+          <div class="flex justify-between gap-3 pt-4 border-t border-slate-100">
+            <button class="btn btn-secondary" onclick="goToStep(4)">← Back</button>
+            <button class="btn btn-primary" onclick="nextStep(6)">Next: Availability →</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: AVAILABILITY -->
+        <div class="wizard-step" id="step-6">
+          <div class="tag-pill mb-2">Step 6 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">Availability & Lease Terms</h2>
+          <p class="text-xs text-muted mb-6">Choose move-in readiness and preferred student lease duration.</p>
+
+          <div class="grid grid-2 gap-4 mb-4">
+            <div class="form-group">
+              <label class="form-label">Available From Date</label>
+              <input type="date" class="form-input" id="wiz-date" value="2025-09-01" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Lease Duration</label>
+              <select class="form-select">
+                <option selected>10 Months (Standard Academic Year)</option>
+                <option>9 Months (Bail Mobilité)</option>
+                <option>12 Months (Renewable Student Lease)</option>
+                <option>6 Months (Semester Exchange)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 mb-6 text-xs text-slate-700">
+            <strong>Bail Mobilité Advantage:</strong> Under French law, the <em>Bail Mobilité</em> is ideal for international students. No security deposit can be cashed, and Visale covers 100% of unpaid rent or damages automatically.
+          </div>
+
+          <div class="flex justify-between gap-3 pt-4 border-t border-slate-100">
+            <button class="btn btn-secondary" onclick="goToStep(5)">← Back</button>
+            <button class="btn btn-primary" onclick="nextStep(7)">Next: Verification →</button>
+          </div>
+        </div>
+
+        <!-- STEP 7: VERIFICATION -->
+        <div class="wizard-step" id="step-7">
+          <div class="tag-pill mb-2">Step 7 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">Landlord Trust & Verification</h2>
+          <p class="text-xs text-muted mb-6">Bookare builds trust by verifying every landlord identity and property title.</p>
+
+          <div class="flex flex-col gap-3 mb-6 text-xs">
+            <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-200 flex justify-between items-center">
+              <div>
+                <div class="font-bold text-emerald-900">✓ Pierre Dupont Identity Verified</div>
+                <div class="text-[11px] text-emerald-700">National ID card verified via FranceConnect</div>
+              </div>
+              <span class="badge badge-success">Verified</span>
+            </div>
+
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center">
+              <div>
+                <div class="font-bold text-slate-900">Property Ownership Title / Taxe Foncière</div>
+                <div class="text-[11px] text-muted">attestation_propriete_nantes.pdf</div>
+              </div>
+              <span class="badge badge-blue">Uploaded</span>
+            </div>
+
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input type="checkbox" checked class="mt-0.5" />
+                <span>I agree to accept <strong>Visale (Action Logement)</strong> French state guarantee certificates as valid security for international student tenants.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex justify-between gap-3 pt-4 border-t border-slate-100">
+            <button class="btn btn-secondary" onclick="goToStep(6)">← Back</button>
+            <button class="btn btn-primary" onclick="nextStep(8)">Next: Review & Publish →</button>
+          </div>
+        </div>
+
+        <!-- STEP 8: REVIEW & PUBLISH -->
+        <div class="wizard-step" id="step-8">
+          <div class="tag-pill mb-2">Step 8 of 8</div>
+          <h2 class="text-2xl font-black text-slate-900 mb-2">Preview & Publish Listing</h2>
+          <p class="text-xs text-muted mb-6">Here is how your accommodation card will appear to international students:</p>
+
+          <!-- Mock Student Card Preview -->
+          <div class="card p-6 bg-white border-2 border-blue-200 rounded-xl max-w-md mx-auto mb-6 shadow-md">
+            <div class="h-40 bg-slate-200 rounded-lg mb-4 flex items-center justify-center text-slate-500 font-bold">
+              📷 Bright Modern Studio near Audencia
+            </div>
+            <div class="flex justify-between items-baseline mb-1">
+              <div class="text-xl font-extrabold text-slate-900">€460 <span class="text-xs text-muted font-normal">/ month</span></div>
+              <span class="badge badge-blue">✓ Verified</span>
+            </div>
+            <h4 class="font-bold text-sm text-slate-900 mb-1">Bright Studio near Saint-Félix</h4>
+            <p class="text-xs text-muted mb-3">📍 14 Rue Saint-Félix, Nantes · 1.2 km to Audencia</p>
+            <div class="commute-strip mb-4">
+              <span>🚶 12 min walk</span> • <span>🚲 4 min bike</span> • <span>🚊 Tram 2</span>
+            </div>
+            <div class="text-xs text-slate-600">
+              ✓ 18 m² • Furnished • WiFi • Laundry • Available Sept 1
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button class="btn btn-primary btn-lg px-8" onclick="publishListing()">
+              🚀 Publish Listing on Bookare
+            </button>
+            <div class="text-[11px] text-muted mt-2">
+              Free listing. Zero commission on rent. 100% verified student applications.
+            </div>
+          </div>
+
+          <div class="flex justify-start pt-6 mt-6 border-t border-slate-100">
+            <button class="btn btn-secondary" onclick="goToStep(7)">← Back to Verification</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS. Landlord Listing Wizard.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  let currentStep = 1;
+
+  function goToStep(step) {
+    currentStep = step;
+    document.querySelectorAll('.wizard-step').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById('step-' + step);
+    if (target) target.classList.add('active');
+
+    // Update left nav
+    document.querySelectorAll('.wizard-nav-item').forEach(item => {
+      const targetNum = parseInt(item.dataset.stepTarget);
+      item.classList.remove('active');
+      if (targetNum === step) item.classList.add('active');
+      if (targetNum < step) item.classList.add('done');
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep(step) {
+    showToast(`Step ${currentStep} completed`, 'default');
+    goToStep(step);
+  }
+
+  function selectOption(el, val) {
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function simulatePhotoUpload() {
+    showToast('3 high-resolution photos uploaded successfully!', 'success');
+  }
+
+  function publishListing() {
+    showToast('Congratulations! Your listing is now LIVE on Bookare.', 'success');
+    setTimeout(() => {
+      window.location.href = 'landlord.html';
+    }, 1500);
+  }
+</script>
+</body>
+</html>

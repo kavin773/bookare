@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How Bookare works — The safe, transparent, and student-focused accommodation journey for international students moving to France." />
+  <title>How Bookare Works — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .hiw-step-card {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      position: relative;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+    }
+    .hiw-step-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: var(--blue-200);
+    }
+    .hiw-step-num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--blue-100);
+      line-height: 1;
+      margin-bottom: var(--space-4);
+      letter-spacing: -0.05em;
+    }
+    .hiw-step-title {
+      font-size: var(--font-size-xl);
+      font-weight: 800;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
+    }
+    .hiw-step-desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-body);
+      line-height: 1.65;
+      margin-bottom: var(--space-5);
+    }
+    .hiw-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+    }
+    .hiw-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hiw-feature-list li svg {
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+    .comparison-box {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .comparison-grid-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--slate-100);
+      align-items: center;
+      font-size: var(--font-size-sm);
+    }
+    @media (max-width: 768px) {
+      .comparison-grid-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+    .comparison-grid-row:last-child {
+      border-bottom: none;
+    }
+    .comparison-grid-row.header {
+      background: var(--slate-50);
+      font-weight: 700;
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pricing-tier-card {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-8);
+      position: relative;
+      transition: all var(--transition-normal);
+    }
+    .pricing-tier-card.featured {
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-xl);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link active">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="page-header" style="text-align:center; padding: var(--space-16) 0 var(--space-12);">
+  <div class="container" style="max-width:800px;">
+    <div class="tag-pill mb-4">🇫🇷 The French Student Relocation Platform</div>
+    <h1 class="page-title" style="font-size:clamp(2rem, 4vw, 3rem); line-height:1.15; margin-bottom:var(--space-4);">
+      Finding a home in France shouldn’t feel impossible.
+    </h1>
+    <p class="text-base text-muted" style="line-height:1.6;">
+      Bookare replaces the stress of French bureaucracy, scam listings, and guarantor requirements with a seamless 4-step path from university acceptance to your front door.
+    </p>
+
+    <!-- Audience Toggle -->
+    <div class="flex justify-center mt-8">
+      <div class="view-toggle" style="padding:4px; background:var(--slate-200); border-radius:var(--radius-full);">
+        <button class="view-toggle-btn active" id="btn-for-students" onclick="switchJourney('students')" style="padding:8px 24px; border-radius:var(--radius-full); font-size:var(--font-size-sm)">
+          For International Students
+        </button>
+        <button class="view-toggle-btn" id="btn-for-landlords" onclick="switchJourney('landlords')" style="padding:8px 24px; border-radius:var(--radius-full); font-size:var(--font-size-sm)">
+          For French Landlords
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: 4-STEP STUDENT JOURNEY -->
+<section class="py-16" id="student-journey">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill mb-2">Student Journey</div>
+      <h2 class="section-title">Your 4-step journey with Bookare</h2>
+      <p class="section-subtitle">Everything you need from your home country before you board your flight to France.</p>
+    </div>
+
+    <div class="grid grid-4 gap-6">
+      
+      <!-- Step 1 -->
+      <div class="hiw-step-card">
+        <div class="hiw-step-num">01</div>
+        <h3 class="hiw-step-title">Search & Commute</h3>
+        <p class="hiw-step-desc">
+          Enter your university (like Audencia) and see accommodation organized by real commute times — walking, cycling, or direct tram lines.
+        </p>
+        <ul class="hiw-feature-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Campus-first search filters
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            100% verified French listings
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Commute time breakdown
+          </li>
+        </ul>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="hiw-step-card">
+        <div class="hiw-step-num">02</div>
+        <h3 class="hiw-step-title">Compare Total Costs</h3>
+        <p class="hiw-step-desc">
+          No hidden charges. See total monthly costs including water, heating, electricity, WiFi, and your estimated French CAF subsidy deduction.
+        </p>
+        <ul class="hiw-feature-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Transparent move-in breakdown
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Estimated CAF subsidy (~€180/mo)
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Side-by-side comparison table
+          </li>
+        </ul>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="hiw-step-card">
+        <div class="hiw-step-num">03</div>
+        <h3 class="hiw-step-title">Connect with Buddies</h3>
+        <p class="hiw-step-desc">
+          Talk to a current student from your university before signing. Get real advice on the neighbourhood, tram safety, and daily student expenses.
+        </p>
+        <ul class="hiw-feature-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Verified senior student buddies
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Free video calls & messaging
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            University-specific Q&A forums
+          </li>
+        </ul>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="hiw-step-card">
+        <div class="hiw-step-num">04</div>
+        <h3 class="hiw-step-title">Book & Arrive</h3>
+        <p class="hiw-step-desc">
+          Submit your pre-checked rental dossier with Visale guarantee support. Sign your lease digitally, and unlock your step-by-step arrival checklist.
+        </p>
+        <ul class="hiw-feature-list">
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Secure deposit escrow
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            French lease contract ready for visa
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            SIM, bank, & CAF arrival tasks
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: LANDLORD JOURNEY (Toggled) -->
+<section class="py-16" id="landlord-journey" style="display:none; background:var(--slate-50)">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill mb-2">Landlord Experience</div>
+      <h2 class="section-title">Rent to vetted international students with peace of mind</h2>
+      <p class="section-subtitle">Zero agency commission on rent. 100% verified student dossiers with Visale government guarantee.</p>
+    </div>
+
+    <div class="grid grid-3 gap-8">
+      <div class="card p-8 bg-white">
+        <div class="badge badge-blue mb-4">Step 1</div>
+        <h3 class="text-xl font-bold mb-2">List your property in 8 minutes</h3>
+        <p class="text-sm text-muted mb-4">Set your rent, upload photos, and declare what utilities are included. Our algorithm calculates distance to local universities automatically.</p>
+        <span class="text-xs font-bold text-blue-600">✓ Free professional listing</span>
+      </div>
+      <div class="card p-8 bg-white">
+        <div class="badge badge-blue mb-4">Step 2</div>
+        <h3 class="text-xl font-bold mb-2">Receive complete, verified dossiers</h3>
+        <p class="text-sm text-muted mb-4">No missing documents. Every applicant comes with a verified passport, university enrollment certificate, and French Visale guarantee.</p>
+        <span class="text-xs font-bold text-blue-600">✓ 100% rent payment guarantee</span>
+      </div>
+      <div class="card p-8 bg-white">
+        <div class="badge badge-blue mb-4">Step 3</div>
+        <h3 class="text-xl font-bold mb-2">Sign digitally & receive rent via SEPA</h3>
+        <p class="text-sm text-muted mb-4">Approve tenant in 1 click, generate standard French student mobility lease, and receive direct rent payments to your French bank account.</p>
+        <span class="text-xs font-bold text-blue-600">✓ Zero tenant vacancy</span>
+      </div>
+    </div>
+    <div class="text-center mt-10">
+      <a href="list-property.html" class="btn btn-primary btn-lg">List your property today</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: THE FRENCH HOUSING CHALLENGE VS BOOKARE -->
+<section class="py-16 bg-slate-50">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag-pill mb-2">Why Bookare Exists</div>
+      <h2 class="section-title">Traditional French Housing vs Bookare</h2>
+      <p class="section-subtitle">How we solved the 5 biggest barriers international students face in France.</p>
+    </div>
+
+    <div class="comparison-box">
+      <div class="comparison-grid-row header">
+        <div>Challenge in France</div>
+        <div style="color:var(--color-error)">Traditional French Agencies / Portals</div>
+        <div style="color:var(--color-primary)">The Bookare Way</div>
+      </div>
+
+      <div class="comparison-grid-row">
+        <div><strong>French Guarantor (Garant)</strong></div>
+        <div class="text-muted">Requires a French resident earning 3x rent. Foreign guarantors are almost always rejected.</div>
+        <div class="text-blue-700 font-semibold">We accept Visale (Free French government guarantee) and guide you through 1-day approval.</div>
+      </div>
+
+      <div class="comparison-grid-row">
+        <div><strong>Scams & Wire Fraud</strong></div>
+        <div class="text-muted">Fake landlords asking for Western Union or wire transfer before keys are given.</div>
+        <div class="text-blue-700 font-semibold">100% verified listings. Your deposit is held in secure escrow and only released after move-in.</div>
+      </div>
+
+      <div class="comparison-grid-row">
+        <div><strong>Administrative Language Barrier</strong></div>
+        <div class="text-muted">Complex French leases, unhelpful phone calls, and no English assistance.</div>
+        <div class="text-blue-700 font-semibold">Entire platform in English. Bilingual support team + local senior student buddies to guide you.</div>
+      </div>
+
+      <div class="comparison-grid-row">
+        <div><strong>Hidden Costs & CAF Subsidy</strong></div>
+        <div class="text-muted">Rent advertised without building charges, surprise tax, and zero help claiming CAF (APL).</div>
+        <div class="text-blue-700 font-semibold">Clear total monthly breakdown. Built-in CAF simulator and step-by-step assistance to claim ~€180/mo.</div>
+      </div>
+
+      <div class="comparison-grid-row">
+        <div><strong>Arrival Isolation</strong></div>
+        <div class="text-muted">Arriving alone at a train station with luggage, not knowing where to buy a SIM or groceries.</div>
+        <div class="text-blue-700 font-semibold">Matched with a university buddy before landing, complete arrival checklist, and orientation community.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: TRANSPARENT PRICING -->
+<section class="py-16">
+  <div class="container" style="max-width:900px;">
+    <div class="section-header">
+      <div class="tag-pill mb-2">Clear & Honest</div>
+      <h2 class="section-title">Transparent Student Pricing</h2>
+      <p class="section-subtitle">No monthly platform fees. No hidden markups on rent.</p>
+    </div>
+
+    <div class="grid grid-2 gap-8">
+      
+      <!-- Standard Booking -->
+      <div class="pricing-tier-card featured">
+        <div class="badge badge-blue mb-3">Core Platform</div>
+        <h3 class="text-2xl font-black mb-1">Standard Booking Fee</h3>
+        <div class="text-4xl font-extrabold text-blue-600 my-4">€100 <span class="text-xs text-muted font-normal">/ one-time only</span></div>
+        <p class="text-sm text-muted mb-6">Charged only when your accommodation application is officially accepted by the landlord.</p>
+        
+        <ul class="hiw-feature-list mb-8">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <strong>Official French Rental Contract</strong> valid for Visa/VLS-TS
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <strong>Deposit Protection Escrow</strong> until move-in
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <strong>Matched with a Local Student Buddy</strong> (Unlimited calls)
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <strong>Personalized Arrival Checklist</strong> & French Relocation Wallet
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <strong>Full refund</strong> if your student visa is denied (proof required)
+          </li>
+        </ul>
+        <a href="search.html" class="btn btn-primary btn-full">Find my student home</a>
+      </div>
+
+      <!-- Optional Services -->
+      <div class="pricing-tier-card">
+        <div class="badge badge-gray mb-3">Optional Add-ons</div>
+        <h3 class="text-2xl font-black mb-1">Optional Relocation Services</h3>
+        <div class="text-xl font-bold text-slate-800 my-4">A la carte <span class="text-xs text-muted font-normal">only if needed</span></div>
+        <p class="text-sm text-muted mb-6">You never pay for services you don’t require. Everything is upfront and optional.</p>
+        
+        <div class="flex flex-col gap-4 mb-8">
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-bold text-slate-900">French Home Insurance (Obligatoire)</span>
+              <span class="text-xs font-bold text-blue-600">~€35 / year</span>
+            </div>
+            <p class="text-xs text-muted">Legally mandatory in France. Instantly generate your attestation.</p>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-bold text-slate-900">Visale State Guarantor Application</span>
+              <span class="text-xs font-bold text-emerald-600">100% FREE</span>
+            </div>
+            <p class="text-xs text-muted">Free French government scheme. We verify your dossier for 0€.</p>
+          </div>
+
+          <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+            <div class="flex justify-between items-center mb-1">
+              <span class="text-xs font-bold text-slate-900">In-Person Station Pickup & Key Handover</span>
+              <span class="text-xs font-bold text-slate-700">€29</span>
+            </div>
+            <p class="text-xs text-muted">A senior student buddy meets you at Nantes train station with your keys.</p>
+          </div>
+        </div>
+        <a href="buddies.html" class="btn btn-secondary btn-full">Meet our student buddies</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: TRUST & SAFETY PLEDGE -->
+<section class="py-16 bg-blue-50">
+  <div class="container">
+    <div class="card p-10 bg-white" style="border-color:var(--blue-200); box-shadow:var(--shadow-lg);">
+      <div class="grid grid-2 gap-10 items-center">
+        <div>
+          <div class="tag-pill mb-3">🛡️ Bookare Trust & Safety</div>
+          <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Our 100% Safe Move-in Guarantee</h2>
+          <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+            We understand that booking a home in another continent is a leap of faith. That’s why Bookare operates under strict European consumer and tenant protection standards.
+          </p>
+          <div class="flex flex-col gap-3 text-sm text-slate-700">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span> <strong>Physically or Digitally Verified:</strong> Every home is checked by our team or local university buddies.
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span> <strong>24-Hour Move-in Escrow:</strong> Your first month’s rent is not transferred to the landlord until 24 hours after you inspect the home in person.
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-500 font-bold">✓</span> <strong>Emergency Re-housing Support:</strong> In the rare case of a discrepancy, Bookare provides temporary emergency hotel accommodation.
+            </div>
+          </div>
+        </div>
+        <div class="p-6 bg-slate-50 rounded-xl border border-slate-200 text-center">
+          <div style="font-size:3rem; margin-bottom:12px">🤝</div>
+          <h4 class="font-bold text-lg text-slate-900 mb-2">Have specific questions before booking?</h4>
+          <p class="text-xs text-muted mb-6">Our bilingual student support team is based in Nantes and Paris. We reply within 2 hours during business days.</p>
+          <div class="flex justify-center gap-3">
+            <a href="help.html" class="btn btn-secondary btn-sm">Visit Help Centre</a>
+            <a href="community.html" class="btn btn-primary btn-sm">Ask the Community</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="cta-title">Ready to find your student home in France?</h2>
+    <p class="cta-subtitle">Join thousands of international students studying in Nantes, Paris, Lyon and across France.</p>
+    <div class="cta-actions">
+      <a href="search.html" class="btn btn-lg" style="background:white; color:var(--color-primary); font-weight:700;">Find Accommodation</a>
+      <a href="buddies.html" class="btn btn-lg btn-outline" style="border-color:white; color:white;">Connect with a Buddy</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France. Verified listings, transparent total costs, and local student buddies.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="arrival.html" class="footer-link">Arrival Checklist</a>
+          <a href="budget.html" class="footer-link">Budget Calculator</a>
+          <a href="help.html" class="footer-link">Help Centre</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations & Guides</div>
+        <div class="footer-links">
+          <a href="university.html" class="footer-link">Audencia Business School</a>
+          <a href="neighbourhood.html" class="footer-link">Nantes Student Guide</a>
+          <a href="how-it-works.html" class="footer-link">How Bookare Works</a>
+          <a href="documents.html" class="footer-link">Document Wallet</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Landlords & Legal</div>
+        <div class="footer-links">
+          <a href="list-property.html" class="footer-link">List a Property</a>
+          <a href="landlord.html" class="footer-link">Landlord Dashboard</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS. Built with care for international students in France.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function switchJourney(type) {
+    const studentSec = document.getElementById('student-journey');
+    const landlordSec = document.getElementById('landlord-journey');
+    const btnStudent = document.getElementById('btn-for-students');
+    const btnLandlord = document.getElementById('btn-for-landlords');
+
+    if (type === 'students') {
+      studentSec.style.display = 'block';
+      landlordSec.style.display = 'none';
+      btnStudent.classList.add('active');
+      btnLandlord.classList.remove('active');
+    } else {
+      studentSec.style.display = 'none';
+      landlordSec.style.display = 'block';
+      btnStudent.classList.remove('active');
+      btnLandlord.classList.add('active');
+    }
+  }
+</script>
+</body>
+</html>

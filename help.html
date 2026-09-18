@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bookare Help Centre & French Student Relocation Knowledge Base — Guides for CAF housing subsidy, Visale guarantee, French bank accounts, leases, and moving to France." />
+  <title>Help Centre & Relocation Guides — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .faq-item {
+      background: white;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-3);
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+    .faq-question {
+      padding: var(--space-4) var(--space-6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
+      user-select: none;
+    }
+    .faq-question:hover {
+      color: var(--color-primary);
+    }
+    .faq-answer {
+      padding: 0 var(--space-6) var(--space-5);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-body);
+      line-height: 1.65;
+      display: none;
+      border-top: 1px solid var(--slate-100);
+      padding-top: var(--space-3);
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+    }
+    .faq-arrow {
+      transition: transform 0.2s ease;
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- Header -->
+<div class="page-header" style="text-align:center; padding:var(--space-16) 0 var(--space-10);">
+  <div class="container" style="max-width:760px;">
+    <div class="tag-pill mb-3">❓ Support Centre & Guides</div>
+    <h1 class="page-title">How can we help you settle into France?</h1>
+    <p class="text-sm text-muted mb-6">
+      Search 150+ curated guides covering student accommodation, French visas, CAF subsidies, bank accounts, and local life.
+    </p>
+
+    <!-- Search Input -->
+    <div class="search-box" style="box-shadow:var(--shadow-md);">
+      <div class="flex gap-2 w-full">
+        <input type="text" class="form-input" id="help-search" placeholder="Search guides (e.g. 'CAF application', 'Visale guarantor', 'Deposit refund')..." oninput="filterHelp(this.value)" />
+        <button class="btn btn-primary" onclick="searchHelp()">Search</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main Content -->
+<main class="container py-8">
+
+  <!-- CATEGORIES GRID -->
+  <div class="help-grid mb-16" id="help-categories">
+    
+    <!-- Cat 1 -->
+    <div class="help-cat-card" onclick="openFaqCategory('housing')">
+      <div class="help-cat-icon">🏠</div>
+      <h3 class="help-cat-title">Finding & Booking Housing</h3>
+      <p class="help-cat-desc">Rental contracts, booking fee, verified listings, and student leases.</p>
+    </div>
+
+    <!-- Cat 2 -->
+    <div class="help-cat-card" onclick="openFaqCategory('caf')">
+      <div class="help-cat-icon">💶</div>
+      <h3 class="help-cat-title">CAF / APL Housing Subsidy</h3>
+      <p class="help-cat-desc">How to claim ~€180/month French government housing assistance.</p>
+    </div>
+
+    <!-- Cat 3 -->
+    <div class="help-cat-card" onclick="openFaqCategory('visale')">
+      <div class="help-cat-icon">🛡️</div>
+      <h3 class="help-cat-title">Visale State Guarantor</h3>
+      <p class="help-cat-desc">Free guarantor certificate for international students under 30.</p>
+    </div>
+
+    <!-- Cat 4 -->
+    <div class="help-cat-card" onclick="openFaqCategory('bank')">
+      <div class="help-cat-icon">🏦</div>
+      <h3 class="help-cat-title">French Bank Account & RIB</h3>
+      <p class="help-cat-desc">Opening an account with French IBAN before arrival.</p>
+    </div>
+
+    <!-- Cat 5 -->
+    <div class="help-cat-card" onclick="openFaqCategory('movein')">
+      <div class="help-cat-icon">🔑</div>
+      <h3 class="help-cat-title">Move-in & État des Lieux</h3>
+      <p class="help-cat-desc">Key collection, inventory checks, home insurance, and meters.</p>
+    </div>
+
+    <!-- Cat 6 -->
+    <div class="help-cat-card" onclick="openFaqCategory('buddies')">
+      <div class="help-cat-icon">🤝</div>
+      <h3 class="help-cat-title">Bookare Buddy System</h3>
+      <p class="help-cat-desc">Booking 1-on-1 calls with local senior university students.</p>
+    </div>
+
+  </div>
+
+  <!-- FREQUENTLY ASKED QUESTIONS SECTION -->
+  <div class="max-w-3xl mx-auto mb-16">
+    <div class="section-header">
+      <div class="tag-pill mb-2">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Real questions from incoming international students moving to France.</p>
+    </div>
+
+    <div id="faq-list">
+
+      <!-- FAQ 1 -->
+      <div class="faq-item open">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Can I book accommodation and sign my French lease before landing in France?</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          Yes, absolutely. 100% of Bookare listings are pre-verified so that international students can safely secure their accommodation and obtain the official French rental contract required for their VLS-TS student visa application before boarding their flight. Your deposit is safely held in escrow until 24 hours after you physically move in.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What is the Visale guarantee and is it really free for international students?</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          Visale is a program financed by Action Logement (a French public institution) that acts as a legally certified French guarantor for students under 30 years old. It covers up to 36 months of unpaid rent. Any international student with a valid passport and student visa can apply online for 100% free. Bookare pre-checks your dossier to ensure 1-day approval.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How does the CAF (APL) housing allowance work in France?</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          The Caisse d'Allocations Familiales (CAF) provides monthly housing aid (APL) directly to students living in eligible private apartments or residences in France. For a €460/month studio in Nantes, international students typically receive between €150 and €210 per month paid back into their French bank account. You can apply as soon as you have signed your lease.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What happens if my French student visa is delayed or denied?</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          Under Bookare's Visa Protection Policy, if your student visa application is officially rejected by the French consulate or Campus France, your booking deposit and Bookare fee are 100% refunded when you submit the official rejection letter at least 48 hours prior to the lease start date.
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What is an "État des lieux" and why is it so critical?</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          An <em>état des lieux</em> is a legally binding inventory and condition report conducted together with the landlord on your move-in day. You inspect every wall, light, faucet, and piece of furniture and record any pre-existing marks. This document is what protects your security deposit from being deducted when you move out at the end of the year.
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Do I need a French bank account to pay my rent?</span>
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+          Your initial booking and deposit through Bookare can be paid with any international Visa, Mastercard, or foreign transfer. However, for monthly ongoing rent and to receive your CAF housing subsidy, French law requires a European SEPA bank account with a French IBAN/RIB. We partner with BNP Paribas and online banks so you can open an account smoothly upon arrival.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTACT SUPPORT SECTION -->
+  <div class="card p-8 bg-blue-50 max-w-2xl mx-auto" style="border-color:var(--blue-200);">
+    <div class="text-center mb-6">
+      <div style="font-size:2.5rem; margin-bottom:8px;">💬</div>
+      <h3 class="text-xl font-bold text-slate-900 mb-1">Still have a question?</h3>
+      <p class="text-xs text-slate-600">Our bilingual student support team in Nantes and Paris typically responds in under 2 hours.</p>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <div class="form-group">
+        <label class="form-label text-xs">Your Email Address</label>
+        <input type="email" class="form-input" id="support-email" placeholder="kavin@audencia.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label text-xs">Topic</label>
+        <select class="form-select text-xs">
+          <option>Accommodation Booking Inquiry</option>
+          <option>Visale / Guarantor Guidance</option>
+          <option>CAF Subsidy Question</option>
+          <option>Student Buddy Connection</option>
+          <option>Other Question</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label text-xs">Your Message</label>
+        <textarea class="form-input" rows="3" placeholder="Describe your question or issue..."></textarea>
+      </div>
+      <button class="btn btn-primary btn-full mt-2" onclick="submitSupportTicket()">Send Message to Support</button>
+    </div>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France. Verified listings, transparent total costs, and local student buddies.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="arrival.html" class="footer-link">Arrival Checklist</a>
+          <a href="budget.html" class="footer-link">Budget Calculator</a>
+          <a href="help.html" class="footer-link">Help Centre</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Destinations & Guides</div>
+        <div class="footer-links">
+          <a href="university.html" class="footer-link">Audencia Business School</a>
+          <a href="neighbourhood.html" class="footer-link">Nantes Student Guide</a>
+          <a href="how-it-works.html" class="footer-link">How Bookare Works</a>
+          <a href="documents.html" class="footer-link">Document Wallet</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Landlords & Legal</div>
+        <div class="footer-links">
+          <a href="list-property.html" class="footer-link">List a Property</a>
+          <a href="landlord.html" class="footer-link">Landlord Dashboard</a>
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS. Built with care for international students in France.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
+  function filterHelp(query) {
+    const term = query.toLowerCase();
+    const items = document.querySelectorAll('.faq-item');
+    items.forEach(item => {
+      const q = item.querySelector('.faq-question').textContent.toLowerCase();
+      const a = item.querySelector('.faq-answer').textContent.toLowerCase();
+      if (q.includes(term) || a.includes(term)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function searchHelp() {
+    const query = document.getElementById('help-search').value;
+    filterHelp(query);
+    showToast(`Showing articles matching "${query}"`, 'default');
+  }
+
+  function openFaqCategory(cat) {
+    showToast(`Showing guides for ${cat.toUpperCase()}`, 'default');
+    const el = document.getElementById('faq-list');
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function submitSupportTicket() {
+    showToast('Your message was sent! A bilingual advisor will reply within 2 hours.', 'success');
+  }
+</script>
+</body>
+</html>

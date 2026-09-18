@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="My arrival checklist — everything you need to do before, during and after arriving in France as an international student." />
+  <title>My Arrival — Bookare</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">← Dashboard</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div style="margin-top:var(--nav-height);padding:var(--space-8) 0;background:var(--slate-50);min-height:100vh">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:var(--space-8);align-items:start">
+
+      <!-- Main timeline -->
+      <div>
+        <div class="mb-8">
+          <div class="tag-pill mb-4">✈️ Your journey</div>
+          <h1 class="page-title">My arrival in France</h1>
+          <p class="page-subtitle mt-2">Your personalised checklist for moving to Nantes. 3 of 12 tasks complete.</p>
+          <div style="background:var(--slate-200);border-radius:var(--radius-full);height:10px;margin-top:var(--space-4)">
+            <div style="background:var(--color-primary);width:25%;height:100%;border-radius:var(--radius-full);transition:width 0.6s ease" id="progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Before arrival -->
+        <div class="arrival-phase">
+          <div class="arrival-phase-title">
+            <div class="arrival-phase-icon">📋</div>
+            Before arrival
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div class="checklist-item done" onclick="toggleTask(this)">
+              <div class="checklist-icon">✓</div>
+              <div style="flex:1"><span class="checklist-text">Accommodation confirmed</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Bright studio, Orvault — from 1 Sep 2025</div></div>
+              <span class="badge badge-green">Done</span>
+            </div>
+            <div class="checklist-item done" onclick="toggleTask(this)">
+              <div class="checklist-icon">✓</div>
+              <div style="flex:1"><span class="checklist-text">Contract signed and downloaded</span></div>
+              <span class="badge badge-green">Done</span>
+            </div>
+            <div class="checklist-item done" onclick="toggleTask(this)">
+              <div class="checklist-icon">✓</div>
+              <div style="flex:1"><span class="checklist-text">Connected with Buddy (Rahul Sharma)</span></div>
+              <span class="badge badge-green">Done</span>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Book flight to Nantes (NDN) or train from Paris</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Arrive before 1 Sep 2025</div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Arrange travel insurance for your trip</span></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Gather required documents (passport, visa, admission letter)</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px"><a href="documents.html" style="color:var(--color-primary)">View document checklist →</a></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrival -->
+        <div class="arrival-phase">
+          <div class="arrival-phase-title">
+            <div class="arrival-phase-icon">🏠</div>
+            Arrival day
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Travel from airport/station to Orvault</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Tram line 1 from Nantes centre → 12 min</div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Collect keys from landlord</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Move-in instructions sent by email</div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Check apartment inventory with landlord (état des lieux)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- First week -->
+        <div class="arrival-phase">
+          <div class="arrival-phase-title">
+            <div class="arrival-phase-icon">📱</div>
+            First week
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Get a French SIM card</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Recommended: Free Mobile (€2/month) or Bouygues</div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Buy a student transport card (Chronoplus)</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Available at TAN agencies in Nantes</div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Open a French bank account</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Recommended for students: Société Générale, BNP Paribas or Revolut</div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Apply for CAF (housing benefit)</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Can reduce rent by €80–€200/month. <a href="community.html" style="color:var(--color-primary)">Community guide →</a></div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Register with Audencia international office</span></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Get student housing insurance (assurance habitation)</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Required by law in France. ~€8–15/month.</div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Register with CPAM (Sécurité Sociale)</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">French national health insurance. Free for students.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- First month -->
+        <div class="arrival-phase">
+          <div class="arrival-phase-title">
+            <div class="arrival-phase-icon">🎓</div>
+            First month
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Explore Nantes neighbourhoods</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px"><a href="neighbourhood.html" style="color:var(--color-primary)">View neighbourhood guide →</a></div></div>
+            </div>
+            <div class="checklist-item" onclick="toggleTask(this)">
+              <div class="checklist-icon"></div>
+              <div style="flex:1"><span class="checklist-text">Join Audencia student associations</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right sidebar -->
+      <div style="position:sticky;top:calc(var(--nav-height) + var(--space-4))">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 style="font-size:var(--font-size-base);font-weight:700;margin-bottom:var(--space-4)">Move-in details</h3>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-sm)">
+                <span class="text-muted">Property</span><span class="font-semi">Bright studio, Orvault</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-sm)">
+                <span class="text-muted">Move-in date</span><span class="font-semi">1 Sep 2025</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-sm)">
+                <span class="text-muted">Rent</span><span class="font-semi">€460/month</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-sm)">
+                <span class="text-muted">University</span><span class="font-semi">Audencia, Nantes</span>
+              </div>
+            </div>
+            <a href="application.html" class="btn btn-secondary btn-sm btn-full mt-4">View application →</a>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 style="font-size:var(--font-size-base);font-weight:700;margin-bottom:var(--space-3)">My buddy</h3>
+            <div class="flex items-center gap-3">
+              <div class="buddy-avatar" style="width:48px;height:48px;font-size:1rem">RS</div>
+              <div>
+                <div style="font-weight:700;font-size:var(--font-size-sm)">Rahul Sharma</div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Audencia · Nantes · English, Hindi</div>
+              </div>
+            </div>
+            <a href="messages.html" class="btn btn-primary btn-sm btn-full mt-4">Ask Rahul a question</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3 style="font-size:var(--font-size-base);font-weight:700;margin-bottom:var(--space-3)">📄 My documents</h3>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
+                <span>Passport</span><span class="badge badge-green">Uploaded</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
+                <span>Visa</span><span class="badge badge-green">Uploaded</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
+                <span>Admission letter</span><span class="badge badge-green">Uploaded</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
+                <span>Proof of funds</span><span class="badge badge-green">Uploaded</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
+                <span>Guarantor doc</span><span class="badge badge-yellow">Pending</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
+                <span>Insurance</span><span class="badge badge-red">Required</span>
+              </div>
+            </div>
+            <a href="documents.html" class="btn btn-secondary btn-sm btn-full mt-4">Manage documents →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function toggleTask(el) {
+    el.classList.toggle('done');
+    const icon = el.querySelector('.checklist-icon');
+    if (el.classList.contains('done')) icon.textContent = '✓';
+    else icon.textContent = '';
+    updateProgress();
+  }
+  function updateProgress() {
+    const total = document.querySelectorAll('.checklist-item').length;
+    const done = document.querySelectorAll('.checklist-item.done').length;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('progress-bar').style.width = pct + '%';
+  }
+</script>
+</body>
+</html>

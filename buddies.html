@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Find and connect with local student buddies already studying in France. Get real answers about accommodation, banking, CAF, transport and daily life." />
+  <title>Student Buddies — Bookare</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body>
+<nav class="nav" id="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+    <div class="nav-links">
+      <a href="search.html" class="nav-link">Find a Home</a>
+      <a href="buddies.html" class="nav-link active">Buddies</a>
+      <a href="community.html" class="nav-link">Community</a>
+      <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
+    </div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn btn-ghost btn-sm">Sign In</a>
+      <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="search.html" class="nav-link">Find a Home</a>
+  <a href="buddies.html" class="nav-link">Buddies</a>
+  <a href="community.html" class="nav-link">Community</a>
+  <div class="nav-mobile-divider"></div>
+  <div class="nav-mobile-actions">
+    <a href="dashboard.html" class="btn btn-secondary btn-full">Sign In</a>
+    <a href="onboarding.html" class="btn btn-primary btn-full">Get Started</a>
+  </div>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:0;text-align:left;max-width:none">
+      <div class="tag-pill mb-4">🤝 Bookare Buddy</div>
+      <h1 class="page-title">You shouldn't have to figure it all out alone.</h1>
+      <p class="page-subtitle" style="font-size:var(--font-size-lg);margin-top:var(--space-3)">Connect with students already living and studying in France who can answer your real questions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Filters -->
+<div style="background:var(--slate-50);border-bottom:1px solid var(--color-border);padding:var(--space-5) 0;position:sticky;top:var(--nav-height);z-index:10">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr) auto;gap:var(--space-3);align-items:end">
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">University</label>
+        <select class="form-select" style="padding:0.6rem 0.875rem" id="buddy-uni">
+          <option>All universities</option>
+          <option selected>Audencia Business School</option>
+          <option>Sciences Po</option>
+          <option>Université Lyon 1</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">City</label>
+        <select class="form-select" style="padding:0.6rem 0.875rem">
+          <option>All cities</option>
+          <option selected>Nantes</option>
+          <option>Paris</option>
+          <option>Lyon</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">Language</label>
+        <select class="form-select" style="padding:0.6rem 0.875rem">
+          <option>Any language</option>
+          <option selected>English</option>
+          <option>Hindi</option>
+          <option>Mandarin</option>
+          <option>Arabic</option>
+          <option>Spanish</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">Can help with</label>
+        <select class="form-select" style="padding:0.6rem 0.875rem">
+          <option>Any topic</option>
+          <option>Accommodation</option>
+          <option>Banking</option>
+          <option>CAF</option>
+          <option>Transport</option>
+          <option>SIM card</option>
+          <option>University registration</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label" style="font-size:10px;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted)">Availability</label>
+        <select class="form-select" style="padding:0.6rem 0.875rem">
+          <option>Any time</option>
+          <option>Available now</option>
+          <option>This week</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="applyBuddyFilters()">Find buddies</button>
+    </div>
+    <div style="margin-top:var(--space-3)">
+      <label class="checkbox-wrap" style="display:inline-flex">
+        <input type="checkbox" checked /><div class="checkbox-box"></div>
+        <span class="checkbox-label font-semi text-sm">Only show buddies from my university (Audencia)</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- Results -->
+<div class="section">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-6)">
+      <div style="font-size:var(--font-size-sm);color:var(--color-text-muted)">Showing <strong style="color:var(--color-text)">12 buddies</strong> at Audencia · Nantes</div>
+      <div style="display:flex;gap:var(--space-2)">
+        <select class="form-select" style="padding:0.5rem 0.875rem;font-size:var(--font-size-sm)">
+          <option>Sort: Top rated</option>
+          <option>Most reviews</option>
+          <option>Newest</option>
+          <option>Most available</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Recommended banner -->
+    <div style="background:var(--color-primary-light);border:1px solid var(--blue-200);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);margin-bottom:var(--space-6);display:flex;align-items:center;gap:var(--space-3)">
+      <span style="font-size:1.5rem">✨</span>
+      <div>
+        <div style="font-weight:700;color:var(--color-primary)">Recommended for you</div>
+        <div style="font-size:var(--font-size-sm);color:var(--blue-700)">Students from Audencia who have experience helping international students settle in Nantes.</div>
+      </div>
+    </div>
+
+    <div class="grid grid-3" style="margin-bottom:var(--space-10)">
+
+      <!-- Buddy 1 -->
+      <div class="buddy-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="buddy-avatar" style="background:linear-gradient(135deg,#3B82F6,#1D4ED8)">RS</div>
+          <div>
+            <div class="buddy-name">Rahul Sharma</div>
+            <div class="buddy-uni">🎓 Audencia · Master's, Marketing</div>
+            <div class="buddy-rating"><span class="star">★</span> 4.9 <span style="font-weight:400;color:var(--color-text-muted)">(47 reviews)</span></div>
+          </div>
+        </div>
+        <div class="buddy-languages mb-2">📍 Orvault, Nantes</div>
+        <div class="buddy-languages mb-3">🌐 English · French · Hindi</div>
+        <div style="font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2)">Can help with:</div>
+        <div class="buddy-tags">
+          <span class="buddy-tag">Accommodation</span>
+          <span class="buddy-tag">Moving in</span>
+          <span class="buddy-tag">CAF</span>
+          <span class="buddy-tag">Banking</span>
+          <span class="buddy-tag">Transport</span>
+          <span class="buddy-tag">University</span>
+        </div>
+        <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-border)">
+          <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-3)">"Happy to help students arriving from any country. I've been where you are!" ✌️</div>
+          <div class="flex gap-2">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">💬 Message</a>
+            <button class="btn btn-secondary btn-sm" onclick="openModal('book-call-modal')">📞 Book call</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buddy 2 -->
+      <div class="buddy-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="buddy-avatar" style="background:linear-gradient(135deg,#8B5CF6,#6D28D9)">YC</div>
+          <div>
+            <div class="buddy-name">Yuki Chen</div>
+            <div class="buddy-uni">🎓 Audencia · Exchange, Finance</div>
+            <div class="buddy-rating"><span class="star">★</span> 5.0 <span style="font-weight:400;color:var(--color-text-muted)">(32 reviews)</span></div>
+          </div>
+        </div>
+        <div class="buddy-languages mb-2">📍 Centre-ville, Nantes</div>
+        <div class="buddy-languages mb-3">🌐 English · French · Mandarin · Japanese</div>
+        <div style="font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2)">Can help with:</div>
+        <div class="buddy-tags">
+          <span class="buddy-tag">Moving in</span>
+          <span class="buddy-tag">SIM card</span>
+          <span class="buddy-tag">University</span>
+          <span class="buddy-tag">Daily life</span>
+          <span class="buddy-tag">Food & shopping</span>
+        </div>
+        <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-border)">
+          <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-3)">"Moved from Tokyo — happy to share everything I learned!" 🌸</div>
+          <div class="flex gap-2">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">💬 Message</a>
+            <button class="btn btn-secondary btn-sm" onclick="openModal('book-call-modal')">📞 Book call</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buddy 3 -->
+      <div class="buddy-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="buddy-avatar" style="background:linear-gradient(135deg,#10B981,#059669)">KD</div>
+          <div>
+            <div class="buddy-name">Kofi Darko</div>
+            <div class="buddy-uni">🎓 Audencia · MBA, Business</div>
+            <div class="buddy-rating"><span class="star">★</span> 4.8 <span style="font-weight:400;color:var(--color-text-muted)">(28 reviews)</span></div>
+          </div>
+        </div>
+        <div class="buddy-languages mb-2">📍 Chantenay, Nantes</div>
+        <div class="buddy-languages mb-3">🌐 English · French · Twi</div>
+        <div style="font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2)">Can help with:</div>
+        <div class="buddy-tags">
+          <span class="buddy-tag">Banking</span>
+          <span class="buddy-tag">Accommodation</span>
+          <span class="buddy-tag">CAF</span>
+          <span class="buddy-tag">Visa</span>
+          <span class="buddy-tag">Arrival day</span>
+        </div>
+        <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-border)">
+          <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-3)">"Arrived from Accra 2 years ago. I can help with everything the university doesn't tell you." 🌍</div>
+          <div class="flex gap-2">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">💬 Message</a>
+            <button class="btn btn-secondary btn-sm" onclick="openModal('book-call-modal')">📞 Book call</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buddy 4 -->
+      <div class="buddy-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="buddy-avatar" style="background:linear-gradient(135deg,#F59E0B,#D97706)">ML</div>
+          <div>
+            <div class="buddy-name">María López</div>
+            <div class="buddy-uni">🎓 Audencia · Master's, Sustainability</div>
+            <div class="buddy-rating"><span class="star">★</span> 4.9 <span style="font-weight:400;color:var(--color-text-muted)">(41 reviews)</span></div>
+          </div>
+        </div>
+        <div class="buddy-languages mb-2">📍 Île de Nantes</div>
+        <div class="buddy-languages mb-3">🌐 English · French · Spanish · Portuguese</div>
+        <div style="font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2)">Can help with:</div>
+        <div class="buddy-tags">
+          <span class="buddy-tag">Accommodation</span>
+          <span class="buddy-tag">CAF</span>
+          <span class="buddy-tag">Food & shopping</span>
+          <span class="buddy-tag">Social life</span>
+          <span class="buddy-tag">French culture</span>
+        </div>
+        <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-border)">
+          <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-3)">"Nantes is amazing — I'll help you love it too!" 🥐</div>
+          <div class="flex gap-2">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">💬 Message</a>
+            <button class="btn btn-secondary btn-sm" onclick="openModal('book-call-modal')">📞 Book call</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buddy 5 -->
+      <div class="buddy-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="buddy-avatar" style="background:linear-gradient(135deg,#EF4444,#B91C1C)">AP</div>
+          <div>
+            <div class="buddy-name">Ananya Patel</div>
+            <div class="buddy-uni">🎓 Audencia · Master's, Digital</div>
+            <div class="buddy-rating"><span class="star">★</span> 4.7 <span style="font-weight:400;color:var(--color-text-muted)">(19 reviews)</span></div>
+          </div>
+        </div>
+        <div class="buddy-languages mb-2">📍 Doulon, Nantes</div>
+        <div class="buddy-languages mb-3">🌐 English · French · Gujarati · Hindi</div>
+        <div style="font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2)">Can help with:</div>
+        <div class="buddy-tags">
+          <span class="buddy-tag">University</span>
+          <span class="buddy-tag">SIM card</span>
+          <span class="buddy-tag">Transport</span>
+          <span class="buddy-tag">Moving in</span>
+        </div>
+        <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-border)">
+          <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-3)">"Just finished my first year. Ask me anything!" 🎓</div>
+          <div class="flex gap-2">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">💬 Message</a>
+            <button class="btn btn-secondary btn-sm" onclick="openModal('book-call-modal')">📞 Book call</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buddy 6 -->
+      <div class="buddy-card">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="buddy-avatar" style="background:linear-gradient(135deg,#06B6D4,#0E7490)">TK</div>
+          <div>
+            <div class="buddy-name">Tae-Jun Kim</div>
+            <div class="buddy-uni">🎓 Audencia · Exchange, Intl. Business</div>
+            <div class="buddy-rating"><span class="star">★</span> 5.0 <span style="font-weight:400;color:var(--color-text-muted)">(22 reviews)</span></div>
+          </div>
+        </div>
+        <div class="buddy-languages mb-2">📍 Dervallières, Nantes</div>
+        <div class="buddy-languages mb-3">🌐 English · French · Korean</div>
+        <div style="font-size:var(--font-size-xs);font-weight:600;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:var(--space-2)">Can help with:</div>
+        <div class="buddy-tags">
+          <span class="buddy-tag">Accommodation</span>
+          <span class="buddy-tag">Banking</span>
+          <span class="buddy-tag">Daily life</span>
+          <span class="buddy-tag">Arrival</span>
+        </div>
+        <div style="margin-top:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--color-border)">
+          <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-3)">"From Seoul to Nantes — the journey is worth it!" 🇰🇷</div>
+          <div class="flex gap-2">
+            <a href="messages.html" class="btn btn-primary btn-sm" style="flex:1">💬 Message</a>
+            <button class="btn btn-secondary btn-sm" onclick="openModal('book-call-modal')">📞 Book call</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Become a buddy CTA -->
+    <div style="background:var(--slate-900);color:white;border-radius:var(--radius-xl);padding:var(--space-10);text-align:center">
+      <div style="font-size:2rem;margin-bottom:var(--space-4)">🤝</div>
+      <h2 style="font-size:var(--font-size-2xl);font-weight:800;color:white;margin-bottom:var(--space-3)">Already studying in France?</h2>
+      <p style="color:var(--slate-400);margin-bottom:var(--space-6);max-width:500px;margin-left:auto;margin-right:auto">Help incoming students navigate France. Share your experience, earn from paid sessions and build your network.</p>
+      <button class="btn btn-xl" style="background:white;color:var(--slate-900)" onclick="showToast('Buddy application coming soon!', 'success')">Become a buddy</button>
+    </div>
+  </div>
+</div>
+
+<!-- Book a call modal -->
+<div class="modal-overlay" id="book-call-modal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Book a session with Rahul</div>
+      <button class="modal-close" data-modal-close="book-call-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;gap:var(--space-3);flex-direction:column">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-3)">
+          <div style="border:2px solid var(--color-primary);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;cursor:pointer;background:var(--color-primary-light)">
+            <div style="font-size:1.5rem;margin-bottom:var(--space-2)">💬</div>
+            <div style="font-size:var(--font-size-sm);font-weight:700;color:var(--color-primary)">Quick message</div>
+            <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:var(--space-1)">Free</div>
+          </div>
+          <div style="border:2px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;cursor:pointer" onclick="this.style.borderColor='var(--color-primary)';this.style.background='var(--color-primary-light)'">
+            <div style="font-size:1.5rem;margin-bottom:var(--space-2)">📹</div>
+            <div style="font-size:var(--font-size-sm);font-weight:700">Video call (20 min)</div>
+            <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:var(--space-1)">€0 — Free</div>
+          </div>
+          <div style="border:2px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4);text-align:center;cursor:pointer" onclick="this.style.borderColor='var(--color-primary)';this.style.background='var(--color-primary-light)'">
+            <div style="font-size:1.5rem;margin-bottom:var(--space-2)">🚀</div>
+            <div style="font-size:var(--font-size-sm);font-weight:700">Arrival help</div>
+            <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:var(--space-1)">€29</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">What do you need help with?</label>
+          <textarea class="form-textarea" placeholder="e.g. I'm arriving in Nantes on 28 August and need help setting up my bank account and transport card..." style="min-height:100px"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred time</label>
+          <input type="datetime-local" class="form-input" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-modal-close="book-call-modal">Cancel</button>
+      <button class="btn btn-primary" onclick="bookCall()">Confirm booking</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">BOOKARE</div>
+        <div class="footer-brand-desc">Student accommodation made simple for international students moving to France.</div>
+      </div>
+      <div>
+        <div class="footer-col-title">Students</div>
+        <div class="footer-links">
+          <a href="search.html" class="footer-link">Find a Home</a>
+          <a href="buddies.html" class="footer-link">Buddies</a>
+          <a href="community.html" class="footer-link">Community</a>
+          <a href="help.html" class="footer-link">Help Centre</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Platform</div>
+        <div class="footer-links">
+          <a href="how-it-works.html" class="footer-link">How it Works</a>
+          <a href="list-property.html" class="footer-link">List a Property</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">Privacy</a>
+          <a href="#" class="footer-link">Terms</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><div style="font-size:var(--font-size-xs)">© 2025 Bookare SAS</div></div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function applyBuddyFilters() { showToast('Showing 12 buddies at Audencia', 'success'); }
+  function bookCall() { closeModal('book-call-modal'); showToast('Session booked! Rahul will confirm within 24 hours.', 'success'); }
+</script>
+</body>
+</html>

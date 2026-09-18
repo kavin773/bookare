@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bookare Onboarding — Personalize your French student accommodation search, university buddies, and relocation checklist." />
+  <title>Get Started — BOOKARE</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <style>
+    .onboard-step {
+      display: none;
+    }
+    .onboard-step.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    .help-choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: var(--space-6);
+    }
+    @media (max-width: 600px) {
+      .help-choice-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .help-choice-card {
+      background: white;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      color: var(--color-text);
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+    .help-choice-card:hover {
+      border-color: var(--blue-300);
+      background: var(--blue-50);
+    }
+    .help-choice-card.selected {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body style="background:var(--slate-50);">
+
+<!-- Clean Minimal Nav for Onboarding -->
+<nav class="nav" style="position:static; background:transparent; border:none;">
+  <div class="nav-inner" style="justify-content:center;">
+    <a href="index.html" class="nav-logo">BOOKARE<span class="nav-logo-dot"></span></a>
+  </div>
+</nav>
+
+<!-- Onboarding Card Container -->
+<div class="onboarding-wrap">
+  <div class="onboarding-card">
+
+    <!-- Progress Dots -->
+    <div class="onboarding-progress" id="progress-dots">
+      <div class="onboarding-progress-dot active" id="dot-1"></div>
+      <div class="onboarding-progress-dot" id="dot-2"></div>
+      <div class="onboarding-progress-dot" id="dot-3"></div>
+      <div class="onboarding-progress-dot" id="dot-4"></div>
+      <div class="onboarding-progress-dot" id="dot-5"></div>
+    </div>
+
+    <!-- STEP 1: IDENTITY -->
+    <div class="onboard-step active" id="ob-step-1">
+      <h2 class="onboarding-step-title">Welcome to Bookare!</h2>
+      <p class="onboarding-step-desc">Let's set up your profile so you can find verified accommodation and connect with student buddies in France.</p>
+
+      <div class="form-group mb-4">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-input" id="ob-name" value="Kavin" placeholder="Your first name" />
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label">Home Country</label>
+        <select class="form-select" id="ob-country">
+          <option value="India" selected>India</option>
+          <option value="China">China</option>
+          <option value="Brazil">Brazil</option>
+          <option value="USA">United States</option>
+          <option value="Germany">Germany</option>
+          <option value="Spain">Spain</option>
+          <option value="Other">Other Country</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-6">
+        <label class="form-label">Degree Level in France</label>
+        <select class="form-select" id="ob-degree">
+          <option>Master's Degree (MSc / MBA)</option>
+          <option>Grande École Program (PGE)</option>
+          <option>Bachelor's / Undergraduate</option>
+          <option>Semester Exchange / Erasmus+</option>
+          <option>PhD / Researcher</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary btn-full" onclick="nextObStep(2)">Continue →</button>
+    </div>
+
+    <!-- STEP 2: UNIVERSITY & CAMPUS -->
+    <div class="onboard-step" id="ob-step-2">
+      <h2 class="onboarding-step-title">Where are you studying?</h2>
+      <p class="onboarding-step-desc">We will prioritize accommodations and buddies based on your specific university campus.</p>
+
+      <div class="form-group mb-4">
+        <label class="form-label">City in France</label>
+        <select class="form-select" id="ob-city">
+          <option value="nantes" selected>Nantes</option>
+          <option value="paris">Paris</option>
+          <option value="lyon">Lyon</option>
+          <option value="bordeaux">Bordeaux</option>
+          <option value="strasbourg">Strasbourg</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-4">
+        <label class="form-label">University</label>
+        <select class="form-select" id="ob-uni">
+          <option selected>Audencia Business School</option>
+          <option>Université de Nantes</option>
+          <option>École Centrale de Nantes</option>
+          <option>Sciences Po</option>
+          <option>ESSEC Business School</option>
+        </select>
+      </div>
+
+      <div class="form-group mb-6">
+        <label class="form-label">Campus</label>
+        <select class="form-select" id="ob-campus">
+          <option selected>Atlantic Campus (Route de la Jonelière)</option>
+          <option>City Campus (Graslin)</option>
+          <option>Médiacampus (Île de Nantes)</option>
+        </select>
+      </div>
+
+      <div class="flex gap-3">
+        <button class="btn btn-secondary flex-1" onclick="goToObStep(1)">Back</button>
+        <button class="btn btn-primary flex-1" onclick="nextObStep(3)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: DATES & BUDGET -->
+    <div class="onboard-step" id="ob-step-3">
+      <h2 class="onboarding-step-title">When & what budget?</h2>
+      <p class="onboarding-step-desc">Help us find accommodation ready for your move-in date.</p>
+
+      <div class="form-group mb-4">
+        <label class="form-label">Expected Move-in Date</label>
+        <input type="date" class="form-input" id="ob-date" value="2025-09-01" />
+      </div>
+
+      <div class="form-group mb-6">
+        <label class="form-label">Monthly Accommodation Budget</label>
+        <div class="option-grid">
+          <div class="option-btn" onclick="selectBudget(this, '<400')">
+            <div class="font-bold text-base">Under €400</div>
+            <div class="text-[10px] text-muted">Shared flat / Coloc</div>
+          </div>
+          <div class="option-btn selected" onclick="selectBudget(this, '400-600')">
+            <div class="font-bold text-base">€400 – €600</div>
+            <div class="text-[10px] text-muted">Average studio in Nantes</div>
+          </div>
+          <div class="option-btn" onclick="selectBudget(this, '600-800')">
+            <div class="font-bold text-base">€600 – €800</div>
+            <div class="text-[10px] text-muted">Premium residence / 1-bed</div>
+          </div>
+          <div class="option-btn" onclick="selectBudget(this, '>800')">
+            <div class="font-bold text-base">€800+</div>
+            <div class="text-[10px] text-muted">Central luxury loft</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <button class="btn btn-secondary flex-1" onclick="goToObStep(2)">Back</button>
+        <button class="btn btn-primary flex-1" onclick="nextObStep(4)">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: RELOCATION NEEDS -->
+    <div class="onboard-step" id="ob-step-4">
+      <h2 class="onboarding-step-title">What do you need help with?</h2>
+      <p class="onboarding-step-desc">Select all that apply — we’ll tailor your arrival checklist and buddy matches accordingly.</p>
+
+      <div class="help-choice-grid">
+        <div class="help-choice-card selected" onclick="toggleHelpChoice(this)">
+          <span>🏠</span> Verified Housing near Campus
+        </div>
+        <div class="help-choice-card selected" onclick="toggleHelpChoice(this)">
+          <span>🛡️</span> Free Visale French Guarantor
+        </div>
+        <div class="help-choice-card selected" onclick="toggleHelpChoice(this)">
+          <span>💶</span> French CAF Housing Subsidy (APL)
+        </div>
+        <div class="help-choice-card selected" onclick="toggleHelpChoice(this)">
+          <span>🏦</span> Opening a French Bank Account
+        </div>
+        <div class="help-choice-card selected" onclick="toggleHelpChoice(this)">
+          <span>📱</span> French SIM Card & 5G Data
+        </div>
+        <div class="help-choice-card selected" onclick="toggleHelpChoice(this)">
+          <span>🚊</span> Nantes Tan Public Transit Pass
+        </div>
+        <div class="help-choice-card selected" onclick="toggleHelpChoice(this)">
+          <span>🤝</span> 1-on-1 Audencia Senior Buddy
+        </div>
+        <div class="help-choice-card" onclick="toggleHelpChoice(this)">
+          <span>🏥</span> CPAM French Health Insurance
+        </div>
+      </div>
+
+      <div class="flex gap-3">
+        <button class="btn btn-secondary flex-1" onclick="goToObStep(3)">Back</button>
+        <button class="btn btn-primary flex-1" onclick="finishOnboarding()">Generate My Plan →</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: MATCHING & RESULT -->
+    <div class="onboard-step" id="ob-step-5">
+      <div class="text-center py-4">
+        <div style="font-size:3rem; margin-bottom:12px;">🎉</div>
+        <h2 class="onboarding-step-title">Your Personalized Hub is Ready!</h2>
+        <p class="onboarding-step-desc">We customized Bookare for your arrival at <strong>Audencia Business School</strong> in Nantes.</p>
+      </div>
+
+      <div class="p-4 bg-blue-50 rounded-xl border border-blue-200 mb-6 text-xs text-slate-700 flex flex-col gap-2.5">
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-600 font-bold">✓</span> <strong>14 verified accommodations</strong> within 15 min of Audencia Atlantic Campus
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-600 font-bold">✓</span> Matched with Senior Buddy: <strong>Rahul Sharma</strong> (MSc Management)
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-600 font-bold">✓</span> Personalized <strong>Arrival Checklist</strong> generated for Sept 1 move-in
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-emerald-600 font-bold">✓</span> Visale Guarantee Dossier prepared
+        </div>
+      </div>
+
+      <a href="dashboard.html" class="btn btn-primary btn-full btn-lg">
+        Go to My Bookare Dashboard →
+      </a>
+      <div class="text-center mt-3">
+        <a href="search.html?university=audencia" class="text-xs text-blue-600 font-semibold hover:underline">
+          Or browse Audencia homes right now
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  let currentStep = 1;
+
+  function goToObStep(step) {
+    currentStep = step;
+    document.querySelectorAll('.onboard-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('ob-step-' + step).classList.add('active');
+
+    // Update dots
+    for (let i = 1; i <= 5; i++) {
+      const dot = document.getElementById('dot-' + i);
+      if (i <= step) dot.classList.add('active');
+      else dot.classList.remove('active');
+    }
+  }
+
+  function nextObStep(step) {
+    goToObStep(step);
+  }
+
+  function selectBudget(el, val) {
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function toggleHelpChoice(el) {
+    el.classList.toggle('selected');
+  }
+
+  function finishOnboarding() {
+    showToast('Personalizing your ecosystem...', 'default');
+    setTimeout(() => {
+      goToObStep(5);
+    }, 400);
+  }
+</script>
+</body>
+</html>
