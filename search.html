@@ -90,6 +90,7 @@
           <option value="private-room">Private room</option>
           <option value="shared-apartment">Shared apartment</option>
           <option value="student-residence">Student residence</option>
+          <option value="homestay">Homestay</option>
         </select>
       </div>
       <button class="btn btn-primary" onclick="applySearch()">Search homes</button>
@@ -450,7 +451,7 @@
 
       <!-- Load more -->
       <div class="flex justify-center mt-8">
-        <button class="btn btn-secondary btn-lg" onclick="showToast('Loading more properties...','default')">Load more homes (41 remaining)</button>
+        <button class="btn btn-secondary btn-lg" id="load-more-homes">Load more homes</button>
       </div>
       </div>
     </main>

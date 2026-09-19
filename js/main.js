@@ -1,219 +1,55 @@
-/* ============================================================
-   BOOKARE — Shared JS Utilities
-   ============================================================ */
-
-// ===================== NAV =====================
-(function initNav() {
-  const nav = document.querySelector('.nav');
-  const hamburger = document.querySelector('.nav-hamburger');
-  const mobileNav = document.querySelector('.nav-mobile');
-
-  // Scroll shadow
-  if (nav) {
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 10);
-    }, { passive: true });
-  }
-
-  // Mobile menu
-  if (hamburger && mobileNav) {
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('open');
-      mobileNav.classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-    // Close on outside click
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
-        hamburger.classList.remove('open');
-        mobileNav.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
-  // Highlight active link
-  const links = document.querySelectorAll('.nav-link');
-  links.forEach(link => {
-    if (link.getAttribute('href') === window.location.pathname.split('/').pop()) {
-      link.classList.add('active');
-    }
-  });
+/* Shared Bookare prototype state. */
+(function () {
+  const KEY = 'bookare_state_v2';
+  const properties = [
+    {id:'p1',name:'Loire View Studio',address:'18 rue de la Loire',city:'Nantes',area:'Ile de Nantes',type:'studio',rent:560,deposit:560,surface:23,available:'2026-09-01',amenities:['furnished','wi-fi','washing machine','private','balcony'],image:'🏙️',description:'Sunny furnished studio with a compact kitchen and balcony overlooking the Loire.',walk:28,bike:9,transit:14,university:'Audencia Business School',campus:'audencia atlantic campus',verified:true},
+    {id:'p2',name:'Saint-Felix Garden Studio',address:'14 rue Saint-Felix',city:'Nantes',area:'Saint-Felix',type:'studio',rent:690,deposit:690,surface:27,available:'2026-09-15',amenities:['furnished','wi-fi','washing machine','private','balcony','bike storage'],image:'🌿',description:'Quiet, bright studio a short cycle from Audencia with a private bathroom.',walk:12,bike:4,transit:8,university:'Audencia Business School',campus:'audencia atlantic campus',verified:true},
+    {id:'p3',name:'Commerce Loft Studio',address:'7 passage du Commerce',city:'Nantes',area:'Centre-ville',type:'studio',rent:745,deposit:745,surface:31,available:'2026-10-01',amenities:['furnished','wi-fi','private','balcony'],image:'🏢',description:'Renovated city-centre studio close to tram connections and independent cafes.',walk:35,bike:11,transit:16,university:'Audencia Business School',campus:'audencia atlantic campus',verified:true},
+    {id:'p4',name:'Michelet Student Residence',address:'32 boulevard Michelet',city:'Nantes',area:'Petit-Port',type:'student-residence',rent:495,deposit:495,surface:19,available:'2026-09-01',amenities:['furnished','wi-fi','washing machine','private','bike storage'],image:'🏛️',description:'Secure student residence with laundry, study lounge and bike storage.',walk:9,bike:3,transit:5,university:'Universite de Nantes',campus:'university tertre campus',verified:true},
+    {id:'p5',name:'Dervallieres Residence',address:'5 rue des Dervallieres',city:'Nantes',area:'Dervallieres',type:'student-residence',rent:430,deposit:430,surface:18,available:'2026-09-01',amenities:['furnished','wi-fi','washing machine','private'],image:'🏠',description:'Affordable furnished room in a calm residence with direct bus links.',walk:27,bike:8,transit:12,university:'Audencia Business School',campus:'audencia atlantic campus',verified:true},
+    {id:'p6',name:'Hauts-Paves Colocation',address:'41 rue des Hauts-Paves',city:'Nantes',area:'Hauts-Paves',type:'shared-apartment',rent:410,deposit:410,surface:14,available:'2026-09-10',amenities:['furnished','wi-fi','washing machine','balcony','bike storage'],image:'🛋️',description:'Friendly three-bedroom flat with a shared kitchen and leafy balcony.',walk:24,bike:7,transit:13,university:'Audencia Business School',campus:'audencia atlantic campus',verified:true},
+    {id:'p7',name:'Chantenay Riverside Flat',address:'9 quai de la Fosse',city:'Nantes',area:'Chantenay',type:'shared-apartment',rent:385,deposit:385,surface:12,available:'2026-09-01',amenities:['furnished','wi-fi','washing machine','bike storage'],image:'🌇',description:'Budget-friendly room in a welcoming flat near the river and tram 1.',walk:39,bike:12,transit:19,university:'Audencia Business School',campus:'audencia atlantic campus',verified:false},
+    {id:'p8',name:'Doulon Family Room',address:'22 rue de la Ville en Pierre',city:'Nantes',area:'Doulon',type:'private-room',rent:465,deposit:465,surface:16,available:'2026-09-01',amenities:['furnished','wi-fi','washing machine','private','garden'],image:'🌸',description:'Private room in a welcoming family home with a garden and breakfast option.',walk:42,bike:13,transit:21,university:'Universite de Nantes',campus:'university tertre campus',verified:true},
+    {id:'p9',name:'Erdre House Homestay',address:'3 avenue de la Haute-Foret',city:'Nantes',area:'Erdre',type:'homestay',rent:520,deposit:300,surface:15,available:'2026-09-05',amenities:['furnished','wi-fi','washing machine','private','garden','bike storage'],image:'🏡',description:'Warm homestay with a French host family, private room and garden access.',walk:32,bike:10,transit:15,university:'Universite de Nantes',campus:'university tertre campus',verified:true},
+    {id:'p10',name:'Bordeaux Victoire Room',address:'26 rue des Augustins',city:'Bordeaux',area:'Victoire',type:'private-room',rent:520,deposit:520,surface:17,available:'2026-09-01',amenities:['furnished','wi-fi','washing machine','private'],image:'🚪',description:'Bright private room in a renovated shared apartment near tram B.',walk:18,bike:6,transit:9,university:'Universite de Bordeaux',campus:'city campus',verified:true},
+    {id:'p11',name:'Lyon Berges Studio',address:'11 rue de Marseille',city:'Lyon',area:'Guillotiere',type:'studio',rent:720,deposit:720,surface:25,available:'2026-10-01',amenities:['furnished','wi-fi','washing machine','private'],image:'🌆',description:'Modern studio close to university buildings, shops and the Rhone cycle path.',walk:22,bike:7,transit:10,university:'Universite Lyon 1',campus:'city campus',verified:true},
+    {id:'p12',name:'Paris Canal Homestay',address:'8 rue de lOurcq',city:'Paris',area:'La Villette',type:'homestay',rent:780,deposit:500,surface:14,available:'2026-09-01',amenities:['furnished','wi-fi','private','bike storage'],image:'🗼',description:'Private room with a local host near metro line 5 and student life in La Villette.',walk:30,bike:12,transit:8,university:'Sciences Po',campus:'city campus',verified:true}
+  ];
+  const buddies = [
+    {id:'b1',name:'Rahul Sharma',university:'Audencia Business School',city:'Nantes',languages:['English','French','Hindi'],topics:['Accommodation','CAF','Banking','Transport'],availability:['Available now','This week'],degree:'MSc Marketing',avatar:'RS',rating:4.9,reviews:47,bio:'Happy to help students arriving from any country.'},
+    {id:'b2',name:'Yuki Chen',university:'Audencia Business School',city:'Nantes',languages:['English','French','Mandarin','Japanese'],topics:['SIM card','University','Food & shopping'],availability:['This week'],degree:'Exchange Finance',avatar:'YC',rating:5,reviews:32,bio:'Moved from Tokyo and happy to share everything I learned.'},
+    {id:'b3',name:'Camille Martin',university:'Universite Lyon 1',city:'Lyon',languages:['French','English'],topics:['Accommodation','Transport','University'],availability:['Available now'],degree:'MSc Biology',avatar:'CM',rating:4.8,reviews:26,bio:'I know the Lyon campus and student routes around town.'},
+    {id:'b4',name:'Sofia Almeida',university:'Universite de Bordeaux',city:'Bordeaux',languages:['French','English','Spanish','Portuguese'],topics:['CAF','Banking','Food & shopping'],availability:['This week'],degree:'MSc Sustainability',avatar:'SA',rating:4.9,reviews:38,bio:'I can help you settle in and find affordable places to shop.'},
+    {id:'b5',name:'Amir Haddad',university:'Sciences Po',city:'Paris',languages:['Arabic','English','French'],topics:['Visa/SIM','Banking','University'],availability:['Available now'],degree:'Master Public Policy',avatar:'AH',rating:4.7,reviews:21,bio:'Ask me about paperwork, SIM cards and getting started in Paris.'},
+    {id:'b6',name:'Ananya Patel',university:'Audencia Business School',city:'Nantes',languages:['English','French','Hindi','Gujarati'],topics:['University','Transport','Accommodation'],availability:['This week'],degree:'MSc Digital',avatar:'AP',rating:4.7,reviews:19,bio:'Just finished my first year. Ask me anything.'}
+  ];
+  const communities=[{id:'c1',university:'Audencia Business School',city:'Nantes',students:238},{id:'c2',university:'Sciences Po',city:'Paris',students:441},{id:'c3',university:'Universite Lyon 1',city:'Lyon',students:312},{id:'c4',university:'Universite de Bordeaux',city:'Bordeaux',students:189}];
+  const questions=[
+    {topic:'CAF',title:'How does CAF work and how do I apply for housing benefit as a student?',body:'Is CAF available to international students and how long does the application take?',city:'All cities',votes:31,answer:'Apply on caf.fr once you have your lease and French bank details. International students with a valid visa can apply.'},
+    {topic:'Transport',title:'How do I get my student transport card in Nantes?',body:'What is the cheapest student pass and where do I get it?',city:'Nantes',votes:24,answer:'The Naolib app offers the under-26 monthly pass. Bring proof of enrolment and identity to an agency.'},
+    {topic:'Accommodation',title:'Which neighbourhoods in Nantes are best for students?',body:'I want somewhere safe, affordable and connected to campus.',city:'Nantes',votes:18,answer:'Saint-Felix and Hauts-Paves are popular near Audencia. Dervallieres and Chantenay can be more affordable.'},
+    {topic:'Banking',title:'How can I open a bank account without a French address?',body:'I need an account to receive CAF and pay rent when I arrive.',city:'All cities',votes:15,answer:'Online banks often accept a passport, visa and proof of enrolment. Ask which temporary proof of address they accept.'},
+    {topic:'Shopping',title:'Where can I buy affordable groceries in Nantes?',body:'Which supermarkets and student markets are best on a budget?',city:'Nantes',votes:8,answer:'Compare Lidl, Aldi and local markets such as Talensac. Shopping late at markets can reduce food costs.'},
+    {topic:'Food',title:'Where can I find vegetarian student meals near campus?',body:'I am looking for affordable lunch options during the week.',city:'Nantes',votes:11,answer:'The university canteen is usually the lowest-cost weekday option. Look for CROUS menus and vegetarian plates.'},
+    {topic:'University',title:'When should I register for orientation at Audencia?',body:'Is registration online before arrival or on campus?',city:'Nantes',votes:13,answer:'Complete the online registration checklist first, then choose an orientation slot in the student portal.'},
+    {topic:'Visa/SIM',title:'Which SIM card works best for a new student in France?',body:'I need reliable data as soon as I land.',city:'All cities',votes:9,answer:'Free Mobile, Sosh and Lebara offer flexible plans. Buy an eSIM before arrival if your phone supports it.'}
+  ];
+  let state; try{state=JSON.parse(localStorage.getItem(KEY))||{};}catch{state={};} state.users=state.users||[];state.currentUserId=state.currentUserId||null;state.favorites=state.favorites||{};state.applications=state.applications||{};state.messages=state.messages||{};state.selectedCommunity=state.selectedCommunity||null;
+  const save=()=>localStorage.setItem(KEY,JSON.stringify(state)); const current=()=>state.users.find(item=>item.id===state.currentUserId)||null; const key=()=>state.currentUserId||'guest'; const favorites=()=>state.favorites[key()]||[]; const findProperty=id=>properties.find(item=>item.id===String(id)); const esc=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char])); const toast=(msg,type)=>typeof showToast==='function'&&showToast(msg,type||'default');
+  window.Bookare={properties,buddies,communities,questions,state,current,findProperty,getFavorites:favorites,toggleFavorite(id){const value=String(id);const list=favorites();state.favorites[key()]=list.includes(value)?list.filter(item=>item!==value):list.concat(value);save();return state.favorites[key()].includes(value);},apply(id){state.applications[key()]={propertyId:String(id),submittedAt:new Date().toISOString(),status:'Landlord reviewing'};save();},register(profile){const id='u-'+Date.now();state.users.push({id,...profile});state.currentUserId=id;save();return current();}};
+  window.openModal=id=>{const el=document.getElementById(id);if(el)el.style.display='flex';}; window.closeModal=id=>{const el=document.getElementById(id);if(el)el.style.display='none';};
+  function nav(){const navEl=document.querySelector('.nav');if(navEl)window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',window.scrollY>10),{passive:true});const hamburger=document.querySelector('.nav-hamburger'),mobile=document.querySelector('.nav-mobile');if(hamburger&&mobile)hamburger.addEventListener('click',()=>{const open=hamburger.classList.toggle('open');mobile.classList.toggle('open',open);});}
+  function bindFavorites(root){(root||document).querySelectorAll('[data-favorite]').forEach(btn=>btn.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();const active=Bookare.toggleFavorite(btn.dataset.favorite);document.querySelectorAll(`[data-favorite="${btn.dataset.favorite}"]`).forEach(item=>{item.classList.toggle('active',active);const icon=item.querySelector('.shortlist-icon');if(icon)icon.textContent=active?'♥':'♡';else item.textContent=active?'♥':'♡';});toast(active?'Added to favorites':'Removed from favorites',active?'success':'default');}));}
+  function propertyCard(item){const fav=favorites().includes(item.id);return `<div class="property-card"><div class="property-card-img"><div class="property-card-img-placeholder">${item.image}</div><div class="property-badge-wrap"><span class="badge ${item.verified?'badge-green':'badge-yellow'}">${item.verified?'✓ Verified':'New'}</span></div><button class="property-shortlist-btn${fav?' active':''}" data-favorite="${item.id}"><span class="shortlist-icon">${fav?'♥':'♡'}</span></button></div><div class="property-card-body"><div class="property-price">€${item.rent} <span>/ month</span></div><div class="property-title">${esc(item.name)}</div><div class="property-location">📍 ${esc(item.area)}, ${item.city}</div><div class="property-uni">🏫 ${item.walk} min walk · ${item.transit} min by transport</div><div class="property-commute"><div class="commute-item">🚶 ${item.walk} min</div><div class="commute-item">🚲 ${item.bike} min</div><div class="commute-item">🚌 ${item.transit} min</div></div><div class="property-amenities">${item.amenities.map(a=>`<span class="amenity-tag">${esc(a)}</span>`).join('')}</div></div><div class="property-card-footer"><a href="property.html?id=${item.id}" class="btn btn-primary btn-sm" style="flex:1">View details</a><button class="btn btn-secondary btn-sm" data-favorite="${item.id}">${fav?'♥':'♡'}</button></div></div>`;}
+  function initSearch(){const list=document.getElementById('properties-list');if(!list)return;let showAll=false;const loadMore=document.getElementById('load-more-homes');const filter=()=>{const uni=(document.getElementById('search-uni').value||'').toLowerCase(),campus=document.getElementById('search-campus').value,date=document.getElementById('search-date').value,range=document.getElementById('search-budget').value,type=document.getElementById('search-type').value,types=[...document.querySelectorAll('[data-filter-type]:checked')].map(input=>input.dataset.filterType),amenities=[...document.querySelectorAll('[data-filter-amenity]:checked')].map(input=>input.dataset.filterAmenity),commute=[...document.querySelectorAll('[data-commute-mode].active')],max=range==='0-400'?400:range==='400-650'?650:range==='650-900'?900:Number(document.getElementById('budget-range').value),min=range==='400-650'?400:range==='650-900'?650:0,deposit=Number(document.getElementById('deposit-range').value),matchesType=type?item=>item.type===type:item=>!types.length||types.includes(item.type),found=properties.filter(item=>(!uni||`${item.city} ${item.area} ${item.university}`.toLowerCase().includes(uni))&&(!campus||item.campus===campus)&&(!date||item.available.startsWith(date))&&matchesType(item)&&item.rent>=min&&item.rent<=max&&item.deposit<=deposit&&amenities.every(a=>item.amenities.includes(a))&&commute.every(c=>item[c.dataset.commuteMode]<=Number(c.dataset.commuteMax))),visible=showAll?found:found.slice(0,6);list.innerHTML=visible.map(propertyCard).join('');bindFavorites(list);document.getElementById('search-empty-state').style.display='none';document.getElementById('search-results').style.display='';document.getElementById('results-count-number').textContent=`${found.length} homes`;if(loadMore){loadMore.style.display=found.length>visible.length?'inline-flex':'none';loadMore.textContent=`Load more homes (${found.length-visible.length} remaining)`;}let empty=document.getElementById('no-homes-state');if(empty)empty.remove();if(!found.length){empty=document.createElement('div');empty.id='no-homes-state';empty.className='card p-8 text-center';empty.innerHTML='<h2 class="text-xl font-bold mb-2">No homes found</h2><p class="text-sm text-muted mb-4">Try widening your filters.</p><button class="btn btn-primary" onclick="clearFilters()">Clear filters</button>';list.parentElement.appendChild(empty);}};if(loadMore)loadMore.addEventListener('click',()=>{showAll=true;filter();toast('All matching homes loaded','success');});window.applySearch=filter;window.applyFilters=filter;window.clearFilters=()=>{showAll=false;['search-uni','search-campus','search-date','search-budget','search-type'].forEach(id=>document.getElementById(id).selectedIndex=0);document.querySelectorAll('[data-filter-type],[data-filter-amenity]').forEach(input=>input.checked=false);document.querySelectorAll('[data-commute-mode].active').forEach(item=>item.classList.remove('active'));document.getElementById('budget-range').value=1500;document.getElementById('deposit-range').value=3000;filter();};['search-uni','search-campus','search-date','search-budget','search-type'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{showAll=false;filter();}));document.querySelectorAll('[data-filter-type],[data-filter-amenity]').forEach(input=>input.addEventListener('change',()=>{showAll=false;filter();}));filter();}
+  function initBuddies(){const grid=document.querySelector('.grid.grid-3'),uni=document.getElementById('buddy-uni');if(!grid||!uni)return;const selects=[...document.querySelectorAll('.form-group select')],city=selects[1],language=selects[2],topic=selects[3],availability=selects[4],only=document.querySelector('input[type="checkbox"]');const render=()=>{const found=buddies.filter(item=>(!uni.value||uni.value==='All universities'||item.university===uni.value)&&(!city.value||city.value==='All cities'||item.city===city.value)&&(!language.value||language.value==='Any language'||item.languages.includes(language.value))&&(!topic.value||topic.value==='Any topic'||item.topics.includes(topic.value))&&(!availability.value||availability.value==='Any time'||item.availability.includes(availability.value))&&(!only.checked||item.university===uni.value));grid.innerHTML=found.length?found.map(item=>`<div class="buddy-card"><div class="flex items-center gap-3 mb-4"><div class="buddy-avatar">${item.avatar}</div><div><div class="buddy-name">${item.name}</div><div class="buddy-uni">🎓 ${item.university} · ${item.degree}</div><div class="buddy-rating">★ ${item.rating} (${item.reviews} reviews)</div></div></div><div class="buddy-languages mb-2">📍 ${item.city}</div><div class="buddy-languages mb-3">🌐 ${item.languages.join(' · ')}</div><div class="buddy-tags">${item.topics.map(topicName=>`<span class="buddy-tag">${topicName}</span>`).join('')}</div><div class="mt-4 pt-4 border-t"><div class="text-xs text-muted mb-3">"${item.bio}"</div><a href="messages.html?buddy=${item.id}" class="btn btn-primary btn-sm btn-full">💬 Message</a></div></div>`).join(''):'<div class="card p-8 text-center" style="grid-column:1/-1"><h2 class="text-xl font-bold mb-2">No buddies found</h2><p class="text-sm text-muted">Try another filter.</p></div>';};[uni,city,language,topic,availability,only].forEach(input=>input&&input.addEventListener('change',render));window.applyBuddyFilters=render;render();}
+  function initCommunity(){const layout=document.querySelector('.community-layout');if(!layout)return;const feed=layout.querySelector(':scope > div'),search=feed.querySelector('input'),category=feed.querySelector('select');feed.querySelectorAll('.question-card').forEach(card=>card.parentElement.style.display='none');const title=document.querySelector('.page-title'),subtitle=document.querySelector('.page-subtitle'),picker=document.createElement('select');picker.className='form-select mt-3';picker.innerHTML='<option value="">Select a university community</option>'+communities.map(item=>`<option value="${item.id}">${item.university} - ${item.city}</option>`).join('');title.parentElement.appendChild(picker);const render=()=>{const chosen=communities.find(item=>item.id===state.selectedCommunity);title.textContent=chosen?`${chosen.university} Community`:'Choose a university community';subtitle.textContent=chosen?`${chosen.students} students · ${chosen.city}, France`:'Select a university to view its student community';picker.value=state.selectedCommunity||'';const topic=category.value==='Admin / CAF'?'CAF':category.value==='Food & Shopping'?'Shopping':category.value,term=search.value.toLowerCase(),found=questions.filter(item=>(!topic||topic==='All categories'||item.topic===topic)&&(!chosen||item.city==='All cities'||item.city===chosen.city)&&`${item.title} ${item.body}`.toLowerCase().includes(term));let holder=feed.querySelector('[data-question-feed]');if(!holder){holder=document.createElement('div');holder.dataset.questionFeed='true';feed.appendChild(holder);}holder.innerHTML=found.length?found.map(item=>`<div class="question-card"><div class="flex gap-4"><div class="question-votes"><div class="vote-count">${item.votes}</div><div class="vote-label">votes</div></div><div style="flex:1"><div class="question-title"><a href="#">${esc(item.title)}</a></div><p class="text-sm text-muted mt-2 mb-3">${esc(item.body)}</p><div class="question-meta"><span class="badge badge-blue">${item.topic}</span><span>${item.city}</span><span>💬 1 answer</span><span class="text-success font-semi">✓ Answered</span></div></div></div><div class="mt-4 p-4" style="background:var(--color-success-light);border-left:3px solid var(--color-success)"><div class="text-xs font-bold text-success mb-2">✓ Best answer</div><p class="text-sm">${esc(item.answer)}</p></div></div>`).join(''):'<div class="card p-8 text-center"><h2 class="text-xl font-bold mb-2">No questions found</h2><p class="text-sm text-muted">Try another topic or search phrase.</p></div>';};picker.addEventListener('change',()=>{state.selectedCommunity=picker.value||null;save();render();});search.addEventListener('input',render);category.addEventListener('change',render);render();}
+  function initCommunityPills(){const layout=document.querySelector('.community-layout');if(!layout)return;const category=layout.querySelector('select');if(!category)return;const topicMap={'All topics':'All categories','Accommodation':'Accommodation','Transport':'Transport','Banking':'Banking','CAF':'Admin / CAF','University':'University','Shopping':'Food & Shopping','Food':'Food & Shopping'};layout.querySelectorAll('.pill-filter-bar .pill-filter').forEach(pill=>pill.addEventListener('click',()=>{const label=pill.textContent.replace(/[^A-Za-z /]/g,'').trim();const topic=topicMap[label]||'All categories';category.value=topic;layout.querySelectorAll('.pill-filter-bar .pill-filter').forEach(item=>item.classList.remove('active'));pill.classList.add('active');category.dispatchEvent(new Event('change'));}));}
+  function initOnboarding(){const name=document.getElementById('ob-name');if(!name)return;name.value='';const email=document.createElement('input');email.className='form-input';email.type='email';email.id='ob-email';email.placeholder='you@example.com';const group=document.createElement('div');group.className='form-group mb-4';group.innerHTML='<label class="form-label">Email</label>';group.appendChild(email);name.parentElement.after(group);const pass=document.createElement('input');pass.className='form-input';pass.type='password';pass.id='ob-password';pass.placeholder='Create a password';const passGroup=document.createElement('div');passGroup.className='form-group mb-4';passGroup.innerHTML='<label class="form-label">Password</label>';passGroup.appendChild(pass);group.after(passGroup);window.finishOnboarding=()=>{if(!name.value.trim()||!email.value.trim()||!pass.value)return toast('Enter your name, email and password','error');Bookare.register({name:name.value.trim(),email:email.value.trim(),password:pass.value,city:document.getElementById('ob-city')?.value||'',university:document.getElementById('ob-uni')?.value||''});location.href='dashboard.html';};}
+  function initDashboard(){const welcome=document.querySelector('.dashboard-layout')?.previousElementSibling;if(!welcome)return;const person=current(),name=welcome.querySelector('div[style*="font-size:var(--font-size-2xl)"]'),details=welcome.querySelector('div[style*="opacity:0.8"]');if(name)name.textContent=person?person.name:'Welcome to Bookare';if(details)details.textContent=person?`🎓 ${person.university||'Choose a university'} · ${person.city||'Choose a city'}`:'Create an account to track your housing journey';const app=state.applications[key()],card=[...document.querySelectorAll('.card')].find(el=>el.textContent.includes('Active application'));if(card&&!app)card.innerHTML='<div class="card-body text-center"><h2 class="text-lg font-bold mb-2">No application yet</h2><p class="text-sm text-muted mb-4">Choose a home and submit an application when you are ready.</p><a href="search.html" class="btn btn-primary">Start application</a></div>';const stats=[...document.querySelectorAll('.landlord-stat-value')];if(stats[0])stats[0].textContent=favorites().length;if(stats[1])stats[1].textContent=app?'1':'0';}
+  function initShortlist(){const grid=document.getElementById('shortlist-grid');if(!grid)return;const found=properties.filter(item=>favorites().includes(item.id));grid.innerHTML=found.length?found.map(item=>`<div class="shortlist-card"><div class="shortlist-card-media"><div class="property-card-img-placeholder" style="height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">${item.image}</div><button class="btn-icon-circle" data-favorite="${item.id}">✕</button></div><div class="shortlist-card-body"><div class="price-main">€${item.rent} <span>/ month</span></div><h3 class="shortlist-title">${item.name}</h3><div class="shortlist-loc">📍 ${item.area}, ${item.city}</div><div class="text-xs text-muted mb-4">${item.surface} m² · ${item.amenities.join(' · ')}</div><div class="shortlist-card-footer"><a href="property.html?id=${item.id}" class="btn btn-secondary btn-sm flex-1">View details</a><a href="application.html?id=${item.id}" class="btn btn-primary btn-sm flex-1">Apply now</a></div></div></div>`).join(''):'<div class="card p-8 text-center" style="grid-column:1/-1"><h2 class="text-xl font-bold mb-2">No favorited home yet</h2><p class="text-sm text-muted mb-4">Save a home to see it here.</p><a href="search.html" class="btn btn-primary">Browse accommodations</a></div>';bindFavorites(grid);}
+  function initMessages(){const list=document.getElementById('conv-list');if(!list||state.messages[key()]?.length)return;list.innerHTML='<div class="p-6 text-center text-sm text-muted">No messages yet<br>Your conversations will appear here.</div>';const stream=document.getElementById('messages-stream');if(stream)stream.innerHTML='<div class="text-center text-sm text-muted p-8">No messages yet<br>Your conversations will appear here.</div>';}
+  function initApplication(){const main=document.querySelector('main.container.py-8');if(!main||!location.pathname.endsWith('application.html'))return;const app=state.applications[key()],selected=findProperty(new URLSearchParams(location.search).get('id'))||findProperty(app?.propertyId)||properties[0];if(app){main.innerHTML=`<div class="card p-8"><span class="badge badge-yellow mb-3">${app.status}</span><h1 class="text-2xl font-bold mb-2">Application submitted</h1><p class="text-sm text-muted mb-6">${esc(findProperty(app.propertyId).name)} · Submitted ${new Date(app.submittedAt).toLocaleDateString()}</p><a href="dashboard.html" class="btn btn-primary">View dashboard</a></div>`;}else{main.innerHTML=`<div class="card p-8 text-center"><h1 class="text-2xl font-bold mb-3">Start your application</h1><p class="text-sm text-muted mb-6">Submit your dossier for ${esc(selected.name)} when you are ready.</p><button class="btn btn-primary" id="submit-application">Submit application</button></div>`;document.getElementById('submit-application').onclick=()=>{Bookare.apply(selected.id);toast('Application submitted','success');location.reload();};}}
+  function initSignIn(){if(location.pathname.endsWith('onboarding.html')&&new URLSearchParams(location.search).get('mode')==='signin'){const step=document.getElementById('ob-step-1');if(step){step.innerHTML='<h2 class="onboarding-step-title">Welcome back</h2><p class="onboarding-step-desc">Sign in to access your Bookare profile and saved homes.</p><div class="form-group mb-4"><label class="form-label">Email</label><input class="form-input" id="signin-email" type="email" placeholder="you@example.com"></div><div class="form-group mb-6"><label class="form-label">Password</label><input class="form-input" id="signin-password" type="password" placeholder="Your password"></div><button class="btn btn-primary btn-full" id="signin-submit">Sign in</button><p class="text-center text-sm mt-4"><a href="onboarding.html">Create an account</a></p>';document.getElementById('signin-submit').onclick=()=>{const account=state.users.find(item=>item.email===document.getElementById('signin-email').value.trim()&&item.password===document.getElementById('signin-password').value);if(!account)return toast('Email or password is incorrect','error');state.currentUserId=account.id;save();location.href='dashboard.html';};}}if(!current())document.querySelectorAll('a[href="dashboard.html"]').forEach(link=>link.href='onboarding.html?mode=signin');}
+  document.addEventListener('DOMContentLoaded',()=>{nav();initSearch();initBuddies();initCommunity();initCommunityPills();initOnboarding();initDashboard();initShortlist();initMessages();initApplication();initSignIn();const buddyGrid=document.querySelector('.grid.grid-3');const buddySummary=document.querySelector('.section .container > div:first-child strong');if(buddyGrid&&buddySummary){const updateBuddySummary=()=>{buddySummary.textContent=`${buddyGrid.querySelectorAll('.buddy-card').length} buddies`;};document.querySelectorAll('#buddy-uni,.form-group select,input[type="checkbox"]').forEach(control=>control.addEventListener('change',updateBuddySummary));updateBuddySummary();}});
 })();
-
-// ===================== TABS =====================
-function initTabs(container) {
-  const btns = container.querySelectorAll('.tab-btn');
-  const contents = container.querySelectorAll('.tab-content');
-  btns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = btn.dataset.tab;
-      btns.forEach(b => b.classList.remove('active'));
-      contents.forEach(c => c.classList.remove('active'));
-      btn.classList.add('active');
-      const content = container.querySelector(`[data-tab-content="${target}"]`);
-      if (content) content.classList.add('active');
-    });
-  });
-  // Activate first
-  if (btns[0]) btns[0].click();
-}
-document.querySelectorAll('[data-tabs]').forEach(initTabs);
-
-// ===================== SHORTLIST (localStorage) =====================
-const SHORTLIST_KEY = 'bookare_shortlist';
-
-function getShortlist() {
-  try { return JSON.parse(localStorage.getItem(SHORTLIST_KEY)) || []; }
-  catch { return []; }
-}
-function saveShortlist(list) {
-  localStorage.setItem(SHORTLIST_KEY, JSON.stringify(list));
-}
-function isShortlisted(id) {
-  return getShortlist().includes(String(id));
-}
-function toggleShortlist(id) {
-  id = String(id);
-  let list = getShortlist();
-  if (list.includes(id)) {
-    list = list.filter(i => i !== id);
-    showToast('Removed from shortlist', 'default');
-  } else {
-    list.push(id);
-    showToast('Added to shortlist ♡', 'success');
-  }
-  saveShortlist(list);
-  return list.includes(id);
-}
-
-// Bind all shortlist buttons
-document.querySelectorAll('[data-shortlist]').forEach(btn => {
-  const id = btn.dataset.shortlist;
-  if (isShortlisted(id)) btn.classList.add('active');
-  btn.addEventListener('click', (e) => {
-    e.preventDefault(); e.stopPropagation();
-    const active = toggleShortlist(id);
-    btn.classList.toggle('active', active);
-    // Update icon
-    const icon = btn.querySelector('.shortlist-icon');
-    if (icon) icon.textContent = active ? '♥' : '♡';
-  });
-});
-
-// ===================== TOAST =====================
-let toastContainer = document.querySelector('.toast-container');
-if (!toastContainer) {
-  toastContainer = document.createElement('div');
-  toastContainer.className = 'toast-container';
-  document.body.appendChild(toastContainer);
-}
-
-function showToast(message, type = 'default', duration = 3000) {
-  const toast = document.createElement('div');
-  toast.className = `toast${type !== 'default' ? ' ' + type : ''}`;
-  const icons = { success: '✓', error: '✕', default: 'ℹ' };
-  toast.innerHTML = `<span>${icons[type] || ''}</span> ${message}`;
-  toastContainer.appendChild(toast);
-  setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateX(20px)';
-    toast.style.transition = 'all 0.3s ease';
-    setTimeout(() => toast.remove(), 300);
-  }, duration);
-}
-
-// ===================== MODAL =====================
-function openModal(id) {
-  const modal = document.getElementById(id);
-  if (modal) {
-    modal.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-}
-function closeModal(id) {
-  const modal = document.getElementById(id);
-  if (modal) {
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-}
-document.querySelectorAll('[data-modal-open]').forEach(btn => {
-  btn.addEventListener('click', () => openModal(btn.dataset.modalOpen));
-});
-document.querySelectorAll('[data-modal-close]').forEach(btn => {
-  btn.addEventListener('click', () => closeModal(btn.dataset.modalClose));
-});
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) { overlay.style.display = 'none'; document.body.style.overflow = ''; }
-  });
-});
-
-// ===================== SMOOTH SCROLL =====================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
-
-// ===================== ANIMATION ON SCROLL =====================
-if ('IntersectionObserver' in window) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-}
-
-// ===================== RANGE SLIDERS =====================
-document.querySelectorAll('.range-with-value').forEach(wrap => {
-  const input = wrap.querySelector('input[type="range"]');
-  const display = wrap.querySelector('.range-value-display');
-  if (input && display) {
-    const prefix = display.dataset.prefix || '';
-    const suffix = display.dataset.suffix || '';
-    input.addEventListener('input', () => {
-      display.textContent = prefix + Number(input.value).toLocaleString() + suffix;
-    });
-  }
-});
-
-// ===================== PILL FILTERS =====================
-document.querySelectorAll('.pill-filter-bar').forEach(bar => {
-  const multi = bar.dataset.multi === 'true';
-  bar.querySelectorAll('.pill-filter').forEach(pill => {
-    pill.addEventListener('click', () => {
-      if (!multi) bar.querySelectorAll('.pill-filter').forEach(p => p.classList.remove('active'));
-      pill.classList.toggle('active');
-    });
-  });
-});
-
-// ===================== ICONS (LUCIDE) =====================
-function initIcons() {
-  if (window.lucide && typeof window.lucide.createIcons === 'function') {
-    window.lucide.createIcons();
-  }
-}
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initIcons);
-} else {
-  initIcons();
-}
-window.initIcons = initIcons;
