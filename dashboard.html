@@ -20,7 +20,7 @@
     </div>
     <div class="nav-actions">
       <a href="messages.html" class="btn btn-ghost btn-sm" style="position:relative">💬 Messages <span class="notif-badge" style="display:none">0</span></a>
-      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#1D4ED8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:var(--font-size-sm);cursor:pointer" title="Student User">SU</div>
+      <a href="#profile" style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#1D4ED8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:var(--font-size-sm);cursor:pointer;text-decoration:none" title="Student Profile">KM</a>
     </div>
     <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
@@ -79,7 +79,7 @@
             <span class="dashboard-nav-icon">✉️</span> Messages <span class="notif-badge ml-auto" style="display:none">0</span>
           </a>
           <div class="dashboard-nav-group-title">Account</div>
-          <a href="#" class="dashboard-nav-item">
+          <a href="#profile" class="dashboard-nav-item">
             <span class="dashboard-nav-icon">👤</span> Profile
           </a>
           <a href="#" class="dashboard-nav-item">
@@ -204,6 +204,34 @@
             <h2 class="text-lg font-bold mb-2">No buddy connected yet</h2>
             <p class="text-sm text-muted mb-4">Connect with a senior student at your university for free tips on housing, CAF, and settling in.</p>
             <a href="buddies.html" class="btn btn-primary btn-sm">Find a student buddy</a>
+          </div>
+        </div>
+
+        <!-- Student Profile -->
+        <div class="card mt-6" id="profile">
+          <div class="card-body">
+            <div class="flex items-center justify-between mb-4">
+              <h2 style="font-size:var(--font-size-lg);font-weight:700">👤 Student Profile</h2>
+              <span class="badge badge-success">✓ Active Profile</span>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:var(--space-4);background:var(--slate-50);padding:var(--space-4);border-radius:var(--radius-lg)">
+              <div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">Full Name</div>
+                <div style="font-weight:700;color:var(--color-text);margin-top:2px" id="profile-name">Kavin M D</div>
+              </div>
+              <div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">University / Destination</div>
+                <div style="font-weight:700;color:var(--color-text);margin-top:2px" id="profile-uni">Audencia Business School · Nantes</div>
+              </div>
+              <div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">Relocation Status</div>
+                <div style="font-weight:700;color:var(--color-text);margin-top:2px">Incoming International Student (France)</div>
+              </div>
+              <div>
+                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.06em">Rental Dossier Health</div>
+                <div style="font-weight:700;color:var(--color-primary);margin-top:2px" id="profile-dossier">Ready to Apply</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

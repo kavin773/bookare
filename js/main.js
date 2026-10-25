@@ -59,7 +59,7 @@
   state.selectedCommunity = state.selectedCommunity || null;
 
   const save = () => localStorage.setItem(KEY, JSON.stringify(state));
-  const current = () => state.users.find(item => item.id === state.currentUserId) || null;
+  const current = () => state.users.find(item => item.id === state.currentUserId) || { id: 'u-default', name: 'Kavin M D', email: 'kavin@example.com', city: 'Nantes', university: 'Audencia Business School' };
   const key = () => state.currentUserId || 'guest';
   const favorites = () => state.favorites[key()] || [];
   const findProperty = id => properties.find(item => item.id === String(id));
@@ -413,13 +413,17 @@
 
     // User greeting
     const welcome = document.querySelector('.dashboard-layout')?.previousElementSibling;
+    const person = current();
     if (welcome) {
-      const person = current();
       const nameEl = welcome.querySelector('div[style*="font-size:var(--font-size-2xl)"]');
       const detailsEl = welcome.querySelector('div[style*="opacity:0.8"]');
       if (nameEl) nameEl.textContent = person ? person.name : 'Welcome to Bookare';
       if (detailsEl) detailsEl.textContent = person ? `🎓 ${person.university || 'Audencia Business School'} · ${person.city || 'Nantes'}` : 'Track your French student housing journey in real-time.';
     }
+    const profileName = document.getElementById('profile-name');
+    if (profileName) profileName.textContent = person ? person.name : 'Kavin M D';
+    const profileUni = document.getElementById('profile-uni');
+    if (profileUni) profileUni.textContent = person ? `${person.university || 'Audencia Business School'} · ${person.city || 'Nantes'}` : 'Audencia Business School · Nantes';
 
     // Active Application Card
     const appCard = document.getElementById('dashboard-application-card') || [...document.querySelectorAll('.card')].find(el => el.textContent.includes('Active application'));
@@ -1331,42 +1335,10 @@
   }
 
   function initOnboarding() {
-    const name = document.getElementById('ob-name');
-    if (!name) return;
-    name.value = '';
-    const email = document.createElement('input');
-    email.className = 'form-input';
-    email.type = 'email';
-    email.id = 'ob-email';
-    email.placeholder = 'you@example.com';
-    const group = document.createElement('div');
-    group.className = 'form-group mb-4';
-    group.innerHTML = '<label class="form-label">Email</label>';
-    group.appendChild(email);
-    name.parentElement.after(group);
-
-    const pass = document.createElement('input');
-    pass.className = 'form-input';
-    pass.type = 'password';
-    pass.id = 'ob-password';
-    pass.placeholder = 'Create a password';
-    const passGroup = document.createElement('div');
-    passGroup.className = 'form-group mb-4';
-    passGroup.innerHTML = '<label class="form-label">Password</label>';
-    passGroup.appendChild(pass);
-    group.after(passGroup);
-
-    window.finishOnboarding = () => {
-      if (!name.value.trim() || !email.value.trim() || !pass.value) return toast('Enter your name, email and password', 'error');
-      Bookare.register({
-        name: name.value.trim(),
-        email: email.value.trim(),
-        password: pass.value,
-        city: document.getElementById('ob-city')?.value || '',
-        university: document.getElementById('ob-uni')?.value || ''
-      });
-      location.href = 'dashboard.html';
-    };
+    if (location.pathname.endsWith('onboarding.html')) {
+      location.replace('dashboard.html');
+      return;
+    }
   }
 
   function initArrival() {
@@ -1431,29 +1403,10 @@
   }
 
   function initSignIn() {
-    if (location.pathname.endsWith('onboarding.html') && new URLSearchParams(location.search).get('mode') === 'signin') {
-      const step = document.getElementById('ob-step-1');
-      if (step) {
-        step.innerHTML = `<h2 class="onboarding-step-title">Welcome back</h2>
-          <p class="onboarding-step-desc">Sign in to access your Bookare profile and saved homes.</p>
-          <div class="form-group mb-4"><label class="form-label">Email</label><input class="form-input" id="signin-email" type="email" placeholder="you@example.com"></div>
-          <div class="form-group mb-6"><label class="form-label">Password</label><input class="form-input" id="signin-password" type="password" placeholder="Your password"></div>
-          <button class="btn btn-primary btn-full" id="signin-submit">Sign in</button>
-          <p class="text-center text-sm mt-4"><a href="onboarding.html">Create an account</a></p>`;
-        document.getElementById('signin-submit').onclick = () => {
-          const account = state.users.find(item => item.email === document.getElementById('signin-email').value.trim() && item.password === document.getElementById('signin-password').value);
-          if (!account) return toast('Email or password is incorrect', 'error');
-          state.currentUserId = account.id;
-          save();
-          location.href = 'dashboard.html';
-        };
-      }
-    }
-    if (!current()) {
-      document.querySelectorAll('a[href="dashboard.html"]').forEach(link => {
-        link.href = 'onboarding.html?mode=signin';
-      });
-    }
+    // Direct access to profile / dashboard without login front end
+    document.querySelectorAll('a[href*="onboarding.html"]').forEach(link => {
+      link.href = 'dashboard.html';
+    });
   }
 
   document.addEventListener('DOMContentLoaded', () => {
