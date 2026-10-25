@@ -37,7 +37,7 @@
     <div class="nav-links">
       <a href="landlord.html" class="nav-link active">Dashboard</a>
       <a href="#properties" class="nav-link">My Properties</a>
-      <a href="#applications" class="nav-link">Applications (4)</a>
+      <a href="#applications" class="nav-link">Applications (<span id="landlord-nav-app-count">0</span>)</a>
       <a href="list-property.html" class="nav-link">List Property</a>
     </div>
     <div class="nav-actions">
@@ -55,7 +55,7 @@
       <div>
         <div class="tag-pill mb-2">👤 Espace Propriétaire / Landlord Hub</div>
         <h1 class="page-title">Bonjour, Pierre Dupont</h1>
-        <p class="text-sm text-muted">You have 3 active properties in Nantes and 4 pending student applications to review.</p>
+        <p class="text-sm text-muted" id="landlord-header-summary">You have 3 active properties in Nantes and 0 pending student applications to review.</p>
       </div>
       <div class="flex gap-3">
         <a href="list-property.html" class="btn btn-primary btn-sm">
@@ -87,7 +87,7 @@
 
     <div class="landlord-stat-card">
       <div class="landlord-stat-icon">📥</div>
-      <div class="landlord-stat-value">4</div>
+      <div class="landlord-stat-value" id="landlord-kpi-app-count">0</div>
       <div class="landlord-stat-label">Pending Student Dossiers</div>
       <div class="landlord-stat-change up">All with Visale guarantee</div>
     </div>
@@ -104,7 +104,7 @@
   <div data-tabs class="mb-12">
     <div class="flex gap-4 border-b border-slate-200 pb-3 mb-6">
       <button class="btn btn-ghost btn-sm tab-btn active" data-tab="tab-applicants" style="font-weight:700;">
-        📥 Pending Applications (4)
+        📥 Pending Applications (<span id="landlord-tab-app-count">0</span>)
       </button>
       <button class="btn btn-ghost btn-sm tab-btn" data-tab="tab-props" style="font-weight:700;">
         🏠 My Properties (3)
@@ -116,86 +116,11 @@
 
     <!-- TAB 1: APPLICATIONS QUEUE -->
     <div class="tab-content active" data-tab-content="tab-applicants">
-      
-      <!-- Applicant 1: Kavin M D -->
-      <div class="landlord-applicant-card" id="app-card-1">
-        <div class="flex items-center gap-4">
-          <div class="conversation-avatar" style="width:52px; height:52px; font-size:1.2rem;">KM</div>
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <h4 class="font-bold text-base text-slate-900">Kavin M D</h4>
-              <span class="badge badge-success">Dossier Score: 100%</span>
-              <span class="badge badge-blue">✓ Visale Guaranteed</span>
-            </div>
-            <p class="text-xs text-slate-600 mb-1">
-              Applied for: <strong>Bright Modern Studio near Audencia (€460/mo)</strong>
-            </p>
-            <div class="text-xs text-muted flex gap-3 flex-wrap">
-              <span>🎓 Audencia MSc Student</span>
-              <span>📅 Move-in: Sept 1, 2025</span>
-              <span>⏳ Duration: 10 Months (Mobilité)</span>
-            </div>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <button class="btn btn-secondary btn-sm" onclick="openModal('dossier-preview-modal')">Review Dossier</button>
-          <a href="messages.html?chat=rahul" class="btn btn-ghost btn-sm">Chat</a>
-          <button class="btn btn-primary btn-sm" onclick="acceptApplicant('1', 'Kavin M D')">Accept & Issue Lease</button>
-        </div>
+      <div class="card p-8 text-center" id="landlord-empty-applicants">
+        <div style="font-size:2.5rem;margin-bottom:8px">📥</div>
+        <h2 class="text-lg font-bold mb-2">No applications yet</h2>
+        <p class="text-sm text-muted">No pending student applications to review at this time.</p>
       </div>
-
-      <!-- Applicant 2: Elena Morales -->
-      <div class="landlord-applicant-card" id="app-card-2">
-        <div class="flex items-center gap-4">
-          <div class="conversation-avatar" style="width:52px; height:52px; font-size:1.2rem; background:linear-gradient(135deg, #EC4899, #BE185D);">EM</div>
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <h4 class="font-bold text-base text-slate-900">Elena Morales</h4>
-              <span class="badge badge-success">Dossier Score: 95%</span>
-              <span class="badge badge-blue">✓ Visale Guaranteed</span>
-            </div>
-            <p class="text-xs text-slate-600 mb-1">
-              Applied for: <strong>Bright Modern Studio near Audencia (€460/mo)</strong>
-            </p>
-            <div class="text-xs text-muted flex gap-3 flex-wrap">
-              <span>🎓 Sciences Po Exchange</span>
-              <span>📅 Move-in: Sept 1, 2025</span>
-              <span>⏳ Duration: 6 Months</span>
-            </div>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Elena\'s dossier','default')">Review Dossier</button>
-          <button class="btn btn-primary btn-sm" onclick="acceptApplicant('2', 'Elena Morales')">Accept & Issue Lease</button>
-        </div>
-      </div>
-
-      <!-- Applicant 3: Lucas Weber -->
-      <div class="landlord-applicant-card" id="app-card-3">
-        <div class="flex items-center gap-4">
-          <div class="conversation-avatar" style="width:52px; height:52px; font-size:1.2rem; background:linear-gradient(135deg, #F59E0B, #D97706);">LW</div>
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <h4 class="font-bold text-base text-slate-900">Lucas Weber</h4>
-              <span class="badge badge-success">Dossier Score: 95%</span>
-              <span class="badge badge-blue">✓ Visale Guaranteed</span>
-            </div>
-            <p class="text-xs text-slate-600 mb-1">
-              Applied for: <strong>Sunny Coliving Room — Petit Port (€390/mo)</strong>
-            </p>
-            <div class="text-xs text-muted flex gap-3 flex-wrap">
-              <span>🎓 Université de Nantes Erasmus</span>
-              <span>📅 Move-in: Sept 15, 2025</span>
-              <span>⏳ Duration: 9 Months</span>
-            </div>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <button class="btn btn-secondary btn-sm" onclick="showToast('Viewing Lucas\'s dossier','default')">Review Dossier</button>
-          <button class="btn btn-primary btn-sm" onclick="acceptApplicant('3', 'Lucas Weber')">Accept & Issue Lease</button>
-        </div>
-      </div>
-
     </div>
 
     <!-- TAB 2: MY PROPERTIES -->
@@ -205,7 +130,7 @@
         <!-- Property 1 -->
         <div class="card bg-white overflow-hidden">
           <div style="height:160px; background:var(--slate-200); position:relative;">
-            <svg viewBox="0 0 400 240" fill="none" style="width:100%;height:100%"><rect width="400" height="240" fill="#E2E8F0"/><rect x="40" y="40" width="320" height="160" rx="8" fill="#CBD5E1"/><rect x="60" y="80" width="120" height="90" rx="4" fill="#3B82F6"/></svg>
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80" alt="Bright Modern Studio near Audencia" style="width:100%;height:100%;object-fit:cover" loading="lazy">
             <span class="badge badge-success" style="position:absolute; top:12px; left:12px;">Active · 2 Applications</span>
           </div>
           <div class="p-5">
@@ -222,7 +147,7 @@
         <!-- Property 2 -->
         <div class="card bg-white overflow-hidden">
           <div style="height:160px; background:var(--slate-200); position:relative;">
-            <svg viewBox="0 0 400 240" fill="none" style="width:100%;height:100%"><rect width="400" height="240" fill="#E2E8F0"/><rect x="40" y="40" width="320" height="160" rx="8" fill="#CBD5E1"/><rect x="180" y="80" width="120" height="90" rx="4" fill="#10B981"/></svg>
+            <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=800&q=80" alt="Michelet Student Residence Studio" style="width:100%;height:100%;object-fit:cover" loading="lazy">
             <span class="badge badge-blue" style="position:absolute; top:12px; left:12px;">Occupied until June 2026</span>
           </div>
           <div class="p-5">
@@ -239,7 +164,7 @@
         <!-- Property 3 -->
         <div class="card bg-white overflow-hidden">
           <div style="height:160px; background:var(--slate-200); position:relative;">
-            <svg viewBox="0 0 400 240" fill="none" style="width:100%;height:100%"><rect width="400" height="240" fill="#E2E8F0"/><rect x="40" y="40" width="320" height="160" rx="8" fill="#CBD5E1"/><rect x="100" y="80" width="150" height="90" rx="4" fill="#8B5CF6"/></svg>
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=800&q=80" alt="Sunny Coliving Room — Petit Port" style="width:100%;height:100%;object-fit:cover" loading="lazy">
             <span class="badge badge-success" style="position:absolute; top:12px; left:12px;">Active · 1 Application</span>
           </div>
           <div class="p-5">

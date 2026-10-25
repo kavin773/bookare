@@ -264,11 +264,11 @@
 
     <!-- Filter Pills -->
     <div class="pill-filter-bar mt-4" data-multi="false">
-      <button class="pill-filter active" onclick="filterShortlist('all')">All saved (<span id="count-all">4</span>)</button>
-      <button class="pill-filter" onclick="filterShortlist('audencia')">Near Audencia (3)</button>
-      <button class="pill-filter" onclick="filterShortlist('under500')">Under €500 (2)</button>
-      <button class="pill-filter" onclick="filterShortlist('studio')">Studios (3)</button>
-      <button class="pill-filter" onclick="filterShortlist('shared')">Shared flats (1)</button>
+      <button class="pill-filter active" onclick="filterShortlist('all')">All saved (<span id="count-all">0</span>)</button>
+      <button class="pill-filter" onclick="filterShortlist('audencia')">Near Audencia (<span id="count-audencia">0</span>)</button>
+      <button class="pill-filter" onclick="filterShortlist('under500')">Under €500 (<span id="count-under500">0</span>)</button>
+      <button class="pill-filter" onclick="filterShortlist('studio')">Studios (<span id="count-studio">0</span>)</button>
+      <button class="pill-filter" onclick="filterShortlist('shared')">Shared flats (<span id="count-shared">0</span>)</button>
     </div>
   </div>
 </div>
@@ -277,219 +277,16 @@
 <main class="container py-8">
 
   <!-- Shortlist Grid -->
-  <div class="shortlist-grid" id="shortlist-grid">
+  <div class="shortlist-grid" id="shortlist-grid" style="display:none"></div>
 
-    <!-- Card 1 -->
-    <div class="shortlist-card" data-prop-id="1" data-cat="audencia under500 studio">
-      <div class="shortlist-card-media">
-        <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-          <rect width="400" height="240" fill="#E2E8F0"/>
-          <rect x="20" y="20" width="360" height="200" rx="8" fill="#CBD5E1"/>
-          <!-- Cozy studio room illustration -->
-          <path d="M40 180 L220 180 L220 120 L40 120 Z" fill="#94A3B8"/>
-          <rect x="50" y="110" width="160" height="30" rx="4" fill="#3B82F6"/>
-          <rect x="60" y="100" width="45" height="20" rx="3" fill="#FFFFFF"/>
-          <rect x="115" y="100" width="45" height="20" rx="3" fill="#FFFFFF"/>
-          <rect x="250" y="100" width="110" height="80" rx="6" fill="#F8FAFC" stroke="#94A3B8" stroke-width="2"/>
-          <line x1="305" y1="100" x2="305" y2="180" stroke="#94A3B8" stroke-width="2"/>
-          <circle cx="340" cy="50" r="18" fill="#FEF08A"/>
-          <rect x="250" y="190" width="90" height="10" rx="2" fill="#64748B"/>
-        </svg>
-        <div class="shortlist-badge-top">
-          <span class="badge badge-blue">✓ Verified</span>
-          <span class="badge badge-success">Top rated</span>
-        </div>
-        <div class="shortlist-actions-top">
-          <label class="compare-checkbox-pill" title="Select to compare">
-            <input type="checkbox" class="compare-check" data-id="1" onchange="updateCompareBar()" checked /> Compare
-          </label>
-          <button class="btn-icon-circle" onclick="removeItem('1')" title="Remove from shortlist">✕</button>
-        </div>
-      </div>
-      <div class="shortlist-card-body">
-        <div class="alert-banner price-drop">
-          <span>📉</span> Price dropped by €20 this week!
-        </div>
-        <div class="price-row">
-          <div class="price-main">€460 <span>/ month</span></div>
-          <div class="price-total-est">Est. total: €510/mo</div>
-        </div>
-        <h3 class="shortlist-title">Bright Modern Studio near Audencia</h3>
-        <div class="shortlist-loc">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Saint-Félix, Nantes · 1.2 km from Audencia
-        </div>
-        <div class="commute-strip">
-          <div class="commute-item">🚶 <strong>12 min</strong> walk</div>
-          <div class="commute-item">🚲 <strong>4 min</strong> cycle</div>
-          <div class="commute-item">🚌 <strong>8 min</strong> Tram 2</div>
-        </div>
-        <div class="flex gap-2 mb-4 text-xs text-muted">
-          <span>✓ 18 m²</span> • <span>✓ Furnished</span> • <span>✓ High-speed WiFi</span> • <span>✓ Private bathroom</span>
-        </div>
-        <div class="shortlist-card-footer">
-          <a href="property.html?id=1" class="btn btn-secondary btn-sm flex-1">View details</a>
-          <a href="application.html?id=1" class="btn btn-primary btn-sm flex-1">Apply now</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="shortlist-card" data-prop-id="2" data-cat="audencia studio">
-      <div class="shortlist-card-media">
-        <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-          <rect width="400" height="240" fill="#E2E8F0"/>
-          <rect x="20" y="20" width="360" height="200" rx="8" fill="#CBD5E1"/>
-          <!-- Student residence room -->
-          <rect x="40" y="80" width="130" height="110" rx="4" fill="#64748B"/>
-          <rect x="50" y="130" width="110" height="55" rx="3" fill="#3B82F6"/>
-          <rect x="200" y="110" width="160" height="20" rx="2" fill="#475569"/>
-          <rect x="220" y="80" width="40" height="30" rx="2" fill="#10B981"/>
-          <rect x="280" y="130" width="40" height="55" rx="3" fill="#94A3B8"/>
-        </svg>
-        <div class="shortlist-badge-top">
-          <span class="badge badge-blue">✓ Verified</span>
-          <span class="badge badge-gray">CROUS Partner</span>
-        </div>
-        <div class="shortlist-actions-top">
-          <label class="compare-checkbox-pill" title="Select to compare">
-            <input type="checkbox" class="compare-check" data-id="2" onchange="updateCompareBar()" checked /> Compare
-          </label>
-          <button class="btn-icon-circle" onclick="removeItem('2')" title="Remove from shortlist">✕</button>
-        </div>
-      </div>
-      <div class="shortlist-card-body">
-        <div class="alert-banner low-stock">
-          <span>⚡</span> Only 2 rooms left for Sept 2025
-        </div>
-        <div class="price-row">
-          <div class="price-main">€520 <span>/ month</span></div>
-          <div class="price-total-est">Est. total: €565/mo</div>
-        </div>
-        <h3 class="shortlist-title">Student Residence Michelet — Private Studio</h3>
-        <div class="shortlist-loc">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Michelet / Petit-Port, Nantes · 850m from Audencia
-        </div>
-        <div class="commute-strip">
-          <div class="commute-item">🚶 <strong>9 min</strong> walk</div>
-          <div class="commute-item">🚲 <strong>3 min</strong> cycle</div>
-          <div class="commute-item">🚌 <strong>5 min</strong> bus 26</div>
-        </div>
-        <div class="flex gap-2 mb-4 text-xs text-muted">
-          <span>✓ 20 m²</span> • <span>✓ Laundry room</span> • <span>✓ Gym access</span> • <span>✓ Bike storage</span>
-        </div>
-        <div class="shortlist-card-footer">
-          <a href="property.html?id=2" class="btn btn-secondary btn-sm flex-1">View details</a>
-          <a href="application.html?id=2" class="btn btn-primary btn-sm flex-1">Apply now</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="shortlist-card" data-prop-id="3" data-cat="audencia under500 shared">
-      <div class="shortlist-card-media">
-        <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-          <rect width="400" height="240" fill="#E2E8F0"/>
-          <rect x="20" y="20" width="360" height="200" rx="8" fill="#CBD5E1"/>
-          <!-- Coliving space illustration -->
-          <rect x="40" y="100" width="320" height="90" rx="6" fill="#F8FAFC"/>
-          <rect x="60" y="120" width="90" height="50" rx="4" fill="#3B82F6"/>
-          <rect x="170" y="120" width="90" height="50" rx="4" fill="#60A5FA"/>
-          <rect x="280" y="120" width="60" height="50" rx="4" fill="#10B981"/>
-        </svg>
-        <div class="shortlist-badge-top">
-          <span class="badge badge-blue">✓ Verified</span>
-          <span class="badge badge-purple">Coliving</span>
-        </div>
-        <div class="shortlist-actions-top">
-          <label class="compare-checkbox-pill" title="Select to compare">
-            <input type="checkbox" class="compare-check" data-id="3" onchange="updateCompareBar()" /> Compare
-          </label>
-          <button class="btn-icon-circle" onclick="removeItem('3')" title="Remove from shortlist">✕</button>
-        </div>
-      </div>
-      <div class="shortlist-card-body">
-        <div class="price-row">
-          <div class="price-main">€390 <span>/ month</span></div>
-          <div class="price-total-est">Est. total: €440/mo</div>
-        </div>
-        <h3 class="shortlist-title">Cozy Private Room in 3-Bed Colocation</h3>
-        <div class="shortlist-loc">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Hauts-Pavés, Nantes · 2.4 km from Audencia
-        </div>
-        <div class="commute-strip">
-          <div class="commute-item">🚶 <strong>25 min</strong> walk</div>
-          <div class="commute-item">🚲 <strong>7 min</strong> cycle</div>
-          <div class="commute-item">🚌 <strong>12 min</strong> Tram 3</div>
-        </div>
-        <div class="flex gap-2 mb-4 text-xs text-muted">
-          <span>✓ 14 m² room</span> • <span>✓ Shared kitchen & lounge</span> • <span>✓ Balcony</span> • <span>✓ Dishwasher</span>
-        </div>
-        <div class="shortlist-card-footer">
-          <a href="property.html?id=3" class="btn btn-secondary btn-sm flex-1">View details</a>
-          <a href="application.html?id=3" class="btn btn-primary btn-sm flex-1">Apply now</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="shortlist-card" data-prop-id="4" data-cat="studio">
-      <div class="shortlist-card-media">
-        <svg viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-          <rect width="400" height="240" fill="#E2E8F0"/>
-          <rect x="20" y="20" width="360" height="200" rx="8" fill="#CBD5E1"/>
-          <!-- Central apartment illustration -->
-          <rect x="50" y="80" width="120" height="100" rx="4" fill="#334155"/>
-          <rect x="190" y="80" width="160" height="100" rx="4" fill="#E2E8F0"/>
-          <circle cx="270" cy="130" r="25" fill="#3B82F6"/>
-        </svg>
-        <div class="shortlist-badge-top">
-          <span class="badge badge-blue">✓ Verified</span>
-        </div>
-        <div class="shortlist-actions-top">
-          <label class="compare-checkbox-pill" title="Select to compare">
-            <input type="checkbox" class="compare-check" data-id="4" onchange="updateCompareBar()" /> Compare
-          </label>
-          <button class="btn-icon-circle" onclick="removeItem('4')" title="Remove from shortlist">✕</button>
-        </div>
-      </div>
-      <div class="shortlist-card-body">
-        <div class="price-row">
-          <div class="price-main">€610 <span>/ month</span></div>
-          <div class="price-total-est">Est. total: €665/mo</div>
-        </div>
-        <h3 class="shortlist-title">Modern City-Centre Studio with Kitchenette</h3>
-        <div class="shortlist-loc">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Commerce, Nantes Centre · 3.8 km from Audencia
-        </div>
-        <div class="commute-strip">
-          <div class="commute-item">🚶 <strong>42 min</strong> walk</div>
-          <div class="commute-item">🚲 <strong>14 min</strong> cycle</div>
-          <div class="commute-item">🚌 <strong>18 min</strong> Tram 2 direct</div>
-        </div>
-        <div class="flex gap-2 mb-4 text-xs text-muted">
-          <span>✓ 22 m²</span> • <span>✓ Centre-ville vibe</span> • <span>✓ Lift</span> • <span>✓ Fiber internet</span>
-        </div>
-        <div class="shortlist-card-footer">
-          <a href="property.html?id=4" class="btn btn-secondary btn-sm flex-1">View details</a>
-          <a href="application.html?id=4" class="btn btn-primary btn-sm flex-1">Apply now</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Empty State (hidden by default) -->
+  <!-- Empty State -->
   <div class="empty-state" id="empty-state" style="display:none; text-align:center; padding:var(--space-16) 0;">
     <div style="font-size: 3.5rem; margin-bottom: var(--space-4);">♡</div>
-    <h2 class="text-2xl font-bold mb-2">Your shortlist is currently empty</h2>
+    <h2 class="text-2xl font-bold mb-2">No saved accommodations yet</h2>
     <p class="text-sm text-muted max-w-md mx-auto mb-6">
       Explore verified student accommodations near your university in France and click the heart icon to save your favourites here.
     </p>
-    <a href="search.html" class="btn btn-primary btn-lg">Explore student homes in Nantes</a>
+    <a href="search.html" class="btn btn-primary btn-lg">Browse student homes</a>
   </div>
 
   <!-- Value Banner -->
@@ -506,14 +303,14 @@
 </main>
 
 <!-- Floating Compare Action Bar -->
-<div class="floating-compare-bar visible" id="floating-bar">
+<div class="floating-compare-bar" id="floating-bar" style="display:none">
   <div class="flex items-center gap-3">
-    <span class="badge badge-blue" style="background:var(--color-primary); color:white;" id="compare-counter">2 selected</span>
+    <span class="badge badge-blue" style="background:var(--color-primary); color:white;" id="compare-counter">0 selected</span>
     <span class="text-xs text-slate-200">Ready to compare rent, commute, and amenities</span>
   </div>
   <div class="flex items-center gap-3">
     <button class="btn btn-ghost btn-sm" style="color:var(--slate-400)" onclick="clearCompareSelection()">Clear</button>
-    <a href="compare.html" class="btn btn-primary btn-sm" style="background:white; color:var(--color-primary); font-weight:700;">
+    <a href="compare.html" id="floating-compare-link" class="btn btn-primary btn-sm" style="background:white; color:var(--color-primary); font-weight:700;">
       Compare Side-by-Side →
     </a>
   </div>
@@ -598,50 +395,14 @@
 <script src="js/lucide.min.js"></script><script src="js/main.js"></script>
 <script>
   function removeItem(id) {
-    const card = document.querySelector(`.shortlist-card[data-prop-id="${id}"]`);
-    if (card) {
-      card.style.opacity = '0';
-      card.style.transform = 'scale(0.95)';
-      card.style.transition = 'all 0.3s ease';
-      setTimeout(() => {
-        card.remove();
-        updateCount();
-        updateCompareBar();
-        showToast('Property removed from your shortlist', 'default');
-      }, 300);
+    if (window.Bookare) {
+      window.Bookare.toggleFavorite(id);
     }
-  }
-
-  function updateCount() {
-    const remaining = document.querySelectorAll('.shortlist-card').length;
-    document.getElementById('count-all').textContent = remaining;
-    if (remaining === 0) {
-      document.getElementById('shortlist-grid').style.display = 'none';
-      document.getElementById('empty-state').style.display = 'block';
-      document.getElementById('floating-bar').classList.remove('visible');
-    }
-  }
-
-  function filterShortlist(cat) {
-    const cards = document.querySelectorAll('.shortlist-card');
-    cards.forEach(card => {
-      if (cat === 'all' || card.dataset.cat.includes(cat)) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
-      }
-    });
   }
 
   function updateCompareBar() {
-    const checks = document.querySelectorAll('.compare-check:checked');
-    const bar = document.getElementById('floating-bar');
-    const counter = document.getElementById('compare-counter');
-    if (checks.length > 0) {
-      counter.textContent = `${checks.length} selected`;
-      bar.classList.add('visible');
-    } else {
-      bar.classList.remove('visible');
+    if (window.Bookare && window.Bookare.updateCompareBar) {
+      window.Bookare.updateCompareBar();
     }
   }
 
@@ -652,14 +413,13 @@
 
   function copyShareLink() {
     const copyText = document.getElementById('share-url');
-    copyText.select();
-    navigator.clipboard.writeText(copyText.value);
-    showToast('Shortlist link copied to clipboard!', 'success');
-    closeModal('share-modal');
+    if (copyText) {
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+      showToast('Shortlist link copied to clipboard!', 'success');
+      closeModal('share-modal');
+    }
   }
-
-  // Initial check
-  updateCompareBar();
 </script>
 </body>
 </html>

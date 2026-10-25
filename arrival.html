@@ -34,9 +34,9 @@
         <div class="mb-8">
           <div class="tag-pill mb-4">✈️ Your journey</div>
           <h1 class="page-title">My arrival in France</h1>
-          <p class="page-subtitle mt-2">Your personalised checklist for moving to Nantes. 3 of 12 tasks complete.</p>
+          <p class="page-subtitle mt-2">Your personalised checklist for moving to Nantes. <span id="arrival-done-count">0</span> of 12 tasks complete.</p>
           <div style="background:var(--slate-200);border-radius:var(--radius-full);height:10px;margin-top:var(--space-4)">
-            <div style="background:var(--color-primary);width:25%;height:100%;border-radius:var(--radius-full);transition:width 0.6s ease" id="progress-bar"></div>
+            <div style="background:var(--color-primary);width:0%;height:100%;border-radius:var(--radius-full);transition:width 0.6s ease" id="progress-bar"></div>
           </div>
         </div>
 
@@ -47,22 +47,19 @@
             Before arrival
           </div>
           <div style="display:flex;flex-direction:column;gap:var(--space-2)">
-            <div class="checklist-item done" onclick="toggleTask(this)">
-              <div class="checklist-icon">✓</div>
+            <div class="checklist-item">
+              <div class="checklist-icon"></div>
               <div style="flex:1"><span class="checklist-text">Accommodation confirmed</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Bright studio, Orvault — from 1 Sep 2025</div></div>
-              <span class="badge badge-green">Done</span>
             </div>
-            <div class="checklist-item done" onclick="toggleTask(this)">
-              <div class="checklist-icon">✓</div>
+            <div class="checklist-item">
+              <div class="checklist-icon"></div>
               <div style="flex:1"><span class="checklist-text">Contract signed and downloaded</span></div>
-              <span class="badge badge-green">Done</span>
             </div>
-            <div class="checklist-item done" onclick="toggleTask(this)">
-              <div class="checklist-icon">✓</div>
+            <div class="checklist-item">
+              <div class="checklist-icon"></div>
               <div style="flex:1"><span class="checklist-text">Connected with Buddy (Rahul Sharma)</span></div>
-              <span class="badge badge-green">Done</span>
             </div>
-            <div class="checklist-item" onclick="toggleTask(this)">
+            <div class="checklist-item">
               <div class="checklist-icon"></div>
               <div style="flex:1"><span class="checklist-text">Book flight to Nantes (NDN) or train from Paris</span><div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-top:2px">Arrive before 1 Sep 2025</div></div>
             </div>
@@ -194,25 +191,8 @@
         <div class="card">
           <div class="card-body">
             <h3 style="font-size:var(--font-size-base);font-weight:700;margin-bottom:var(--space-3)">📄 My documents</h3>
-            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
-              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
-                <span>Passport</span><span class="badge badge-green">Uploaded</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
-                <span>Visa</span><span class="badge badge-green">Uploaded</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
-                <span>Admission letter</span><span class="badge badge-green">Uploaded</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
-                <span>Proof of funds</span><span class="badge badge-green">Uploaded</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
-                <span>Guarantor doc</span><span class="badge badge-yellow">Pending</span>
-              </div>
-              <div style="display:flex;justify-content:space-between;font-size:var(--font-size-xs)">
-                <span>Insurance</span><span class="badge badge-red">Required</span>
-              </div>
+            <div id="arrival-docs-list" style="display:flex;flex-direction:column;gap:var(--space-2)">
+              <div class="text-xs text-muted py-2">No documents uploaded yet</div>
             </div>
             <a href="documents.html" class="btn btn-secondary btn-sm btn-full mt-4">Manage documents →</a>
           </div>

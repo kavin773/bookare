@@ -19,8 +19,8 @@
       <a href="community.html" class="nav-link">Community</a>
     </div>
     <div class="nav-actions">
-      <a href="messages.html" class="btn btn-ghost btn-sm" style="position:relative">💬 Messages <span class="notif-badge">3</span></a>
-      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#1D4ED8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:var(--font-size-sm);cursor:pointer" title="Priya Lakshmi">PL</div>
+      <a href="messages.html" class="btn btn-ghost btn-sm" style="position:relative">💬 Messages <span class="notif-badge" style="display:none">0</span></a>
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3B82F6,#1D4ED8);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:var(--font-size-sm);cursor:pointer" title="Student User">SU</div>
     </div>
     <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
@@ -51,7 +51,7 @@
           </a>
           <div class="dashboard-nav-group-title">Housing</div>
           <a href="shortlist.html" class="dashboard-nav-item">
-            <span class="dashboard-nav-icon">♡</span> My Shortlist <span class="notif-badge ml-auto">3</span>
+            <span class="dashboard-nav-icon">♡</span> My Shortlist <span class="notif-badge ml-auto" style="display:none">0</span>
           </a>
           <a href="#" class="dashboard-nav-item">
             <span class="dashboard-nav-icon">🔍</span> Saved searches
@@ -59,7 +59,7 @@
           <a href="application.html" class="dashboard-nav-item">
             <span class="dashboard-nav-icon">📋</span> Applications
           </a>
-          <a href="#" class="dashboard-nav-item">
+          <a href="#dashboard-bookings-card" class="dashboard-nav-item">
             <span class="dashboard-nav-icon">🔑</span> Bookings
           </a>
           <div class="dashboard-nav-group-title">My journey</div>
@@ -76,7 +76,7 @@
             <span class="dashboard-nav-icon">✈️</span> My Arrival
           </a>
           <a href="messages.html" class="dashboard-nav-item">
-            <span class="dashboard-nav-icon">✉️</span> Messages <span class="notif-badge ml-auto">3</span>
+            <span class="dashboard-nav-icon">✉️</span> Messages <span class="notif-badge ml-auto" style="display:none">0</span>
           </a>
           <div class="dashboard-nav-group-title">Account</div>
           <a href="#" class="dashboard-nav-item">
@@ -95,174 +95,101 @@
           <a href="shortlist.html" style="display:block">
             <div class="landlord-stat-card">
               <div class="landlord-stat-icon">♡</div>
-              <div class="landlord-stat-value">3</div>
+              <div class="landlord-stat-value">0</div>
               <div class="landlord-stat-label">Shortlisted homes</div>
             </div>
           </a>
           <a href="application.html" style="display:block">
             <div class="landlord-stat-card">
               <div class="landlord-stat-icon">📋</div>
-              <div class="landlord-stat-value">1</div>
+              <div class="landlord-stat-value">0</div>
               <div class="landlord-stat-label">Active application</div>
             </div>
           </a>
           <a href="documents.html" style="display:block">
             <div class="landlord-stat-card">
               <div class="landlord-stat-icon">📄</div>
-              <div class="landlord-stat-value">4/7</div>
+              <div class="landlord-stat-value">0/7</div>
               <div class="landlord-stat-label">Documents uploaded</div>
             </div>
           </a>
           <a href="arrival.html" style="display:block">
             <div class="landlord-stat-card">
               <div class="landlord-stat-icon">✅</div>
-              <div class="landlord-stat-value">3/12</div>
+              <div class="landlord-stat-value">0/12</div>
               <div class="landlord-stat-label">Arrival tasks done</div>
             </div>
           </a>
         </div>
 
         <!-- Application status -->
-        <div class="card mb-6">
-          <div class="card-body">
-            <div class="flex items-center justify-between mb-4">
-              <h2 style="font-size:var(--font-size-lg);font-weight:700">Active application</h2>
-              <a href="application.html" class="btn btn-ghost btn-sm">View →</a>
-            </div>
-            <div style="display:flex;gap:var(--space-4);align-items:center;margin-bottom:var(--space-4);padding:var(--space-4);background:var(--slate-50);border-radius:var(--radius-md)">
-              <div style="width:72px;height:56px;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">🏠</div>
-              <div style="flex:1">
-                <div style="font-weight:700;font-size:var(--font-size-sm)">Bright studio near Audencia</div>
-                <div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">Orvault, Nantes · €460/month</div>
-              </div>
-              <span class="badge badge-yellow">Landlord reviewing</span>
-            </div>
-            <div style="display:flex;gap:0;overflow-x:auto">
-              <div class="progress-step done">
-                <div class="progress-step-dot">✓</div>
-                <div class="progress-step-label">Submitted</div>
-              </div>
-              <div class="progress-line done"></div>
-              <div class="progress-step done">
-                <div class="progress-step-dot">✓</div>
-                <div class="progress-step-label">Docs reviewed</div>
-              </div>
-              <div class="progress-line active"></div>
-              <div class="progress-step active">
-                <div class="progress-step-dot">3</div>
-                <div class="progress-step-label">Landlord review</div>
-              </div>
-              <div class="progress-line"></div>
-              <div class="progress-step">
-                <div class="progress-step-dot">4</div>
-                <div class="progress-step-label">Approved</div>
-              </div>
-              <div class="progress-line"></div>
-              <div class="progress-step">
-                <div class="progress-step-dot">5</div>
-                <div class="progress-step-label">Confirmed</div>
-              </div>
-            </div>
+        <div class="card mb-6" id="dashboard-application-card">
+          <div class="card-body text-center py-8">
+            <div style="font-size:2.5rem;margin-bottom:8px">📋</div>
+            <h2 class="text-lg font-bold mb-2">No applications yet</h2>
+            <p class="text-sm text-muted mb-4">Choose a home and submit an application when you are ready.</p>
+            <a href="search.html" class="btn btn-primary btn-sm">Start application</a>
+          </div>
+        </div>
+
+        <!-- Bookings section -->
+        <div class="card mb-6" id="dashboard-bookings-card">
+          <div class="card-body text-center py-8">
+            <div style="font-size:2.5rem;margin-bottom:8px">🔑</div>
+            <h2 class="text-lg font-bold mb-2">No bookings yet</h2>
+            <p class="text-sm text-muted mb-4">When your application is accepted and lease confirmed, your booking details and key handover schedule will appear here.</p>
+            <a href="search.html" class="btn btn-secondary btn-sm">Explore accommodations</a>
           </div>
         </div>
 
         <!-- Shortlist preview + Notifications side by side -->
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin-bottom:var(--space-6)">
-          <div class="card">
-            <div class="card-body">
-              <div class="flex items-center justify-between mb-4">
-                <h2 style="font-size:var(--font-size-lg);font-weight:700">My shortlist</h2>
-                <a href="shortlist.html" class="btn btn-ghost btn-sm">View all →</a>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:var(--space-3)">
-                <div style="display:flex;gap:var(--space-3);align-items:center">
-                  <div style="width:52px;height:44px;background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0">🏠</div>
-                  <div style="flex:1"><div style="font-size:var(--font-size-sm);font-weight:600">Bright studio, Orvault</div><div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">€460/month · 27 min walk</div></div>
-                  <span class="badge badge-yellow">Applied</span>
-                </div>
-                <div style="display:flex;gap:var(--space-3);align-items:center">
-                  <div style="width:52px;height:44px;background:linear-gradient(135deg,#F0F9FF,#BAE6FD);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0">🏢</div>
-                  <div style="flex:1"><div style="font-size:var(--font-size-sm);font-weight:600">Modern studio, centre</div><div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">€510/month · 16 min walk</div></div>
-                  <span class="badge badge-gray">Saved</span>
-                </div>
-                <div style="display:flex;gap:var(--space-3);align-items:center">
-                  <div style="width:52px;height:44px;background:linear-gradient(135deg,#F0FDF4,#BBF7D0);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0">🌿</div>
-                  <div style="flex:1"><div style="font-size:var(--font-size-sm);font-weight:600">1-bed, Île de Nantes</div><div style="font-size:var(--font-size-xs);color:var(--color-text-muted)">€620/month · 10 min walk</div></div>
-                  <span class="badge badge-gray">Saved</span>
-                </div>
-              </div>
-              <a href="compare.html" class="btn btn-secondary btn-full mt-4 btn-sm">Compare all 3 →</a>
+          <div class="card" id="dashboard-shortlist-card">
+            <div class="card-body text-center py-8">
+              <div style="font-size:2.5rem;margin-bottom:8px">♡</div>
+              <h2 class="text-lg font-bold mb-2">No saved accommodations yet</h2>
+              <p class="text-sm text-muted mb-4">Explore homes and save your favorites to compare and track them here.</p>
+              <a href="search.html" class="btn btn-primary btn-sm">Browse accommodations</a>
             </div>
           </div>
-          <div class="card">
-            <div class="card-body">
-              <div class="flex items-center justify-between mb-4">
-                <h2 style="font-size:var(--font-size-lg);font-weight:700">Notifications</h2>
-                <span class="notif-badge">3</span>
-              </div>
-              <div style="display:flex;flex-direction:column">
-                <div class="notif-item unread">
-                  <div class="notif-item-icon">🏠</div>
-                  <div class="notif-item-body">
-                    <div class="notif-item-text"><strong>Landlord reviewing</strong> your application for Bright Studio, Orvault</div>
-                    <div class="notif-item-time">2 hours ago</div>
-                  </div>
-                </div>
-                <div class="notif-item unread">
-                  <div class="notif-item-icon">💬</div>
-                  <div class="notif-item-body">
-                    <div class="notif-item-text"><strong>Rahul Sharma</strong> replied to your message</div>
-                    <div class="notif-item-time">Yesterday</div>
-                  </div>
-                </div>
-                <div class="notif-item unread">
-                  <div class="notif-item-icon">🔔</div>
-                  <div class="notif-item-body">
-                    <div class="notif-item-text"><strong>New home</strong> matching your saved search appeared in Nantes</div>
-                    <div class="notif-item-time">2 days ago</div>
-                  </div>
-                </div>
-                <div class="notif-item">
-                  <div class="notif-item-icon">📄</div>
-                  <div class="notif-item-body">
-                    <div class="notif-item-text">Your <strong>proof of enrollment</strong> was successfully uploaded</div>
-                    <div class="notif-item-time">3 days ago</div>
-                  </div>
-                </div>
-              </div>
+          <div class="card" id="dashboard-notifications-card">
+            <div class="card-body text-center py-8">
+              <div style="font-size:2.5rem;margin-bottom:8px">🔔</div>
+              <h2 class="text-lg font-bold mb-2">No notifications yet</h2>
+              <p class="text-sm text-muted">You will receive updates on your applications, messages, and document verifications here.</p>
             </div>
           </div>
         </div>
 
         <!-- Arrival progress -->
-        <div class="card mb-6">
+        <div class="card mb-6" id="dashboard-arrival-card">
           <div class="card-body">
             <div class="flex items-center justify-between mb-4">
               <h2 style="font-size:var(--font-size-lg);font-weight:700">✈️ My arrival checklist</h2>
               <a href="arrival.html" class="btn btn-ghost btn-sm">Full checklist →</a>
             </div>
             <div style="background:var(--slate-100);border-radius:var(--radius-full);height:8px;margin-bottom:var(--space-2)">
-              <div style="background:var(--color-primary);width:25%;height:100%;border-radius:var(--radius-full)"></div>
+              <div style="background:var(--color-primary);width:0%;height:100%;border-radius:var(--radius-full)" id="dash-arrival-bar"></div>
             </div>
-            <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-5)">3 of 12 tasks complete</div>
-            <div style="display:flex;flex-direction:column;gap:var(--space-2)">
-              <div class="checklist-item done">
-                <div class="checklist-icon">✓</div>
+            <div style="font-size:var(--font-size-xs);color:var(--color-text-muted);margin-bottom:var(--space-5)" id="dash-arrival-text">0 of 12 tasks complete</div>
+            <div style="display:flex;flex-direction:column;gap:var(--space-2)" id="dash-arrival-list">
+              <div class="checklist-item" onclick="Bookare.toggleArrivalTask(0)">
+                <div class="checklist-icon"></div>
                 <span class="checklist-text">Accommodation confirmed</span>
               </div>
-              <div class="checklist-item done">
-                <div class="checklist-icon">✓</div>
+              <div class="checklist-item" onclick="Bookare.toggleArrivalTask(1)">
+                <div class="checklist-icon"></div>
                 <span class="checklist-text">Documents uploaded to Bookare</span>
               </div>
-              <div class="checklist-item done">
-                <div class="checklist-icon">✓</div>
-                <span class="checklist-text">Buddy connected (Rahul Sharma)</span>
+              <div class="checklist-item" onclick="Bookare.toggleArrivalTask(2)">
+                <div class="checklist-icon"></div>
+                <span class="checklist-text">Connected with Buddy (Rahul Sharma)</span>
               </div>
-              <div class="checklist-item" onclick="this.classList.toggle('done');this.querySelector('.checklist-icon').textContent=this.classList.contains('done')?'✓':'';updateProgress()">
+              <div class="checklist-item" onclick="Bookare.toggleArrivalTask(3)">
                 <div class="checklist-icon"></div>
                 <span class="checklist-text">Book flight to Nantes</span>
               </div>
-              <div class="checklist-item" onclick="this.classList.toggle('done');this.querySelector('.checklist-icon').textContent=this.classList.contains('done')?'✓':''">
+              <div class="checklist-item" onclick="Bookare.toggleArrivalTask(4)">
                 <div class="checklist-icon"></div>
                 <span class="checklist-text">Get a SIM card (Free Mobile recommended)</span>
               </div>
@@ -271,24 +198,12 @@
         </div>
 
         <!-- My buddy -->
-        <div class="card">
-          <div class="card-body">
-            <div class="flex items-center justify-between mb-4">
-              <h2 style="font-size:var(--font-size-lg);font-weight:700">My buddy</h2>
-              <a href="buddies.html" class="btn btn-ghost btn-sm">Change buddy →</a>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="buddy-avatar">RS</div>
-              <div style="flex:1">
-                <div class="buddy-name">Rahul Sharma</div>
-                <div class="buddy-uni">🎓 Audencia Business School · Nantes</div>
-                <div class="buddy-languages">🌐 English · French · Hindi</div>
-              </div>
-              <div class="flex gap-2">
-                <a href="messages.html" class="btn btn-primary btn-sm">Message</a>
-                <button class="btn btn-secondary btn-sm" onclick="openModal('book-call-modal')">Book call</button>
-              </div>
-            </div>
+        <div class="card" id="dashboard-buddy-card">
+          <div class="card-body text-center py-8">
+            <div style="font-size:2.5rem;margin-bottom:8px">🤝</div>
+            <h2 class="text-lg font-bold mb-2">No buddy connected yet</h2>
+            <p class="text-sm text-muted mb-4">Connect with a senior student at your university for free tips on housing, CAF, and settling in.</p>
+            <a href="buddies.html" class="btn btn-primary btn-sm">Find a student buddy</a>
           </div>
         </div>
       </div>

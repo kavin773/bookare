@@ -93,7 +93,7 @@
       <a href="how-it-works.html" class="nav-link">How Bookare Works</a>
     </div>
     <div class="nav-actions">
-      <a href="messages.html" class="btn btn-ghost btn-sm active" style="color:var(--color-primary)">Messages (2)</a>
+      <a href="messages.html" class="btn btn-ghost btn-sm active" style="color:var(--color-primary)">Messages</a>
       <a href="dashboard.html" class="btn btn-ghost btn-sm">My Bookare</a>
       <a href="onboarding.html" class="btn btn-primary btn-sm">Get Started</a>
     </div>
@@ -122,7 +122,7 @@
         <h2 class="font-bold text-lg text-slate-900 mb-3">Messages</h2>
         <input type="text" class="form-input text-xs mb-3" placeholder="Search conversations..." id="search-conv" oninput="filterConversations(this.value)" />
         <div class="flex gap-1">
-          <button class="badge badge-blue text-[11px] cursor-pointer" onclick="filterConvType('all')">All (3)</button>
+          <button class="badge badge-blue text-[11px] cursor-pointer" onclick="filterConvType('all')">All (<span id="all-conv-count">0</span>)</button>
           <button class="badge badge-gray text-[11px] cursor-pointer" onclick="filterConvType('buddy')">Buddies</button>
           <button class="badge badge-gray text-[11px] cursor-pointer" onclick="filterConvType('landlord')">Landlords</button>
           <button class="badge badge-gray text-[11px] cursor-pointer" onclick="filterConvType('support')">Support</button>
@@ -130,46 +130,11 @@
       </div>
 
       <div class="overflow-y-auto" style="height:calc(100% - 130px);" id="conv-list">
-        
-        <!-- Conversation 1 (Active) -->
-        <div class="conversation-item active" onclick="selectChat('rahul')" data-type="buddy" id="item-rahul">
-          <div class="conversation-avatar">RS</div>
-          <div class="conversation-info">
-            <div class="flex justify-between items-baseline mb-0.5">
-              <span class="conversation-name">Rahul Sharma</span>
-              <span class="conversation-time">10:32 AM</span>
-            </div>
-            <div class="text-[11px] text-blue-600 font-semibold mb-0.5">Audencia Buddy 🎓</div>
-            <div class="conversation-preview">For the tram pass, download Naolib app first...</div>
-          </div>
+        <div class="p-8 text-center text-sm text-muted">
+          <div style="font-size:2.5rem;margin-bottom:8px">💬</div>
+          <div class="font-bold mb-1">No messages yet</div>
+          Your conversations will appear here.
         </div>
-
-        <!-- Conversation 2 -->
-        <div class="conversation-item" onclick="selectChat('pierre')" data-type="landlord" id="item-pierre">
-          <div class="conversation-avatar" style="background:linear-gradient(135deg, #10B981, #059669)">PD</div>
-          <div class="conversation-info">
-            <div class="flex justify-between items-baseline mb-0.5">
-              <span class="conversation-name">Pierre Dupont</span>
-              <span class="conversation-time">Yesterday</span>
-            </div>
-            <div class="text-[11px] text-emerald-600 font-semibold mb-0.5">Landlord · Studio Saint-Félix 🏠</div>
-            <div class="conversation-preview">Bonjour Kavin! I received your dossier...</div>
-          </div>
-        </div>
-
-        <!-- Conversation 3 -->
-        <div class="conversation-item" onclick="selectChat('support')" data-type="support" id="item-support">
-          <div class="conversation-avatar" style="background:linear-gradient(135deg, #6366F1, #4F46E5)">BK</div>
-          <div class="conversation-info">
-            <div class="flex justify-between items-baseline mb-0.5">
-              <span class="conversation-name">Bookare Support</span>
-              <span class="conversation-time">Sept 12</span>
-            </div>
-            <div class="text-[11px] text-purple-600 font-semibold mb-0.5">Arrival Advisor 🛡️</div>
-            <div class="conversation-preview">Your Visale guarantee is now officially verified!</div>
-          </div>
-        </div>
-
       </div>
     </div>
 
@@ -180,10 +145,10 @@
       <div class="messages-header justify-between">
         <div class="flex items-center gap-3">
           <button class="btn btn-ghost btn-sm md:hidden" onclick="backToList()">←</button>
-          <div class="conversation-avatar" id="chat-header-avatar">RS</div>
+          <div class="conversation-avatar" id="chat-header-avatar">BK</div>
           <div>
-            <div class="font-bold text-sm text-slate-900" id="chat-header-name">Rahul Sharma</div>
-            <div class="text-xs text-muted" id="chat-header-status">Senior MSc Student @ Audencia Business School · Online</div>
+            <div class="font-bold text-sm text-slate-900" id="chat-header-name">Messages</div>
+            <div class="text-xs text-muted" id="chat-header-status">Select or start a conversation</div>
           </div>
         </div>
         <div class="flex items-center gap-2">
@@ -195,41 +160,18 @@
 
       <!-- Messages Body -->
       <div class="messages-body flex-1" id="messages-stream">
-        
-        <div class="text-center my-3 text-[11px] text-muted">Yesterday</div>
-
-        <!-- Incoming -->
-        <div class="chat-bubble incoming">
-          Hey Kavin! Welcome to the Audencia incoming cohort. I saw you shortlisted the studio on Rue Saint-Félix.
-          <div class="bubble-time">17:40</div>
+        <div class="text-center text-sm text-muted p-12" style="margin:auto">
+          <div style="font-size:3rem;margin-bottom:12px">✉️</div>
+          <h3 class="text-lg font-bold mb-2">No messages yet</h3>
+          <p class="text-xs text-muted mb-4">Choose a student buddy or contact a landlord to start a conversation.</p>
+          <a href="buddies.html" class="btn btn-primary btn-sm">Find a student buddy</a>
         </div>
-
-        <!-- Outgoing -->
-        <div class="chat-bubble outgoing">
-          Hi Rahul! Thanks so much for reaching out. Yes, that studio looks great! How is the actual commute from Saint-Félix to the Atlantic campus?
-          <div class="bubble-time">17:42 ✓✓</div>
-        </div>
-
-        <!-- Incoming -->
-        <div class="chat-bubble incoming">
-          It's super convenient! It's only 10-12 minutes walking. Or you can take Tram Line 2 for two stops directly to "École Centrale - Audencia".
-          <div class="bubble-time">17:45</div>
-        </div>
-
-        <div class="text-center my-3 text-[11px] text-muted">Today</div>
-
-        <!-- Incoming -->
-        <div class="chat-bubble incoming">
-          Also, regarding the local transport card: don't buy single tickets! Download the Naolib app and apply for the under-26 student subscription (~€28/mo).
-          <div class="bubble-time">10:32</div>
-        </div>
-
       </div>
 
       <!-- Input Area -->
       <div class="messages-input-area">
         <button class="btn btn-ghost btn-sm" title="Attach file" onclick="showToast('Attachment feature: select photo or PDF lease draft','default')">📎</button>
-        <input type="text" class="messages-input" id="message-text" placeholder="Type a message to Rahul..." onkeypress="handleKeyPress(event)" />
+        <input type="text" class="messages-input" id="message-text" placeholder="Type a message..." onkeypress="handleKeyPress(event)" />
         <button class="btn btn-primary" onclick="sendMessage()">Send</button>
       </div>
 
@@ -306,95 +248,10 @@
 <div class="toast-container" id="toast-container"></div>
 <script src="js/lucide.min.js"></script><script src="js/main.js"></script>
 <script>
-  let currentChat = 'rahul';
-
-  const chatsData = {
-    rahul: {
-      name: 'Rahul Sharma',
-      role: 'Audencia Senior Buddy',
-      status: 'Senior MSc Student @ Audencia Business School · Online',
-      avatar: 'RS',
-      avatarBg: 'linear-gradient(135deg, var(--blue-400), var(--blue-600))',
-      placeholder: 'Type a message to Rahul...',
-      messages: [
-        { sender: 'them', text: 'Hey Kavin! Welcome to the Audencia incoming cohort. I saw you shortlisted the studio on Rue Saint-Félix.', time: '17:40' },
-        { sender: 'me', text: 'Hi Rahul! Thanks so much for reaching out. Yes, that studio looks great! How is the actual commute from Saint-Félix to the Atlantic campus?', time: '17:42' },
-        { sender: 'them', text: 'It\'s super convenient! It\'s only 10-12 minutes walking. Or you can take Tram Line 2 for two stops directly to "École Centrale - Audencia".', time: '17:45' },
-        { sender: 'them', text: 'Also, regarding the local transport card: don\'t buy single tickets! Download the Naolib app and apply for the under-26 student subscription (~€28/mo).', time: '10:32' }
-      ]
-    },
-    pierre: {
-      name: 'Pierre Dupont',
-      role: 'Private Landlord (Verified)',
-      status: 'Landlord of Studio Saint-Félix · Typically replies in 2h',
-      avatar: 'PD',
-      avatarBg: 'linear-gradient(135deg, #10B981, #059669)',
-      placeholder: 'Type a message to Pierre...',
-      messages: [
-        { sender: 'them', text: 'Bonjour Kavin! I received your booking application for the Studio on Rue Saint-Félix.', time: 'Yesterday' },
-        { sender: 'them', text: 'Your Visale guarantee certificate is clear and matches the requirements. I am preparing the student mobility lease draft for September 1st.', time: 'Yesterday' },
-        { sender: 'me', text: 'Bonjour Monsieur Dupont, thank you! I am ready to sign once you upload the draft.', time: '09:10' }
-      ]
-    },
-    support: {
-      name: 'Bookare Support',
-      role: 'Arrival & Relocation Advisor',
-      status: 'Official Bookare Relocation Team Nantes · 24/7',
-      avatar: 'BK',
-      avatarBg: 'linear-gradient(135deg, #6366F1, #4F46E5)',
-      placeholder: 'Ask Bookare support anything...',
-      messages: [
-        { sender: 'them', text: 'Welcome to Bookare! We have verified your passport and student admission letter.', time: 'Sept 12' },
-        { sender: 'them', text: 'Tip: Remember to generate your French Home Insurance (Assurance Habitation) before your move-in date.', time: 'Sept 13' }
-      ]
-    }
-  };
-
   function selectChat(id) {
-    currentChat = id;
-    const data = chatsData[id];
-
-    // Highlight active in list
-    document.querySelectorAll('.conversation-item').forEach(item => item.classList.remove('active'));
-    document.getElementById('item-' + id).classList.add('active');
-
-    // Update Header
-    document.getElementById('chat-header-name').textContent = data.name;
-    document.getElementById('chat-header-status').textContent = data.status;
-    const av = document.getElementById('chat-header-avatar');
-    av.textContent = data.avatar;
-    av.style.background = data.avatarBg;
-
-    // Update Input
-    document.getElementById('message-text').placeholder = data.placeholder;
-
-    // Update Drawer
-    document.getElementById('drawer-name').textContent = data.name;
-    document.getElementById('drawer-role').textContent = data.role;
-    const drawAv = document.getElementById('drawer-avatar');
-    drawAv.textContent = data.avatar;
-    drawAv.style.background = data.avatarBg;
-
-    // Render messages
-    renderMessages(data.messages);
-
-    // Mobile view switch
-    if (window.innerWidth <= 768) {
-      document.getElementById('chat-sidebar').classList.add('mobile-hidden');
-      document.getElementById('chat-main').classList.add('mobile-active');
+    if (window.selectUserChat) {
+      window.selectUserChat(id);
     }
-  }
-
-  function renderMessages(messages) {
-    const stream = document.getElementById('messages-stream');
-    stream.innerHTML = '';
-    messages.forEach(m => {
-      const bubble = document.createElement('div');
-      bubble.className = `chat-bubble ${m.sender === 'me' ? 'outgoing' : 'incoming'}`;
-      bubble.innerHTML = `${m.text}<div class="bubble-time">${m.time} ${m.sender === 'me' ? '✓✓' : ''}</div>`;
-      stream.appendChild(bubble);
-    });
-    stream.scrollTop = stream.scrollHeight;
   }
 
   function handleKeyPress(e) {
@@ -403,34 +260,13 @@
 
   function sendMessage() {
     const input = document.getElementById('message-text');
-    const text = input.value.trim();
-    if (!text) return;
-
-    const stream = document.getElementById('messages-stream');
-    const now = new Date();
-    const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
-
-    // Add outgoing
-    const bubble = document.createElement('div');
-    bubble.className = 'chat-bubble outgoing';
-    bubble.innerHTML = `${text}<div class="bubble-time">${timeStr} ✓✓</div>`;
-    stream.appendChild(bubble);
-    input.value = '';
-    stream.scrollTop = stream.scrollHeight;
-
-    // Simulated reply
-    setTimeout(() => {
-      const reply = document.createElement('div');
-      reply.className = 'chat-bubble incoming';
-      let replyText = "Got it! Let me know if you need anything else.";
-      if (currentChat === 'rahul') replyText = "Awesome! Don't hesitate to reach out anytime before you land in Nantes.";
-      else if (currentChat === 'pierre') replyText = "Noted Kavin. I will submit the signed contract to your tracker.";
-      else if (currentChat === 'support') replyText = "An advisor has noted your question and will confirm within 15 minutes.";
-
-      reply.innerHTML = `${replyText}<div class="bubble-time">${timeStr}</div>`;
-      stream.appendChild(reply);
-      stream.scrollTop = stream.scrollHeight;
-    }, 1000);
+    const text = input ? input.value.trim() : '';
+    if (!text || !window.currentChatId) return;
+    if (window.Bookare && window.Bookare.sendMessage) {
+      window.Bookare.sendMessage(window.currentChatId, text);
+      input.value = '';
+      if (window.selectUserChat) window.selectUserChat(window.currentChatId);
+    }
   }
 
   function backToList() {
@@ -453,16 +289,9 @@
     const term = val.toLowerCase();
     const items = document.querySelectorAll('.conversation-item');
     items.forEach(item => {
-      const name = item.querySelector('.conversation-name').textContent.toLowerCase();
+      const name = item.querySelector('.conversation-name')?.textContent.toLowerCase() || '';
       item.style.display = name.includes(term) ? 'flex' : 'none';
     });
-  }
-
-  // Check URL query param for ?chat=
-  const urlParams = new URLSearchParams(window.location.search);
-  const requestedChat = urlParams.get('chat');
-  if (requestedChat && chatsData[requestedChat]) {
-    selectChat(requestedChat);
   }
 </script>
 </body>
